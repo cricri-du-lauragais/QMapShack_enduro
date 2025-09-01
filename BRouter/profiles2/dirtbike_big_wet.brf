@@ -32,7 +32,7 @@ assign bikerPower = 40000    # %bikerPower% | Average power (in W) provided by t
 # Use the following switches to change behaviour
 # (1=yes, 0=no):
 
-assign consider_elevation false # %considerElevation% | Activate to apply a penalty for uphills | boolean
+assign consider_elevation true # %considerElevation% | Activate to apply a penalty for uphills | boolean
 assign is_wet true # %is_wet% | Activate less dirt track | boolean
 
 # Turn cost definition
@@ -40,10 +40,10 @@ assign turncostBase = 0 # %turncostBase% | Cost of turning. The larger the cost,
 
 # the elevation parameters
 
-assign downhillcost switch consider_elevation 175 0
-assign downhillcutoff 20 # Gradients below this value in percents are not counted.
-assign uphillcost switch consider_elevation 2000 0
-assign uphillcutoff 20 # Gradients below this value in percents are not counted.
+assign downhillcost switch consider_elevation 1000 0
+assign downhillcutoff 15 # Gradients below this value in percents are not counted.
+assign uphillcost switch consider_elevation 3000 0
+assign uphillcutoff 15 # Gradients below this value in percents are not counted.
 
 							  
 
@@ -113,8 +113,8 @@ assign smoothnesspenalty
     else if smoothness=bad                     then if is_wet then 0 else 0
     else if smoothness=very_bad                then if is_wet then 1 else 0.5
     else if smoothness=horrible                then if is_wet then 10 else 3.5
-    else if smoothness=very_horrible           then if is_wet then 40 else 5
-    else if smoothness=impassable              then if is_wet then 50 else 50
+    else if smoothness=very_horrible           then if is_wet then 1000 else 500
+    else if smoothness=impassable              then if is_wet then 1000 else 1000
     else 0
 
 assign surfacepenalty
@@ -131,8 +131,8 @@ assign tracktypepenalty
     else if tracktype=grade2    then if is_wet then 0 else 0
     else if tracktype=grade3    then if is_wet then 0 else 0
     else if tracktype=grade4    then if is_wet then 5.0 else 2.5
-    else if tracktype=grade5    then if is_wet then 10.0 else 5.0
-    else if highway=track       then if is_wet then 10.0 else 5.0
+    else if tracktype=grade5    then if is_wet then 10.0 else 7.0
+    else if highway=track       then if is_wet then 10.0 else 7.0
     else if highway=path        then if is_wet then 300.0 else 200.0
     else 0
     
