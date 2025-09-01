@@ -6,7 +6,8 @@ QMapShack permet d'afficher plusieures couches cartographiques, la première est
 
 cette carte vectorielle est au format GARMIN et est compilée par l'utilitaire mkgmap qui permet via un style de formater les informations de façon pertinente (comme afficher des symboles rouge pour une difficulté par exemple)
 - le style mkgmap pour faire n'importe quelle région du monde est [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/mkgmap/style/qmapshack)
-- mes cartes vectorielles (France / Espagne / Portugal) sont [ici](https://drive.google.com/drive/folders/1u9BwlJgjlj6ju5V3EXWNfKZ7py4GAkeK?usp=sharing)
+- mes cartes vectorielles (France / Espagne / Portugal) sont [ici](https://drive.google.com/drive/folders/1u9BwlJgjlj6ju5V3EXWNfKZ7py4GAkeK?usp=sharing) (décomposée en fond/rivière/courbe/le reste)
+- légende de la carte à venir
 
 la couche suivante peut être n'importe quelle carte en ligne comme les cartes IGN 1/25000 Française, ou la carte de chaleur Strava, ou encore Google ou Via michelin parmis la multitude existante.
 - mes cartes online FR sont [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/online%20maps)
