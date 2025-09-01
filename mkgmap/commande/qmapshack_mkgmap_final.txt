@@ -1,0 +1,17 @@
+style-file= D:\mkgmap_full-process-dem\test\boundary\qmapshack\mkgmap\resources\styles\qmapshack
+draw-priority: 30
+no-merge-lines
+add-pois-to-lines
+add-pois-to-areas
+#pois-to-areas-placement=admin_centre=*;place=city;place=town;place=village
+#bounds=D:\mkgmap_full-process-dem\test\boundary\mkgmap\bounds-latest.zip
+reduce-point-density=1.6
+nearby-poi-rules=0x6407-0x640c:500,0x02b06-0x02c07:5000,0x6614:100,0x6501-0x6502:1000,0x01d05-0x01d08:70,0x02a01-0x02a04:70,0x1341b:100,0x11404:5000
+#location-autofill:is_in,nearest
+#index
+lower-case
+code-page=1252
+check-styles
+keep-going
+remove-ovm-work-files
+output-dir=D:\mkgmap_full-process-dem\test\boundary\qmapshack\map
