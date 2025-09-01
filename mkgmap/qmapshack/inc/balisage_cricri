@@ -1,0 +1,24 @@
+## pont
+footway=sidewalk {delete bridge}
+#(highway=cycleway|railway=tram) {delete bridge}
+(highway=path|highway=footway) & surface=asphalt {delete bridge}
+highway=footway & bicycle=designated {delete bridge}
+(highway=*|railway=*) & bridge=* [0x10e04 resolution 23 continue]
+
+##BALISAGES
+#itineraire VTT {name 'VTT: ${VTT}'}
+highway=* & route=mtb {name 'balisé VTT'} [0x11f11 resolution 23 continue]
+
+#sentiers GR  {name 'GR: ${GR}'}
+highway=* & (network=nwn|network=iwn) {name 'balisé GR'} [0x10e01 resolution 21 continue]
+
+#sentiers GRP {name 'GRP: ${GR}'}
+highway=* & network=rwn {name 'balisé GR Pays'} [0x10e01 resolution 22 continue]
+
+#villages_perches balisage {name 'PR:${lvp}'}
+highway=* & intermittent=lvp {name 'balisé PR'} [0x10e02 resolution 23 continue]
+
+#sentiers balises (PR et autres) {name 'PR:${PR}'}
+highway=* & network=lwn {name 'balisé PR'} [0x10e02 resolution 23 continue]
+(highway=track|highway=path|highway=service|highway=footway) & (hiking=test|hiking=yes|route=hiking) & (network!=*) {name 'balisé PR'} [0x10e02 resolution 23 continue]
+

@@ -1,0 +1,149 @@
+#regroupe mtb:scale
+highway=* & (mtb:scale="0-" | mtb:scale="0+" | mtb:scale:imba=0) {set mtb:scale=0;delete mtb:scale:imba}
+highway=* & (mtb:scale="1-" | mtb:scale="1+" | mtb:scale:imba=1) {set mtb:scale=1;delete mtb:scale:imba}
+highway=* & (mtb:scale="2-" | mtb:scale="2+" | mtb:scale:imba=2) {set mtb:scale=2;delete mtb:scale:imba}
+highway=* & (mtb:scale="3-" | mtb:scale="3+" | mtb:scale:imba=3) {set mtb:scale=3;delete mtb:scale:imba}
+highway=* & (mtb:scale="4-" | mtb:scale="4+" | mtb:scale:imba=4) {set mtb:scale=4;delete mtb:scale:imba}
+highway=* & (mtb:scale="5-" | mtb:scale="5+") {set mtb:scale=5}
+highway=* & (mtb:scale="6-" | mtb:scale="6+") {set mtb:scale=6}
+#highway=path & mtb:scale=0 {addaccess 'yes';setaccess 'yes'} 
+
+##dirt & gravel road
+(highway=* & surface=paved) { set surface=asphalt }
+(highway=residential|highway=unclassified|highway=tertiary|highway=secondary|highway=primary) & (tracktype=grade1|tracktype=grade2|tracktype=grade3|tracktype=grade4|tracktype=grade5) {set highway=track}
+(highway=residential|highway=unclassified|highway=tertiary|highway=secondary|highway=primary) & (surface=* & surface!=asphalt) {set highway=track}
+
+## converti chemins selon tags
+highway=path {add chemin=sentier;set chemin=sentier}
+highway=footway {add chemin=pieton;set chemin=pieton}
+highway=service {add chemin=carrossable;set chemin=carrossable}
+
+(highway=track & tracktype~'grade[1-3]') & ( surface=ground | surface=dirt | surface=earth | surface=unpaved ) { delete surface }
+(highway=track & tracktype~'grade[1-2]') & surface=gravel { delete surface }
+
+highway=track & (
+tracktype=grade1 | 
+tracktype=grade2 | 
+smoothness=excellent | 
+smoothness=goods | 
+smoothness=intermediate | 
+surface=asphalt |
+surface=shipseal |
+surface=paved | 
+surface=concrete | 
+surface=concrete:lanes | 
+surface=concrete:plates | 
+surface=paving_stones | 
+surface=sett | 
+surface=compacted | 
+surface=fine_gravel | 
+surface=cobblestone | 
+surface=unhewn_cobblestone
+) { add piste=yes; add chemin=piste} 
+
+highway=track & (
+tracktype=grade3 | 
+surface=gravel | 
+surface=pebblestone 
+) { add carrossable=yes; add chemin=carrossable; delete piste; set chemin=carrossable } ## smoothness=bad
+
+highway=track & (
+tracktype=grade4 | 
+surface=ground
+) { add chemin_terre=yes; add chemin=chemin_terre; delete carrossable; delete piste; set chemin=chemin_terre } ## smoothness=very_bad
+
+highway=track & (
+tracktype=grade5 | 
+smoothness=very_horrible | 
+smoothness=horrible | 
+surface=dirt | 
+surface=earth | 
+surface=unpaved | 
+surface=snow | 
+surface=ice | 
+surface=grass | 
+surface=mud | 
+surface=sand 
+) { add chemin_exploitation=yes; add chemin=chemin_exploitation;delete chemin_terre; delete carrossable; delete piste; set chemin=chemin_exploitation }
+
+
+## vtt si rien d'autre
+(highway=track & tracktype!=*) & (mtb:scale=0) {add chemin_terre=yes; add chemin=chemin_terre} 
+(highway=track & tracktype!=*) & (mtb:scale=1|mtb:scale=2) {add chemin_exploitation=yes; add chemin=chemin_exploitation}
+
+## chemin sans précisions
+highway=track & (
+tracktype!=* | 
+smoothness!=* | 
+surface!=* 
+) { add chemin_inconnu=yes; add chemin=chemin_inconnu}
+
+## route sans précisions
+(highway=unclassified|highway=residential|highway=living_street) { add chemin=route}
+
+highway=track & smoothness=impassable {set highway=path}
+
+#voie interdite
+highway=* & (
+access=agricultural|access=forestry|access=no|access=private|access=destination|access=customers|
+vehicle=agricultural|vehicle=forestry|vehicle=no|vehicle=private|vehicle=destination|vehicle=customers|
+motor_vehicle=forestry|motor_vehicle=agricultural|motor_vehicle=no|motor_vehicle=private|motor_vehicle=destination|motor_vehicle=customers|
+motorcar=agricultural|motorcar=forestry|motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|
+motorcycle=agricultural|motorcycle=forestry|motorcycle=no|motorcycle=private|motorcycle=destination|motorcycle=customers
+) {set interdit=yes}
+
+highway=* & interdit=yes {name 
+'${name}, ${chemin} / moto:${motorcycle} / ${note}'|
+'${name}, ${chemin} / moto:${motorcycle} '|
+'${chemin} / moto:${motorcycle} / ${note}'|
+'${chemin} / moto:${motorcycle}'|
+'${name}, ${chemin} / voiture:${motorcar} / ${note}'|
+'${name}, ${chemin} / voiture:${motorcar} '|
+'${chemin} / voiture:${motorcar} / ${note}'|
+'${chemin} / voiture:${motorcar}'|
+'${name}, ${chemin} / motor_vehicle:${motor_vehicle} / ${note}'|
+'${chemin} / motor_vehicle:${motor_vehicle} / ${note}'|
+'${name}, ${chemin} / motor_vehicle:${motor_vehicle}'|
+'${chemin} / motor_vehicle:${motor_vehicle}'|
+'${name}, ${chemin} / vehicle:${vehicle} / ${note}'|
+'${name}, ${chemin} / vehicle:${vehicle} '|
+'${chemin} / vehicle:${vehicle} / ${note}'|
+'${chemin} / vehicle:${vehicle}'|
+'${name}, ${chemin} / acces:${access} / ${note}'|
+'${name}, ${chemin} / acces:${access}'|
+'${chemin} / acces:${access} / ${note}'|
+'${chemin} / acces:${access}' 
+}
+
+#sentier interdit hors parc et ville
+(highway=path|highway=footway) & interdit=yes & is_in(leisure,park,all_in_or_on)=false & mkgmap:residential!=* & bridge!=* [0x12d02 resolution 23]
+
+#chemin interdit
+(highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) [0x11 resolution 22-22 continue]
+(highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) & bridge!=* [0x12d05 resolution 23]
+
+#piste interdite
+(highway=track & interdit=yes) & chemin=piste [0x11 resolution 21-21 continue]
+(highway=track & interdit=yes) & chemin=piste & bridge!=* [0x10901 resolution 22-22 continue]
+(highway=track & interdit=yes) & chemin=piste & bridge!=* [0x12d06 resolution 23]
+
+#carrossable interdite
+(highway=track & interdit=yes) & chemin=carrossable [0x11 resolution 21-22 continue]
+(highway=track & interdit=yes) & chemin=carrossable & bridge!=* [0x12d05 resolution 23]
+
+#route interdite
+(highway=unclassified|highway=residential|highway=living_street) & interdit=yes [0x11 resolution 21-22 continue]
+(highway=unclassified|highway=residential|highway=living_street) & interdit=yes & bridge!=* [0x12d05 resolution 23-23 continue]
+(highway=unclassified|highway=residential|highway=living_street) & interdit=yes & bridge!=* [0x12d06 resolution 24]
+
+#voie service interdite
+(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* [0x11 resolution 21-22 continue]
+(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* & bridge!=* [0x12d05 resolution 23-23 continue]
+(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* & bridge!=* [0x12d06 resolution 24]
+
+##piste cyclable
+highway=cycleway {name 'piste cyclable'; setaccess 'no'; set mkgmap:foot=yes ; set mkgmap:bicycle=yes} [0x0c road_class=0 road_speed=0 resolution 23 ]
+
+##voies BUS
+highway=service & psv=yes & access=no {name 'voie de bus'} [0x11002 resolution 24]
+

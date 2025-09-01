@@ -1,0 +1,41 @@
+##forets ONF si taggees boundary
+boundary=forest & cdom_frt=OUI [0x10c05 resolution 20 continue]
+#leisure=nature_reserve [0x10f07 resolution 21 continue]
+
+##contour de la foret sur les inner des multipolygons "forest" => voir fichier "relations"
+role_forest=inner [0x10f07 resolution 21 continue]
+
+## PNR
+boundary=protected_area & protect_class=5 {name '${name}'} [0x19 resolution 18 continue]
+
+## delimitation region
+boundary=administrative {name '${mkgmap:boundary_name}'}
+boundary=administrative & admin_level<3 {name '${name}'} [0x11f13 resolution 14 ]
+boundary=administrative & admin_level=4 {name '${name}'} [0x12d00 resolution 18-22 continue]
+boundary=administrative & admin_level=4 {name '${name}'} [0x12d01 resolution 23 ]
+#boundary=administrative & admin_level<5 [0x19 resolution 19]
+#boundary=* {delete boundary}
+
+## divers reperes visuels
+power=line|power=minor_line [0x29 default_name="ligne electrique" resolution 23]
+
+## recupere le nom de la relation balisage sur les petites routes de campagne
+highway=unclassified | highway=tertiary  {name '${ref} ${name} ${GR} ${VTT} ${PR}'}
+
+(highway=* & proposed=yes) {set name='${highway}'} #voir fichier relations_cricri
+
+barrier=city_wall|barrier=retaining_wall|barrier=wall [0x12d08 default_name="mur" resolution 24 ]
+barrier=hedge [0x12d09 default_name="haie" resolution 24 ]
+barrier=* [0x12d07 default_name="barriere" resolution 24 ]
+natural=cliff [0x10902 default_name="falaise" resolution 23 ]
+
+aeroway=runway [0x11f13 default_name="piste" resolution 22]
+
+man_made=pipeline & (location=underground|location=underwater) {deletealltags}
+man_made=pipeline & (layer=-1|layer=-2) {deletealltags}
+man_made=pipeline [0x28 default_name="pipeline" resolution 23]
+man_made=dyke [0x10905 default_name="digue" resolution 23]
+man_made=embankment [0x10905 default_name="remblais" resolution 23]
+
+waterway=dam [0x12002 default_name="barrage" resolution 23 continue]
+

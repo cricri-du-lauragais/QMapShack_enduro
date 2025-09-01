@@ -1,0 +1,117 @@
+highway=* & area=yes {delete highway}
+
+## pont
+(highway=path|highway=footway) & bridge=yes [0x10903 default_name="pont" resolution 24 continue]
+highway=track & (chemin=chemin_terre|chemin=chemin_exploitation|chemin=chemin_inconnu) & bridge=yes [0x10903 default_name="pont" resolution 23 continue]
+highway=track & (chemin=carrossable|chemin=piste) & bridge=yes [0x11f15 default_name="pont" resolution 23 continue]
+highway=track & (chemin=carrossable|chemin=piste) & bridge=yes [0x11f1c default_name="pont" resolution 23 continue]
+
+## escalier routable pour piéton
+highway=steps [0x13 default_name="escalier" road_class=0 road_speed=0 resolution 24]
+
+highway=* & trail_visibility=no {name 
+'${name}, sentier / ${note} invisible'|
+'${name}, sentier invisible'|
+'sentier ${note} invisible'|
+'sentier invisible'
+} [0x11f19 default_name="invisible" resolution 23]
+disused:highway=* {name 
+'${name}, ${note} existe plus'|
+'${name} existe plus'|
+'${note} existe plus'
+} [0x11f19  default_name="existe plus" resolution 23]
+
+## sentiers
+highway=path {name 
+'${name}, sentier / ${note}'|
+'${name}, sentier'|
+'sentier ${note}'|
+'sentier'
+}
+
+highway=path [0x16 resolution 22-23 continue]
+highway=path [0x12d1e resolution 24]
+
+(highway=footway|highway=pedestrian) & (location=roof|level='-1'|tunnel=building_passage) [0x0d road_class=0 road_speed=0 resolution 24]
+highway=footway & footway=sidewalk [0x0d road_class=0 road_speed=0 resolution 24]
+highway=footway & is_in(landuse,residential,all_in_or_on)=true [0x12d1e default_name="piéton" resolution 24 ]
+highway=footway [0x16 default_name="piéton" resolution 23-23 continue]
+highway=footway [0x12d1e default_name="piéton" resolution 24]
+
+highway=pedestrian & (area!=yes|is_closed()=false|mkgmap:mp_created=false) [0x0e default_name="pedestre" road_class=0 road_speed=0 resolution 24 ]
+
+## classification pistes voir "interdiction_cricri" pour le tri des tracktype
+
+## impassable 
+highway=track & (smoothness=impassable|mtb:scale=3 | mtb:scale=4 | mtb:scale=5| mtb:scale=6) {name 
+'${name}, chemin impraticable / ${note}'|
+'${name}, chemin impraticable'|
+'chemin impraticable / ${note}'|
+'chemin impraticable'
+} [0x16 road_class=0 road_speed=0 resolution 23-23 continue]
+highway=track & (smoothness=impassable|mtb:scale=3 | mtb:scale=4 | mtb:scale=5| mtb:scale=6) {name 
+'${name}, chemin impraticable / ${note}'|
+'${name}, chemin impraticable'|
+'chemin impraticable / ${note}'|
+'chemin impraticable'
+} [0x12d1e resolution 24]
+
+## goudronné
+highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x11f09 resolution 20-20 continue]
+highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x11f02 resolution 21-21 continue]
+	highway=track & surface=asphalt [0x06 resolution 22-23 continue]
+	highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x10c06 resolution 22-23 continue]
+		highway=track & surface=asphalt {name '${name} goudronné'|'goudronné: ${note}'}[0x11f06 default_name="goudronné" resolution 24 continue] 
+		highway=track & surface=asphalt [0x12d19 resolution 24] 
+
+## piste
+highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x11f09 resolution 20-20 continue]
+highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x11f02 resolution 21-21 continue]
+	highway=track & piste=yes [0x06 resolution 22-23 continue]
+	highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x10c06 resolution 22-23 continue]
+		highway=track & piste=yes {name '${name}, ${chemin} / ${note}'|'${name}, ${chemin}'|'${chemin} / ${note}'|'${chemin}'} [0x11f06 resolution 24 continue]
+		highway=track & piste=yes [0x12d19 resolution 24]
+
+## carrossable
+highway=track & carrossable=yes {name '${name} ${chemin}'|'${chemin}'} [0x11f09 resolution 20-21 continue]
+highway=track & carrossable=yes {name '${name} ${chemin}'|'${chemin}'} [0x11f02 resolution 22-22 continue]
+highway=track & carrossable=yes {name 
+'${name}, ${chemin} / ${note}'|
+'${name}, ${chemin}'|
+'${chemin} / ${note}'|
+'${chemin}'
+} [0x10c08 resolution 23 continue]
+highway=track & carrossable=yes [0x12d1a resolution 24]
+
+## grade4
+highway=track & chemin_terre=yes {name '${name} ${chemin}'|'${chemin}'}  [0x12d04 resolution 21-21 continue]
+highway=track & chemin_terre=yes {name '${name} ${chemin}'|'${chemin}'}  [0x12d04 resolution 22-22 continue]
+highway=track & chemin_terre=yes {name 
+'${name}, ${chemin} / ${note}'|
+'${name}, ${chemin}'|
+'${chemin} / ${note}'|
+'${chemin}'
+} [0x1231d resolution 23 continue]
+highway=track & chemin_terre=yes [0x12d1b resolution 24]
+
+## grade5
+highway=track & chemin_exploitation=yes {name '${name} ${chemin}'|'${chemin}'}  [0x12d0b resolution 21-21 continue]
+highway=track & chemin_exploitation=yes {name '${name} ${chemin}'|'${chemin}'}  [0x12d03 resolution 22-22 continue]
+highway=track & chemin_exploitation=yes {name '${name} ${chemin}'|'${chemin}'} [0x1231c resolution 23-23 continue]
+highway=track & chemin_exploitation=yes {name 
+'${name}, ${chemin} / ${note}'|
+'${name}, ${chemin}'|
+'${chemin} / ${note}'|
+'${chemin}'
+} [0x12d1c resolution 24]
+
+## non classifié
+highway=track {name '${name} / ${chemin}'|'${chemin}'} [0x12d0b resolution 21-21 continue]
+highway=track {name '${name} / ${chemin}'|'${chemin}'} [0x12d03 resolution 22-22 continue]
+highway=track {name '${name} / ${chemin}'|'${chemin}'} [0x1231b resolution 23-23 continue]
+highway=track {name 
+'${name}, ${chemin} / ${note}'|
+'${name}, ${chemin}'|
+'${chemin} / ${note}'|
+'${chemin}'
+} [0x12d1d resolution 24]

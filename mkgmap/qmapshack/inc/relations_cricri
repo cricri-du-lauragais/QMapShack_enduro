@@ -1,0 +1,133 @@
+(type=boundary | type=multipolygon) & boundary=administrative & name=*
+{ apply
+  {
+    set mkgmap:boundary_name='$(mkgmap:boundary_name)/${name}' | '${name}';
+  }
+}
+
+type = boundary & boundary = administrative & admin_level=* 
+{ apply role=admin_centre
+  {
+            set capital = '${admin_level}';
+            add capital = '${admin_level}';
+  }
+}
+
+type = boundary & boundary = administrative & admin_level=8 & population = * 
+{ apply role=admin_centre
+  {
+            set population = '${population}';
+            add population = '${population}';
+  }
+}
+
+type=route & route=proposed
+{ apply
+	{
+		set proposed=yes;
+	}
+}
+
+type=route & route=railway & name ~ '.*[Aa]ncienne.*'
+{ apply
+	{
+		set name='Ancienne Voie Ferrée';
+	}
+}
+
+type=route & route=bicycle & name ~ '.*[Vv]oie [Vv]erte.*'
+{ apply
+	{
+#		set highway=cycleway;
+		set name='${name}';
+	}
+}
+
+###############ordre_exec_relation_sans_importance_pour_balisages
+
+type=route & route=mtb # VTT
+{ apply
+	{
+		set route=mtb;
+		add VTT='${name}';
+	}
+}
+#PR
+type=route & (route=hiking & network!=*) 
+{ apply
+	{
+		set hiking=test;
+		add PR='${name}';
+	}
+}
+
+type=route & (route=hiking & network=lwn) # PR
+{ apply
+	{
+		set hiking=test;
+		add PR='${name}';
+	}
+}
+
+type=route & name ~ '.*[Ll]es [Vv]illages [Pp]erchés.*'
+{ apply
+	{
+		set intermittent=lvp;
+		add lvp='${name}';
+	}
+}
+# GRP
+type=route & (route=hiking & network=rwn)
+{ apply
+	{
+		set network=rwn;
+		add GR='${name}';
+	}
+}
+# GR
+type=route & (route=hiking & network=nwn )
+{ apply
+	{
+		set network=nwn;
+		add GR='${name}';
+	}
+}
+
+type=route & (route=hiking & network=iwn)
+{ apply
+	{
+		set network=iwn;
+		set GR='${name}';
+	}
+}
+
+################################
+
+(type=multipolygon | type=boundary) & boundary=protected_area
+{ apply
+ {
+    set mkgmap:boundary_name='$(mkgmap:boundary_name)/${name}' | '${name}';
+    set protect_class= '${protect_class}';
+ }
+}
+
+(type=multipolygon | type=boundary) & boundary=forest
+{ apply
+ {
+    set mkgmap:boundary_name='$(mkgmap:boundary_name)/${name}' | '${name}';
+ }
+}
+
+(type=multipolygon | type=boundary) & boundary=forest & cdom_frt=OUI
+{ apply
+ {
+    set cdom_frt=OUI;
+    add cdom_frt=OUI;
+ }
+}
+(type=multipolygon | type=boundary) & boundary=forest
+{ apply role=inner
+	{
+		set role_forest=inner;
+	}
+}

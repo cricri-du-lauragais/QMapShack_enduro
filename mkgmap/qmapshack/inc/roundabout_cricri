@@ -1,0 +1,8 @@
+# Roundabouts
+#	junction=roundabout & (highway=motorway | highway=motorway_link) [0x01 road_class=4 road_speed=2 resolution 18]
+#	junction=roundabout & (highway=trunk | highway=trunk_link) [0x02 road_class=4 road_speed=2 resolution 18]
+#	junction=roundabout & (highway=primary | highway=primary_link) [0x03 road_class=3 road_speed=2 resolution 19]
+#	junction=roundabout & (highway=secondary | highway=secondary_link) [0x04 road_class=3 road_speed=2 resolution 20]
+#	junction=roundabout & (highway=tertiary | highway=tertiary_link) [0x05 road_class=2 road_speed=2 resolution 21]
+#	junction=roundabout & (highway=unclassified | highway=unclassified_link) [0x06 road_class=1 road_speed=2 resolution 21]
+#	junction=roundabout [0x06 road_class=1 road_speed=2 default_name="rond-point" resolution 22]

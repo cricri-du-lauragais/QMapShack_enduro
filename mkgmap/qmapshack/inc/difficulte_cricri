@@ -1,0 +1,53 @@
+(highway=path | highway=footway | highway=track) & mtb:scale=* {delete sac_scale; delete smoothness}
+(highway=path | highway=footway | highway=track) & sac_scale=* {delete smoothness}
+
+##difficulte
+(highway=path | highway=footway ) & mtb:scale=0 {name 
+'${name}, sentier facile, ${note}'|
+'sentier facile, ${note}'|
+'sentier facile'}
+# [0x10e07 resolution 23 continue] #facile
+
+(highway=path | highway=footway | highway=track) & (mtb:scale=1 | smoothness=horrible| smoothness=very_horrible ) {name 
+'${name}, ${chemin} technique, smoothness:${smoothness}, ${note}'|
+'${chemin} technique, smoothness:${smoothness}, ${note}'|
+'${name}, ${chemin} technique, smoothness:${smoothness}'|
+'${chemin} technique, smoothness:${smoothness}'|
+'${name}, ${chemin} technique, mtb:${mtb:scale}, ${note}'|
+'${chemin} technique, mtb:${mtb:scale}, ${note}'|
+'${name}, ${chemin} technique, mtb:${mtb:scale}'|
+'${chemin} technique, mtb:${mtb:scale}'
+} 
+# [0x10f04 resolution 23 continue] #technique
+
+(highway=path | highway=footway | highway=track) & (mtb:scale=2 | mtb:scale=3 | sac_scale=mountain_hiking ) {name
+'${name}, ${chemin} difficile, mtb:${mtb:scale}, ${note}'|
+'${chemin} difficile, mtb:${mtb:scale}, ${note}'|
+'${name}, ${chemin} difficile, mtb:${mtb:scale}'|
+'${chemin} difficile, mtb:${mtb:scale}'|
+'${name}, ${chemin} difficile, smoothness:${smoothness}, ${note}'|
+'${chemin} difficile, smoothness:${smoothness}, ${note}'|
+'${name}, ${chemin} difficile, smoothness:${smoothness}'|
+'${chemin} difficile, smoothness:${smoothness}'|
+'${name}, ${chemin} difficile, sac_scale:${sac_scale}, ${note}'|
+'${chemin} difficile, sac_scale:${sac_scale}, ${note}'|
+'${name}, ${chemin} difficile, sac_scale:${sac_scale}'|
+'${chemin} difficile, sac_scale:${sac_scale}'
+ }
+# [0x10e08 resolution 23 continue] #hard
+
+(highway=path | highway=footway | highway=track ) & (smoothness=impassable| mtb:scale=4 | mtb:scale=5 | mtb:scale=6 | sac_scale=difficult_alpine_hiking | sac_scale=alpine_hiking|sac_scale=demanding_alpine_hiking | sac_scale=demanding_mountain_hiking) {name 
+'${name}, ${chemin} impassable, mtb:${mtb:scale}, ${note}'|
+'${chemin} impassable, mtb:${mtb:scale}, ${note}'|
+'${name}, ${chemin} impassable, mtb:${mtb:scale}'|
+'${chemin} impassable, mtb:${mtb:scale}'|
+'${name}, ${chemin} impassable, smoothness:${smoothness}, ${note}'|
+'${chemin} impassable, smoothness:${smoothness}, ${note}'|
+'${name}, ${chemin} impassable, smoothness:${smoothness}'|
+'${chemin} impassable, smoothness:${smoothness}'|
+'${name}, ${chemin} impassable, sac_scale:${sac_scale}, ${note}'|
+'${chemin} impassable, sac_scale:${sac_scale}, ${note}'|
+'${name}, ${chemin} impassable, sac_scale:${sac_scale}'|
+'${chemin} impassable, sac_scale:${sac_scale}'
+}
+# [0x10f05 resolution 23 continue] #impassable

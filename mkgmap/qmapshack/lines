@@ -1,0 +1,60 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for converting OSM ways
+# into Garmin lines.
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more information.
+
+## voie ferree abandonnee
+railway=disused & !(tunnel=yes) [0x11f14 default_name="rail abandonné" resolution 22 continue]
+railway=abandoned & !(tunnel=yes) [0x11f12 default_name="ancienne voie ferrée" resolution 22 continue]
+
+## voie ferree
+railway=* & bridge=* {name 'pont: ${bridge:name}'|'pont: ${name}'} [0x12002 default_name="pont" resolution 23 continue]
+railway=* & bridge=* {name 'pont: ${bridge:name}'|'pont: ${name}'} [0x12003 default_name="pont" resolution 23 continue]
+(railway=tram | railway=subway | railway=narrow_gauge | railway=light_rail | railway=preserved) & !(tunnel=yes) {name '${name}'} [0x14 default_name="voie ferrée" resolution 22]
+railway=rail & !(tunnel=yes) {name '${name}'} [0x15 default_name="voie ferrée" resolution 20-20 continue]
+railway=rail & !(tunnel=yes) {name '${name}'} [0x14 default_name="voie ferrée" resolution 21 ]
+
+
+## tunnel
+highway=* & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
+railway=* & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
+
+## tranchée
+highway=* & cutting=yes [0x10905 default_name="tranchée" resolution 23 continue]
+highway=* & embankment=yes [0x10905 default_name="talus" resolution 23 continue]
+
+
+######cricri
+include 'inc/roundabout_cricri';
+######cricri
+
+########cricri
+include 'inc/balisage_cricri';
+########cricri
+
+########cricri
+include 'inc/interdiction_cricri';
+########cricri
+
+########cricri
+include 'inc/difficulte_cricri';
+########cricri
+
+########cricri
+include 'inc/chemin_cricri';
+########cricri
+
+########cricri
+include 'inc/road_cricri';
+########cricri
+
+########cricri
+include 'inc/ligne_fin_cricri';
+########cricri
+
+
