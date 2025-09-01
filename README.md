@@ -11,6 +11,7 @@ la couche suivante peut être n'importe quelle carte en ligne comme les cartes I
 - mes cartes online FR sont [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/online%20maps)
 
 ensuite pour profiter des altitudes / pentes il faut en suivant la documentation QMapShack configurer les DEM
+- que vous pouvez télécharger [ici](https://www.viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm)
 
 la dernière étape pour profiter de calculs d'itinéraires spécifiques moto tout terrain est toujours en suivant la documentation QMapShack de configurer BRouter (hors ligne) en lui ajoutant des profiles spécifiques
 - mes profiles BRouter sont [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/BRouter/profiles2)
