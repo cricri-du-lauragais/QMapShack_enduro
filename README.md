@@ -18,6 +18,7 @@ ensuite pour profiter des altitudes / pentes il faut en suivant la documentation
 
 la dernière étape pour profiter de calculs d'itinéraires spécifiques moto tout terrain est toujours en suivant la documentation QMapShack de configurer BRouter (hors ligne) en lui ajoutant des profiles spécifiques
 - mes profiles BRouter sont [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/BRouter/profiles2)
+- une explication plus détaillée sur les différents profils [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/BRouter_profiles.md)
 
 les diverses couches avec copies d'écran [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/calques.md)
 
