@@ -1,0 +1,9 @@
+<TMS>
+<Layer idx="0">
+<Title>strava pieton</Title>
+<MinZoomLevel>6</MinZoomLevel>
+<MaxZoomLevel>12</MaxZoomLevel>
+<ServerUrl>https://strava-heatmap.tiles.freemap.sk/run/purple/%1/%2/%3.png</ServerUrl>
+</Layer>
+<Copyright> cricri</Copyright>
+</TMS>

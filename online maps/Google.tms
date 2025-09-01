@@ -1,0 +1,30 @@
+<TMS>
+  <Title>Google</Title>
+  <MinZoomLevel>1</MinZoomLevel>
+  <MaxZoomLevel>22</MaxZoomLevel>
+  <Layer idx="0">
+   <Title>Google Hybrid Map</Title>
+   <ServerUrl>https://mt.google.com/vt/lyrs=y&amp;x=%2&amp;y=%3&amp;z=%1</ServerUrl>
+   <MinZoomLevel>1</MinZoomLevel>
+   <MaxZoomLevel>22</MaxZoomLevel>
+  </Layer>
+<Layer idx="1">
+   <Title>Google</Title>
+   <ServerUrl>https://mt.google.com/vt/x=%2&amp;y=%3&amp;z=%1</ServerUrl>
+   <MinZoomLevel>1</MinZoomLevel>
+   <MaxZoomLevel>22</MaxZoomLevel>
+  </Layer>
+<Layer idx="2">
+   <Title>Google Sat Map</Title>
+   <ServerUrl>https://mt.google.com/vt/lyrs=s&amp;x=%2&amp;y=%3&amp;z=%1</ServerUrl>
+   <MinZoomLevel>1</MinZoomLevel>
+   <MaxZoomLevel>22</MaxZoomLevel>
+  </Layer>
+<Layer idx="3">
+   <Title>Google Terrain Map </Title>
+   <ServerUrl>https://mt.google.com/vt/lyrs=t&amp;x=%2&amp;y=%3&amp;z=%1</ServerUrl>
+   <MinZoomLevel>1</MinZoomLevel>
+   <MaxZoomLevel>22</MaxZoomLevel>
+  </Layer>
+   <Copyright>Google</Copyright>
+</TMS>
