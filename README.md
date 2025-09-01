@@ -1,5 +1,6 @@
 # QMapShack_enduro
 utiliser QMapShack avec mkgmap & BRouter pour préparer des itinéraires en moto tout terrain
+- documentation de QMapShack [ici](https://github.com/Maproom/qmapshack/wiki/DocQuickStartFrench)
 
 QMapShack permet d'afficher plusieures couches cartographiques, la première est la couche vectorielle qui va être créée à partir des données OpenStreetMap
 
