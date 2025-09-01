@@ -1,0 +1,307 @@
+#  petit trail
+#
+#  goal is a long-distance gravel profile to ride on unpaved surfaces
+#
+#  main adjustments are done via:
+#                - surfacepenalty
+#                 - tracktypepenalty
+#                - smoothnesspenalty
+
+
+---context:global   # following code refers to global config
+assign processUnusedTags 1  # set to true if you want to display all tags in the "data"
+
+# to generate turn instructions, adapt the mode by need
+
+assign turnInstructionMode          = 1     # %turnInstructionMode% | Mode for the generated turn instructions | [0=none, 1=auto-choose, 2=locus-style, 3=osmand-style, 4=comment-style, 5=gpsies-style, 6=oruxmaps-style]
+assign turnInstructionRoundabouts   = true  # %turnInstructionRoundabouts% | Set to "false" to avoid generating special turning instructions for roundabouts | boolean
+assign turnInstructionCatchingRange = 4
+assign considerTurnRestrictions true   # turn restrictions are considered
+
+assign validForBikes true
+assign validForCars true
+assign validForFoot false
+
+# +++ Kinematic model parameters (travel time computation)
+assign totalMass  = 240    # %totalMass% | Mass (in kg) of the bike + biker, for travel time computation | number
+assign maxSpeed   = 50     # %maxSpeed% | Absolute maximum speed (in km/h), for travel time computation | number
+assign S_C_x      = 0.75   # %S_C_x% | Drag coefficient times the reference area (in m^2), for travel time computation | number
+assign C_r        = 0.2   # %C_r% | Rolling resistance coefficient (dimensionless), for travel time computation | number
+assign bikerPower = 40000    # %bikerPower% | Average power (in W) provided by the biker, for travel time computation | number
+
+# Use the following switches to change behaviour
+# (1=yes, 0=no):
+
+assign consider_elevation false # %considerElevation% | Activate to apply a penalty for uphills | boolean
+
+# Turn cost definition
+assign turncostBase = 0 # %turncostBase% | Cost of turning. The larger the cost, the straighter the route, at the cost of other parameters like surface or traffic.
+
+# the elevation parameters
+
+assign downhillcost switch consider_elevation 175 0
+assign downhillcutoff 20 # Gradients below this value in percents are not counted.
+assign uphillcost switch consider_elevation 2000 0
+assign uphillcutoff 20 # Gradients below this value in percents are not counted.
+
+---context:way   # following code refers to way-tags
+
+assign turncost = if junction=roundabout then 0
+                  else turncostBase
+#
+assign initialclassifier =
+     switch route=ferry 2  1
+assign initialcost =
+     switch route=ferry 4999  0
+
+#
+# calculate logical car access
+#
+assign isresidentialorliving = or highway=residential|living_street living_street=yes
+
+assign motorvehicleaccess
+ switch motorcycle=
+    switch motorcar=
+      switch motor_vehicle=
+         switch vehicle=
+            switch access=
+               switch or highway=motorway highway=motorway_link     1
+               switch or highway=trunk highway=trunk_link           1
+               switch or highway=primary highway=primary_link       1
+               switch or highway=secondary highway=secondary_link   1
+               switch or highway=tertiary highway=tertiary_link     1
+               switch    highway=unclassified                       1
+               switch    route=ferry                                1
+               switch    isresidentialorliving                      1
+               switch    highway=service                            1
+               switch    highway=track                              1
+               switch    highway=path                               1
+               0
+            or access=yes or access=designated access=permissive
+        or vehicle=yes or vehicle=designated vehicle=permissive
+     or motor_vehicle=yes or motor_vehicle=designated motor_vehicle=permissive
+    or motorcar=yes or motorcar=designated motorcar=permissive
+  or motorcycle=yes or motorcycle=designated motorcycle=permissive
+
+assign accesspenalty
+      switch motorvehicleaccess 1
+      1000 # tout ce qui n'est pas dans "motorvehicleaccess" est interdit
+
+assign onewaypenalty
+     switch switch reversedirection=yes
+         switch oneway=
+            junction=roundabout
+            or oneway=yes or oneway=true oneway=1
+         oneway=-1
+        10000
+        0.0
+
+assign excludepenalty
+    switch and railway=razed highway=   100
+    switch not railway= and highway=    20000 # Really. Don't use railways.
+    switch highway=                     10
+                                        0
+
+assign smoothnesspenalty
+    if smoothness=impassable              then 50
+    else 0
+
+assign surfacepenalty
+    if      surface=pebblestone                         then 0
+    else if surface=grass_paver                         then 0
+    else if surface=ground|dirt|earth|clay|unpaved      then 0
+    else if surface=grass                               then 0
+    else if surface=sand                                then 0
+    else if surface=mud                                 then 0
+    else if surface=                                    then 0
+    else 0
+                                                                    
+assign tracktypepenalty
+    if      tracktype=grade1    then 0
+    else if tracktype=grade2    then 0
+    else if tracktype=grade3    then 0
+    else if tracktype=grade4    then 0
+    else if tracktype=grade5    then 0
+    else 0
+
+assign mtb_sac_penalty
+if highway=path then
+  (
+    if mtb:scale=0|0+                           then 0
+    else if mtb:scale=1|1+|1-                   then 10
+    else if mtb:scale=2|2+|2-                   then 20
+    else if mtb:scale=3                         then 50
+    else if mtb:scale=4                         then 1000
+    else if mtb:scale=5                         then 1000
+    else if mtb:scale=6                         then 1000
+    else if sac_scale=hiking                    then 5
+    else if sac_scale=mountain_hiking           then 50
+    else if sac_scale=demanding_mountain_hiking then 1000
+    else if sac_scale=alpine_hiking             then 1000
+    else if sac_scale=demanding_alpine_hiking   then 1000
+    else if sac_scale=difficult_alpine_hiking   then 1000
+    else 200
+  )
+else if highway=track then
+  (
+    if mtb:scale=3                          then 8
+    else if mtb:scale=4                     then 10
+    else if mtb:scale=5                     then 20
+    else if mtb:scale=6                     then 30
+    else 0
+  )
+else 0
+
+assign mtb_uh_penalty
+    if      mtb:scale:uphill=3      then 1
+    else if mtb:scale:uphill=4      then 3
+    else if mtb:scale:uphill=5      then 50
+    else 0
+
+assign route_gr
+    if  route_hiking_iwn=yes then true
+    else if route_hiking_nwn=yes then true
+    else if route_hiking_rwn=yes then true
+    else false
+
+assign route_hiking
+    if route_hiking_lwn=yes then true
+										  
+    else if route_hiking_=yes then true
+#    else if route=hiking then true
+    else false
+
+assign route_mtb
+    if route_mtb_lcn=yes then true
+    else if route_mtb_ncn=yes then true
+    else if route_mtb_rcn=yes then true
+    else if route_mtb_mtb=yes then true
+    else if route_bicycle_mtb=yes then true
+    else if route_mtb_=yes then true
+    else if route=mtb then true
+    else false
+
+assign balisage
+    if route_mtb then 0
+    else if route_gr then 0
+    else if route_hiking then 0.25
+    else 1.75
+
+assign sum_highwaypenalty
+  add smoothnesspenalty
+  add surfacepenalty
+  add tracktypepenalty
+  add mtb_sac_penalty
+  add mtb_uh_penalty
+  add balisage
+  add excludepenalty
+  0
+
+assign costfactor
+  add sum_highwaypenalty
+  switch highway=proposed   10000
+  switch highway=steps      10000
+  switch highway=footway    10000
+  min 9999
+  add max onewaypenalty accesspenalty
+  switch    trail_visibility=no                         100
+  switch or highway=motorway highway=motorway_link      12
+  switch or highway=trunk highway=trunk_link            11
+  switch or highway=primary highway=primary_link        10.0
+  switch or highway=secondary highway=secondary_link    8.5
+  switch or highway=tertiary highway=tertiary_link      7.0
+  switch    highway=unclassified                        6.0
+  switch    highway=pedestrian                          100
+  switch    route=ferry                                 20
+  switch    highway=bridleway                           20
+  switch    highway=cycleway                            100
+  switch    highway=living_street                       6.0
+  switch    highway=residential                         5.0
+  switch    highway=service                             2.0
+  switch    highway=abandoned                           20.0
+  switch    highway=track                               0.5
+  switch    highway=path                                0
+#  switch    highway=footway                             100
+  0
+
+# way priorities used for voice hint generation
+
+assign priorityclassifier =
+  if      ( highway=motorway                  ) then  30
+  else if ( highway=motorway_link             ) then  29
+  else if ( highway=trunk                     ) then  28
+  else if ( highway=trunk_link                ) then  27
+  else if ( highway=primary                   ) then  23
+  else if ( highway=primary_link              ) then  23
+  else if ( highway=secondary                 ) then  22
+  else if ( highway=secondary_link            ) then  22
+  else if ( highway=tertiary                  ) then  21
+  else if ( highway=tertiary_link             ) then  21
+  else if ( highway=residential|living_street ) then  15
+  else if ( highway=unclassified              ) then  8
+  else if ( highway=service                   ) then  8
+  else if ( highway=cycleway                  ) then  8
+  else if ( bicycle=designated                ) then  8
+  else if ( highway=track|road|path )
+       then if or surface=asphalt|paved|concrete|wood|metal tracktype=grade1 then 8 else 6
+  else if ( highway=steps                     ) then  2
+  else if ( highway=pedestrian                ) then  2
+  else 0
+
+# some more classifying bits used for voice hint generation...
+
+assign isbadoneway = not equal onewaypenalty 0
+assign isgoodoneway = if reversedirection=yes then oneway=-1
+                      else if oneway= then junction=roundabout else oneway=yes|true|1
+assign isroundabout = junction=roundabout
+assign islinktype = highway=motorway_link|trunk_link|primary_link|secondary_link|tertiary_link
+assign isgoodforcars = if greater priorityclassifier 6 then true
+                  else if highway=residential|living_street|service then true
+                  else if ( and highway=track tracktype=grade1 ) then true
+                  else false
+
+# ... encoded into a bitmask
+
+assign classifiermask
+#      add          isbadoneway    # no voice hint if 1 of the 2 possibilities is badoneway
+                      add multiply isgoodoneway   2
+                      add multiply isroundabout   4
+                      add multiply islinktype     8
+                          multiply isgoodforcars 16
+
+
+---context:node  # following code refers to node tags
+
+assign motorvehicleaccess
+    if motor_vehicle=no|private         then 50000
+    else if motorcar=no|private         then 50000
+    else if motorcycle=no|private       then 50000
+    else if access=no|private           then 50000
+    else 0
+
+assign barrier_access
+    if      barrier=chain               then 1000
+    else if barrier=log                 then 3500 # on/off
+    else if barrier=block               then 5000 # évite sur long trajet, forçage ok
+    else if barrier=ditch               then 5000 # évite sur long trajet, forçage ok
+    else if barrier=yes                 then 3500 # évite sur long trajet, forçage ok
+    else if barrier=bar                 then 3500 # évite sur long trajet, forçage ok
+    else if barrier=gate                then 3500 # évite sur long trajet, forçage ok
+    else if barrier=bollard             then 3500 # évite sur long trajet, forçage ok
+    else if barrier=lift_gate           then 3500 # évite sur long trajet, forçage ok
+    else if barrier=swing_gate          then 3500 # évite sur long trajet, forçage ok
+    else if barrier=hampshire_gate      then 3500 # évite sur long trajet, forçage ok
+    else if barrier=fence               then 10000 # évite sur long trajet, forçage ok
+    else if barrier=kissing_gate        then 10000 # évite sur long trajet, forçage ok
+    else if barrier=motorcycle_barrier  then 10000 # évite sur long trajet, forçage ok
+    else if barrier=cycle_barrier       then 10000 # évite sur long trajet, forçage ok
+    else if barrier=stile               then 10000 # évite sur long trajet, forçage ok
+    else if barrier=turnstile           then 10000 # évite sur long trajet, forçage ok
+    else if barrier=horse_stile         then 10000 # évite sur long trajet, forçage ok
+    else if barrier=spikes              then 10000 # évite sur long trajet, forçage ok
+    else 0
+
+assign initialcost
+      add barrier_access
+      add motorvehicleaccess
+      0 # permet de forcer le passage / 1000000 interdit le routage
