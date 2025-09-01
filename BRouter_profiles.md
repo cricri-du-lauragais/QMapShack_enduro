@@ -8,7 +8,7 @@ Chaque itinéraire ou trace proposée peut être forcée en ajoutant des points 
 
 le "dirtbike_big" et le "dirtbike_big_wet" sont dédiés aux motos lourdes avec des pneus trop routiers et / ou des pratiquants sans trop de technique, les 2 sont les mêmes avec juste une option d'activée ou non (QMapShack ne gère pas encore les options comme la version web de BRouter)
 ils prennent majoritairement des chemins empierrés solides, le wet est plus restrictif
-- quelques chemins "inconnus" ou peut être difficiles peuvent être pris sur de courtes distances
+- quelques chemins "inconnus" ou moins faciles peuvent être pris sur de courtes distances par le "dirtbike_big"
 
 le "dirtbike_light" s'adresse aux motos "trail" légères ou aux pilotes de grosses avec de l'expérience et une moto équipée de bons pneus
 - prend n'importe quel chemin hors interdiction 
