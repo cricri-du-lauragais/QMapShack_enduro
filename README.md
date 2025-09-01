@@ -1,2 +1,2 @@
 # QMapShack_enduro
-use qmapshack with mkgmap & brouter for enduro motocycle
+use QMapShack with mkgmap & BRouter for enduro motorcycle
