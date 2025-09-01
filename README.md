@@ -19,3 +19,5 @@ la dernière étape pour profiter de calculs d'itinéraires spécifiques moto to
 - mes profiles BRouter sont [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/BRouter/profiles2)
 
 les diverses couches avec copies d'écran [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/calques.md)
+
+le calcul d'itinéraire selon les profiles copies d'écran [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/BRouter_screenshots.md)
