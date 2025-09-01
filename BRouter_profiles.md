@@ -4,7 +4,7 @@
 - les sens interdit, interdiction de tourner
 - plus la moto est lourde et moins les chemins accidentés ou avec un gros relief, ou sans précisions dans openstreemap sont choisis
 
-Chaque itinéraire ou trace proposée peut être forcée en ajoutant des points de passages même sur les interdictions (ils faut beaucoup de point pour forcer une interdiction)
+Chaque itinéraire ou trace proposée peut être forcée en ajoutant des points de passages même sur les interdictions (il faut beaucoup de point pour forcer une interdiction)
 
 le "dirtbike_big" et le "dirtbike_big_wet" sont dédiés aux motos lourdes avec des pneus trop routiers et / ou des pratiquants sans trop de technique, les 2 sont les mêmes avec juste une option d'activée ou non (QMapShack ne gère pas encore les options comme la version web de BRouter)
 ils prennent majoritairement des chemins empierrés solides, le wet est plus restrictif
