@@ -1,0 +1,5 @@
+calcul avec gros trail mouillé ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/big_wet.png)
+calcul avec gros trail sec ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/big.png)
+calcul avec trail léger ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/leger.png)
+calcul avec enduro ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/enduro.png)
+calcul avec enduro hard ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/enduro_hard.png)
