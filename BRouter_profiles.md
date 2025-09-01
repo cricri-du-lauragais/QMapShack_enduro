@@ -19,5 +19,6 @@ le "dirtbike_enduro" s'adresse aux motos d'enduro en restant restrictif sur les 
 le "dirtbike_enduro_hard" comme son nom l'indique se permet de passer sur des sentiers avec une notation plus difficile et est plus permissif sur le relief 
 
 note :
-- peu importe que vous choisissiez trace ou itinéraire, vous pouvez convertir dans les 2 sens sans problème, la seule restriction à trace est qu'une fois créé vous ne pouvez pas modifier la totalité de la trace en changeant de profile contrairement à un itinéraire.
+- peu importe que vous choisissiez trace ou itinéraire, vous pouvez convertir dans les 2 sens sans problème, la seule restriction à trace est qu'une fois créé vous ne pouvez pas modifier la totalité de la trace en changeant de profil contrairement à un itinéraire.
 - une fois créé vous pouvez modifier en ajoutant des points de passage sans problème, vous aurez le recalcul en temps "presque réel" avec les caractéristiques du profile choisi.
+- vous pouvez modifier pour ajouter des parties "hors piste" facilement
