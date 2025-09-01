@@ -103,7 +103,7 @@ assign excludepenalty
                                         0
 
 assign smoothnesspenalty
-    if smoothness=impassable              then 50
+    if smoothness=impassable              then 1000
     else 0
 
 assign surfacepenalty
