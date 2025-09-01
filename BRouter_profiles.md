@@ -1,5 +1,5 @@
 à propos des calculs d'itinéraire avec BRouter et mes differents profiles
-- ils respectent tous les interdictions qui figurent dans openstreetmap, tant sur les chemins que sur les barrières (accès non, privé, sauf ayant droit, véhicules, motor véhicules, motorcycle)
+- ils respectent tous les interdictions qui figurent dans openstreetmap, tant sur les chemins que sur les barrières (accès non, privé, sauf ayant droit, véhicules, motor véhicules, motorcycle, agricultural, forestier)
 - ne prennent pas les voie cyclable ou piétonne
 - les sens interdit, interdiction de tourner
 - plus la moto est lourde et moins les chemins accidentés ou avec un gros relief, ou sans précisions dans openstreemap sont choisis
