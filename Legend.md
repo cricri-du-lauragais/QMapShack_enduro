@@ -12,17 +12,17 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 
 ## Chemins
 
-| piste ou voie de service (route non goudronnée) |
+| piste / voie de service<br>route non goudronnée |
 | :-------------: |
 |![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/piste.png) |!
 
-| chemins carrossables grossier | 
+| chemins carrossables | 
 | :-------------: |
-|![carrossable_2](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/83eba31e-db4c-442b-9540-064d308a9b1d)|!
+|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/carrossable.png)|!
 
-| chemins terre | chemins terre nuit |
-| :-------------: | :-------------: | 
-|![chemin_terre](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/2524cce5-903a-4b98-ad6d-70e3ba6431e4)|![chemin_terre_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/a650feca-cdb1-4271-a346-9c68dffc2700)|
+| chemins terre |
+| :-------------: |
+|![chemin_terre](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|
 
 |chemins d'exploitation <br>ou sans précisions| chemins d'exploitation nuit |
 | :-------------: | :-------------: | 
