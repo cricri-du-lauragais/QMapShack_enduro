@@ -10,5 +10,10 @@
 ## tous les chemins sur la carte de ma région sont vert pointillés ?
 - ces chemins ne possèdent aucune précision quand à leur nature dans **OpenStreetMap**, il faut les ajouter en devenant un contributeur
 
+## le traçage d'itinéraire ne passe pas par le chemin que je connais ?
+- si c'est en choisissant le routage "**moto lourde**" c'est probablement qu'il est dessiné en vert ou pire en vert pointillé, il faut utiliser un autre routage plus permissif comme "**moto légère**"
+- il faut ajouter des points intermédiaires pour forcer le routage
+
+
 
 
