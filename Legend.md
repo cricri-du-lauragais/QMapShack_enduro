@@ -22,15 +22,15 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 
 | chemins terre |
 | :-------------: |
-|![chemin_terre](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|
+|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|
 
 |chemins d'exploitation<br>ou sans précisions| 
 | :-------------: |
 |![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/exploit.png)|
 
-|chemins interdits|
-| :-------------: |
-|![chemin_interdit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/1c01b8b2-0096-4ad9-a731-5e6887ca85a9)|
+|chemins interdits||
+| :-------------: | :-------------: |
+|![](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/1c01b8b2-0096-4ad9-a731-5e6887ca85a9)|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/chemin_interdit.png)|
 
 ###### <i>le détail de l'interdiction est affiché au survol du chemin</i>
 
@@ -40,7 +40,7 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 
 | sentier | sentier nuit |
 | :-------------: | :-------------: | 
-|![sentier](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/fc4a3c44-bace-4f44-b067-f5112342c6ca)|![sentier_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/843f1836-4262-4dbd-8714-b3587db91e3c)|
+|![sentier](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/fc4a3c44-bace-4f44-b067-f5112342c6ca)|
 
 | sentier invisible | sentier sur photo |
 | :-------------: | :-------------: | 
