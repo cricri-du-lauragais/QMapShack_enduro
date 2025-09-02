@@ -79,10 +79,9 @@ la difficulté des sentiers pour une moto est estimée à partir des tags OSM VT
 
 ### barrière
 
-| ![barriere](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/cbf61cc3-ec5f-41bf-8f64-2e971bf0faa6)|![barriere_loin](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/de99b8c5-89e2-4760-a53a-c30bf2864fc9)|![barriere_loin_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/63a0f551-1ce1-4dec-b0d7-4f9d71dab04a)|
-| :-------------: | :-------------: | :-------------: |
+![barriere](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/barriere.png)
 
-###### <i>une icône selon le type aux zooms proches et un point rouge à zoom éloigné </i>
+###### <i>le type de barrière et les accès sont indiqués au survol de la souris</i>
 
 ---
 
