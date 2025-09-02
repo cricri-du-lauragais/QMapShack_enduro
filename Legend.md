@@ -24,17 +24,15 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 | :-------------: |
 |![chemin_terre](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|
 
-|chemins d'exploitation <br>ou sans précisions| chemins d'exploitation nuit |
-| :-------------: | :-------------: | 
-|![chemin_exploit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/f5cd6505-8aee-4115-863e-1958a86ac67f)|![chemin_exploit_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/e2183c0d-f064-4e79-a928-f0f00988c2c3)|
+|chemins d'exploitation<br>ou sans précisions| 
+| :-------------: |
+|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/exploit.png)|
 
-###### <i>Lorsque l'option "cacher chemin sans info" est activée dans le menu "Détails" du style les chemins non renseignés dans OSM sont en trait continu.</i>
+|chemins interdits|
+| :-------------: |
+|![chemin_interdit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/1c01b8b2-0096-4ad9-a731-5e6887ca85a9)|
 
-|chemins interdits| chemins interdits nuit |
-| :-------------: | :-------------: | 
-|![chemin_interdit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/1c01b8b2-0096-4ad9-a731-5e6887ca85a9)|![chemin_interdit_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/6812752d-06cf-4ddd-bf20-ce6510807692)|
-
-###### <i>La visualisation des interdictions de façon générale est gérée par l'option du style "accès restreints".</i>
+###### <i>le détail de l'interdiction est affiché au survol du chemin</i>
 
 ---
 
