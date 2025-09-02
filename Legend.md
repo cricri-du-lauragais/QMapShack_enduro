@@ -12,21 +12,13 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 
 ## Chemins
 
-| piste / voie de service<br>route non goudronnée |
-| :-------------: |
-|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/piste.png) |!
+| piste / voie de service<br>route non goudronnée |chemins carrossables | 
+| :-------------: | :-------------: |
+|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/piste.png) |![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/carrossable.png)|
 
-| chemins carrossables | 
-| :-------------: |
-|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/carrossable.png)|!
-
-| chemins terre |
-| :-------------: |
-|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|
-
-|chemins d'exploitation<br>ou sans précisions| 
-| :-------------: |
-|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/exploit.png)|
+| chemins terre |chemins d'exploitation<br>ou sans précisions| 
+| :-------------: | :-------------: |
+|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/exploit.png)|
 
 |chemins interdits||
 | :-------------: | :-------------: |
