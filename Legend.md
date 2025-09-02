@@ -109,13 +109,13 @@ la difficulté des sentiers pour une moto est estimée à partir des tags OSM VT
 | :-------------: | :-------------: |
 |![gué_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/fc3fb357-68d5-4b27-8575-67e896e3f960)|![lieu_dit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/64b679df-2af6-401a-8fb5-4e02ae79158d)|
 
-| parc national | parc national nuit |
-| :-------------: | :-------------: |
-|![parc_national](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/f4c96b12-3dcc-4b47-bab7-850a73246d05)|![parc_national_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/a70fafe7-7adc-4765-bf23-37d48098e5da)|
+| parc national |
+| :-------------: |
+|![parc_national](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/f4c96b12-3dcc-4b47-bab7-850a73246d05)|
 
-| reserve naturelle | reserve nuit |
-| :-------------: | :-------------: |
-|![reserve](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/75da5f2d-374b-4a9f-a331-20fa0fd3f6b9)|![reserve_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/2ef092d2-5a76-4e48-9145-95834f38d05e)|
+| reserve naturelle |
+| :-------------: |
+|![reserve](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/75da5f2d-374b-4a9f-a331-20fa0fd3f6b9)|
 
-###### <i>le reste est facilement identifiable et un appui sur l'icone ouvre le détail du POI</i>
+###### <i>le reste est identifiable au survol de la souris</i>
 
