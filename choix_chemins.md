@@ -72,9 +72,9 @@ chemins sans apport de matériaux, tracés à même le sol
 > - "tracktype" "grade5"
 
 ## les chemins "non précisé"
-|chemins d'exploitation <br>ou sans précisions| chemins d'exploitation nuit |
-| :-------------: | :-------------: | 
-|![chemin_exploit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/f5cd6505-8aee-4115-863e-1958a86ac67f)|![chemin_exploit_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/e2183c0d-f064-4e79-a928-f0f00988c2c3)|
+|chemins d'exploitation <br>ou sans précisions|
+| :-------------: |
+|![chemin_exploit](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/exploit.png)|
 
 ce sont les "track" OpenStreetMap qui n'ont aucun des tags précédents
 
@@ -82,36 +82,37 @@ ce sont les "track" OpenStreetMap qui n'ont aucun des tags précédents
 
 # routage
 comment les routages des 3 "catégories" de motos utilisent ces classes de chemins
-## routage gros_trail
+
+## routage moto lourde sec ou mouillé
 - la première catégorie est privilégiée
 - la seconde un petit peu moins
 - la troisième est défavorisée
 - les 2 dernières (dont les "sans précision") sont bannies (pas totalement, ça laisse une possibilité au moteur de calcul de trouver une alternative)
 
-lorsque le switch "**si chemin sec**" est activé 
-- il remonte la seconde catégorie au niveau de la première
-- il remonte la troisième au niveau de la seconde
-
-ce qui à pour résultat de proposer plus de chemins au moteur de routage
-> malheureusement dans les régions avec peu de chemins renseignés dans Osm, la trace emprunte beaucoup de route, c'est inévitable pour rouler en sécurité, vous pouvez essayer le routage "**petit_trail**" qui est moins restrictif, à vos risques et périls.
-
-## routage "**petit_trail**"
-- par défaut le routage **petit_trail** n'applique aucune préférence aux chemins (hors sentiers)
-
-il interdit comme le **gros_trail**
+il interdit
 - "smoothness" "impassable"<i> réservé aux enduros</i>
 - "highway" "path"<i> sentiers pour les enduros</i>
 - "highway" "footway"<i> les chemins piéton</i>
 - "highway" "cycleway"<i> les pistes cyclables</i>
 
-- lorsque le switch "**tri les chemins**" est actif, le choix des chemins repose sur le même principe que pour le **gros_trail** avec des priorité plus permissives mais qui n'incite pas à prendre les "chemin non précisé" toujours pour des raisons de sécurité.
+> malheureusement dans les régions avec peu de chemins renseignés dans Osm, la trace emprunte beaucoup de route, c'est inévitable pour rouler en sécurité, vous pouvez essayer le routage "**moto légère**" qui est moins restrictif, à vos risques et périls.
+
+## routage "**moto légère**"
+- par défaut il n'applique aucune préférence aux chemins (hors sentiers)
+
+il interdit
+- "smoothness" "impassable"<i> réservé aux enduros</i>
+- "highway" "path"<i> sentiers pour les enduros</i>
+- "highway" "footway"<i> les chemins piéton</i>
+- "highway" "cycleway"<i> les pistes cyclables</i>
 
 ## routage "**enduro**"
 - aucune préférence dans les chemins
 - privilégie lorsqu'il en trouve les difficultés VTT "faciles" (mtb:scale 0 et 1)<br>
 <i>points verts sur les sentiers</i>
-- dissuade les difficultés VTT mtb:scale 2 et 3 et pédestre sac:scale<br>
+- dissuade les difficultés VTT supérieures à mtb:scale 3 et pédestre sac:scale<br>
 <i>points rouges sur les sentiers</i>
 - interdit les difficulté VTT et pédestre trop élevées pour une moto de 100 kg<br>
 <i>points noirs sur les sentiers</i>
-- prends tous les sentiers y compris footway sauf formellement indiqué "access=no ou private"
+
+
