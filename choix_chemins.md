@@ -17,19 +17,24 @@ et dans chacun des 5 routages**
 | :-------------: |
 ![carrossable_1](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/piste.png) |
 
-ce sont les tags **OpenStreetMap** que le routage "**moto lourde**" va utiliser en priorité pour vous faire passer
-> - "surface" "unhewn_cobblestone"
-> - "surface" "paved"
-> - "surface" "paving_stones"
-> - "surface" "compacted"
-> - "surface" "metal"
-> - "surface" "chipseal"
-> - "surface" "wood"
-> - "surface" "fine_gravel"
-> - "surface" "asphalt"
-> - "surface" "concrete"
-> - "tracktype" "grade2"
-> - "tracktype" "grade1"
+pour les "highway=track et service" ce sont les tags **OpenStreetMap** que le routage "**moto lourde**" va utiliser en priorité pour vous faire passer
+> - tracktype=grade1  
+> - tracktype=grade2  
+> - smoothness=excellent  
+> - smoothness=goods  
+> - smoothness=intermediate  
+> - surface=asphalt 
+> - surface=shipseal 
+> - surface=paved  
+> - surface=concrete  
+> - surface=concrete:lanes  
+> - surface=concrete:plates  
+> - surface=paving_stones  
+> - surface=sett  
+> - surface=compacted  
+> - surface=fine_gravel  
+> - surface=cobblestone  
+> - surface=unhewn_cobblestone 
 
 ## chemin "carrossable" marron 
 | chemins carrossables |
@@ -37,11 +42,9 @@ ce sont les tags **OpenStreetMap** que le routage "**moto lourde**" va utiliser 
 |![carrossable_2](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/carrossable.png)|
 
 chemins considérés comme praticables par le routage "**gros_trail**" avec une priorité plus faible
-> - "surface" "rock"
-> - "surface" "gravel"
-> - "surface" "pebblestone"
-> - "surface" "cobblestone"
-> - "tracktype" "grade3"
+> - tracktype=grade3  
+> - surface=gravel 
+> - surface=pebblestone 
 
 ## chemins "**selon météo**" en vert continu
 | chemins terre |
@@ -114,6 +117,7 @@ il interdit
 <i>points rouges sur les sentiers</i>
 - interdit les difficulté VTT et pédestre trop élevées pour une moto de 100 kg<br>
 <i>points noirs sur les sentiers</i>
+
 
 
 
