@@ -93,10 +93,6 @@ la difficulté des sentiers pour une moto est estimée à partir des tags OSM VT
 
 ## Eléments remarquables
 
-| abri |
-| :-------------: |
-|![abri](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/6a9ed38a-80e8-457b-afaa-44205b938986)|
-
 | ruine |
 | :-------------: |
 |![ruine](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/ruine.png)|
