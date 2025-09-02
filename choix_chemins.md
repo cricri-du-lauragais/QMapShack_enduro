@@ -84,9 +84,9 @@ ce sont les "track" OpenStreetMap qui n'ont aucun des tags précédents
 comment les routages des 3 "catégories" de motos utilisent ces classes de chemins
 
 ## routage moto lourde sec ou mouillé
-- la première catégorie est privilégiée
-- la seconde un petit peu moins
-- la troisième est défavorisée
+- la première catégorie "**piste**" est privilégiée
+- la seconde "**carrossable**" un petit peu moins
+- la troisième "**chemin terre**" est défavorisée
 - les 2 dernières (dont les "sans précision") sont bannies (pas totalement, ça laisse une possibilité au moteur de calcul de trouver une alternative)
 
 il interdit
@@ -114,5 +114,6 @@ il interdit
 <i>points rouges sur les sentiers</i>
 - interdit les difficulté VTT et pédestre trop élevées pour une moto de 100 kg<br>
 <i>points noirs sur les sentiers</i>
+
 
 
