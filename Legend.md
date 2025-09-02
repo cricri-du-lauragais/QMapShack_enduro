@@ -69,19 +69,19 @@ la difficulté des sentiers pour une moto est estimée à partir des tags OSM VT
 
 | type GR |
 | :-------------: |
-|![GR](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/8040ba62-5db3-445c-884e-4ed8754ac266)|
+|![GR](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/GR.png)|
 
 | type GRP |
 | :-------------: |
-|![GRP](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/4f7e98e6-f99a-42d9-b7ae-f1e4be26e1cb)|
+|![GRP](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/GRP.png)|
 
 | type PR |
 | :-------------: |
-|![PR](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/9529f9fd-659f-480b-85d2-2fbb5108e70b)|
+|![PR](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/PR.png)|
 
 | VTT |
 | :-------------: |
-|![VTT](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/e66f2bed-8bad-4171-b290-ea0efce0d2d1)|
+|![VTT](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/VTT.png)|
 
 ###### <i></i>
 
