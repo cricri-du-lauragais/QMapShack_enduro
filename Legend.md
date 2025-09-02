@@ -12,9 +12,9 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 
 ## Chemins
 
-| chemins carrossables | 
-| :-------------: | 
-![carrossable_1](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/0c863588-7942-45c4-8bd9-af145623d93a) | !
+| piste ou voie de service (route non goudronnée) |
+| :-------------: |
+|![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/piste.png) |!
 
 | chemins carrossables grossier | 
 | :-------------: |
