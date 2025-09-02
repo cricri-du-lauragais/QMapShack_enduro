@@ -10,6 +10,7 @@ cette carte vectorielle est au format GARMIN et est compilée par l'utilitaire m
 - les TYP qui vont avec les cartes vectorielles [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/vector_maps/TYP)
 - légende de la carte [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/Legend.md)
 - les tags utilisés pour trier les chemins[ ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/choix_chemins.md)
+- les tags utilisés pour définir la difficulté [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/difficult%C3%A9_chemins.md)
 
 la couche suivante peut être n'importe quelle carte en ligne comme les cartes IGN 1/25000 Française (ou le cadastre, les forêts ONF), ou la carte de chaleur Strava, ou encore Google ou Via michelin parmis la multitude existante.
 - mes cartes online FR sont [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/online%20maps)
