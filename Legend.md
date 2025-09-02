@@ -7,6 +7,9 @@ ici les points noirs sur un sentier balisé Petite Randonnée avec le tag OSM ut
 ici le rectancle jaune pour le balisage du chemin carrossable et le nom du circuit de randonnée
 ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/infos_detail02.png)
 
+avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur un chemin de terre
+![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/infos_detail_IGN.png)
+
 ## Chemins
 
 | chemins carrossables | 
