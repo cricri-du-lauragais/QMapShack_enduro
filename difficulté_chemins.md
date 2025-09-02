@@ -17,7 +17,8 @@ ce sont les tags suivants qui vont être utilisés par les routages
 |![technique](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/technique.png)|
 
 > - "mtb:scale" "1"
-> - "sac_scale" "hiking"
+> - smoothness=horrible
+> - smoothness=very_horrible
 
 # sentiers "difficiles" points rouges 
 (peut nécessiter de pousser le moto ...)
@@ -62,5 +63,6 @@ vous trouverez
 |![grimpette](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/grimpette.png)|
 
 > mtb:scale:uphill=5
+
 
 
