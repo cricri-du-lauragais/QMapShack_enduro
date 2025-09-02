@@ -87,10 +87,6 @@ la difficulté des sentiers pour une moto est estimée à partir des tags OSM VT
 
 ---
 
-## Routes
-
----
-
 ## Eléments remarquables
 
 | ruine |
