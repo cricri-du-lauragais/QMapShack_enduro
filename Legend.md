@@ -97,25 +97,25 @@ la difficulté des sentiers pour une moto est estimée à partir des tags OSM VT
 | :-------------: |
 |![abri](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/6a9ed38a-80e8-457b-afaa-44205b938986)|
 
-| refuge | ruine |
-| :-------------: | :-------------: |
-|![refuge](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/df6728e1-91b9-4665-a66a-4a04121db628)|![ruine](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/16987207-7566-4ab7-bb9d-655312865bef)|
+| ruine |
+| :-------------: |
+|![ruine](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/ruine.png)|
 
 | cloture |
 | :-------------: |
-|![cloture](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/312e1037-0f4a-4613-a80b-bdf50531d64b)|
+|![cloture](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/cloture.png)|
 
-| gué | lieu dit |
-| :-------------: | :-------------: |
-|![gué_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/fc3fb357-68d5-4b27-8575-67e896e3f960)|![lieu_dit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/64b679df-2af6-401a-8fb5-4e02ae79158d)|
+| gué |
+| :-------------: |
+|![gué](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/gu%C3%A9.png)|
 
 | parc national |
 | :-------------: |
-|![parc_national](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/f4c96b12-3dcc-4b47-bab7-850a73246d05)|
+|![parc_national](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/parc_national.png)|
 
 | reserve naturelle |
 | :-------------: |
-|![reserve](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/75da5f2d-374b-4a9f-a331-20fa0fd3f6b9)|
+|![reserve](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/reserve.png)|
 
 ###### <i>le reste est identifiable au survol de la souris</i>
 
