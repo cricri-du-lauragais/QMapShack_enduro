@@ -52,7 +52,8 @@ chemins considérés comme praticables par le routage "**gros_trail**" avec une 
 |![chemin_terre](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/terre.png)|
 
 chemins qui peuvent être compliqués à rouler avec une "**moto lourde ou en pneu routier**" quand les conditions météo sont mauvaises
-> - "tracktype" "grade4"
+> - tracktype=grade4 
+> - surface=ground
 
 ## chemins "sol nu"" en vert pointillé
 |chemins d'exploitation <br>ou sans précisions|
@@ -62,17 +63,17 @@ chemins qui peuvent être compliqués à rouler avec une "**moto lourde ou en pn
 chemins sans apport de matériaux, tracés à même le sol
 
 :warning: *selon la région et la période de l'année ils peuvent être plus ou moins praticables avec une moto lourde en pneus routiers.*
-> - "ford" "yes"/>
-> - "smoothness" "very_horrible"/>
-> - "smoothness" "horrible"/>
-> - "surface" "mud"
-> - "surface" "grass"
-> - "surface" "sand"
-> - "surface" "dirt"
-> - "surface" "earth"
-> - "surface" "unpaved"
-> - "surface" "ground"
-> - "tracktype" "grade5"
+> - tracktype=grade5 
+> - smoothness=very_horrible 
+> - smoothness=horrible 
+> - surface=dirt 
+> - surface=earth 
+> - surface=unpaved 
+> - surface=snow 
+> - surface=ice 
+> - surface=grass
+> - surface=mud 
+> - surface=sand 
 
 ## les chemins "non précisé"
 |chemins d'exploitation <br>ou sans précisions|
@@ -117,6 +118,7 @@ il interdit
 <i>points rouges sur les sentiers</i>
 - interdit les difficulté VTT et pédestre trop élevées pour une moto de 100 kg<br>
 <i>points noirs sur les sentiers</i>
+
 
 
 
