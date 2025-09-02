@@ -6,7 +6,7 @@
 # sentier "facile" points verts
 | facile |
 | :-------------: |
-|![facile](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/d5aad369-dae3-447c-8620-a78afc0ac9da)|
+|![facile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/facile.png)|
 
 ce sont les tags suivants qui vont être utilisés par les routages
 > - "mtb:scale" "0"
@@ -14,7 +14,7 @@ ce sont les tags suivants qui vont être utilisés par les routages
 # sentiers "technique" points oranges
 | technique |
 | :-------------: |
-|![technique](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/06c179fc-8409-40c5-bb39-17b22d31e528)|
+|![technique](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/technique.png)|
 
 > - "mtb:scale" "1"
 > - "sac_scale" "hiking"
@@ -23,7 +23,7 @@ ce sont les tags suivants qui vont être utilisés par les routages
 (peut nécessiter de pousser le moto ...)
 | difficile |
 | :-------------: |
-|![difficile](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/3248e3a0-b165-412a-8dac-ba69b3baa0d4)|
+|![difficile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/difficile.png)|
 
 > - "mtb:scale" "2"
 > - "mtb:scale" "3"
@@ -32,7 +32,7 @@ ce sont les tags suivants qui vont être utilisés par les routages
 # sentiers "impassables" points noirs
 | infranchissable |
 | :-------------: |
-|![impassable](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/d783f7b3-1db7-4e94-994f-fba57a67297a)|
+|![impassable](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/impassable.png)|
 
 > - "mtb:scale" "4"
 > - "mtb:scale" "5"
@@ -59,7 +59,8 @@ vous trouverez
 
 | pente > 60° |
 | :-------------: |
-|![grimpette](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/a475d3ea-a825-413a-9590-57cfc4105aca)|
+|![grimpette](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/grimpette.png)|
 
 > mtb:scale:uphill=5
+
 
