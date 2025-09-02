@@ -118,6 +118,8 @@ il interdit
 <i>points rouges sur les sentiers</i>
 - interdit les difficulté VTT et pédestre trop élevées pour une moto de 100 kg<br>
 <i>points noirs sur les sentiers</i>
+> la variante **hard** utilise plus de sentiers inconnus (sans précisions de difficulté) et autorise des pentes plus importes
+
 
 
 
