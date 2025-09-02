@@ -51,26 +51,27 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 ---
 
 ### difficulté 
+la difficulté des sentiers pour une moto est estimée à partir des tags OSM VTT et randonnée pédestre ou du smoothness / surface pour les chemins
 
 | facile |
 | :-------------: |
-|![facile](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/d5aad369-dae3-447c-8620-a78afc0ac9da)|
+|![facile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/facile.png)|
 
 | technique |
 | :-------------: |
-|![technique](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/06c179fc-8409-40c5-bb39-17b22d31e528)|
+|![technique](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/technique.png)|
 
 | difficile |
 | :-------------: |
-|![difficile](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/3248e3a0-b165-412a-8dac-ba69b3baa0d4)|
+|![difficile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/difficile.png)|
 
 | infranchissable |
 | :-------------: |
-|![impassable](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/d783f7b3-1db7-4e94-994f-fba57a67297a)|
+|![impassable](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/impassable.png)|
 
 | pente > 60° |
 | :-------------: |
-|![grimpette](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/a475d3ea-a825-413a-9590-57cfc4105aca)|
+|![grimpette](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/grimpette.png)|
 
 ###### <i></i>
 
