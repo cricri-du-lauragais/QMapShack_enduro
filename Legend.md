@@ -1,23 +1,14 @@
 # Légende
-[plus de détails dans le wiki](https://github.com/OsmAnd-Rendering/Motorcycle/wiki/%F0%9F%87%AB%F0%9F%87%B7--le-style)
 
 ## Chemins
 
-| chemins carrossables | chemins carrossables nuit |
-| :-------------: | :-------------: |
-![carrossable_1](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/0c863588-7942-45c4-8bd9-af145623d93a) | ![carrossable_1_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/9bba0dcb-eca9-4988-9374-194a27186688) |
+| chemins carrossables | 
+| :-------------: | 
+![carrossable_1](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/0c863588-7942-45c4-8bd9-af145623d93a) | !
 
-| chemins carrossables IGN carte | chemins carrosables IGN sans carte |
-| :-------------: | :-------------: | 
-|![carrossable_IGN_1](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/3e4c5d82-57dd-4b59-b565-d54c05a8e8e2)|![carrossable_IGN_2](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/c366488e-3479-4398-bce5-bdb3ccebf65c)|
-
-| chemins carrossables moins détaillé | chemins carrossables moins détaillé nuit |
-| :-------------: | :-------------: | 
-|![carrossable_less](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/6728d213-64cb-4545-b81f-a4ee2b941d03)|![carrossable_less_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/383fe3e8-af23-405b-bd68-62668bd4538d)
-
-| chemins carrossables grossier | chemins carrossables grossier nuit |
-| :-------------: | :-------------: | 
-|![carrossable_2](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/83eba31e-db4c-442b-9540-064d308a9b1d)|![carrossable_2_nuit](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/bf98f340-e2c6-429a-87eb-a37b45a39fbb)|
+| chemins carrossables grossier | 
+| :-------------: |
+|![carrossable_2](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/83eba31e-db4c-442b-9540-064d308a9b1d)|!
 
 | chemins terre | chemins terre nuit |
 | :-------------: | :-------------: | 
