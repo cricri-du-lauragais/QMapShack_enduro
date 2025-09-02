@@ -4,7 +4,8 @@ chaque éléments dessiné sur la carte vectorielle affiche ses détails au surv
 ici les points noirs sur un sentier balisé Petite Randonnée avec le tag OSM utilisé (smoothness=impassable)
 ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/infos.png)
 
-![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/infos_detail01.png)
+ici le rectancle jaune pour le balisage du chemin carrossable et le nom du circuit de randonnée
+![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/infos_detail02.png)
 
 ## Chemins
 
