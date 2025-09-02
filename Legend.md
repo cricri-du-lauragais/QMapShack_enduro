@@ -30,13 +30,9 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 
 ## Sentiers
 
-| sentier |
-| :-------------: |
-|![sentier](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/fc4a3c44-bace-4f44-b067-f5112342c6ca)|
-
-| sentier invisible |
-| :-------------: |
-|![sentier_invisible](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/7d3930d1-efa2-44d0-a1d2-a7a5e8f13e96)|
+| sentier | sentier invisible |
+| :-------------: | :-------------: |
+|![sentier](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/fc4a3c44-bace-4f44-b067-f5112342c6ca)|![sentier_invisible](https://github.com/OsmAnd-Rendering/Motorcycle/assets/83398215/7d3930d1-efa2-44d0-a1d2-a7a5e8f13e96)|
 
 ###### <i>un éventuel commentaire sur le chemin est affiché au survol (tag "comment" OSM)</i>
 
@@ -45,21 +41,13 @@ avec en fond atténué IGN le symbole des circuits de randonnée régionaux sur 
 ### difficulté 
 la difficulté des sentiers pour une moto est estimée à partir des tags OSM VTT et randonnée pédestre ou du smoothness / surface pour les chemins
 
-| facile |
-| :-------------: |
-|![facile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/facile.png)|
+| facile | technique |
+| :-------------: | :-------------: |
+|![facile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/facile.png)|![technique](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/technique.png)|
 
-| technique |
-| :-------------: |
-|![technique](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/technique.png)|
-
-| difficile |
-| :-------------: |
-|![difficile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/difficile.png)|
-
-| infranchissable |
-| :-------------: |
-|![impassable](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/impassable.png)|
+| difficile | infranchissable |
+| :-------------: | :-------------: |
+|![difficile](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/difficile.png)|![impassable](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/impassable.png)|
 
 | pente > 60° |
 | :-------------: |
