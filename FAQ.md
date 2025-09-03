@@ -14,6 +14,12 @@
 - si c'est en choisissant le routage "**moto lourde**" c'est probablement qu'il est dessiné en vert ou pire en vert pointillé, il faut utiliser un autre routage plus permissif comme "**moto légère**"
 - il faut ajouter des points intermédiaires pour forcer le routage
 
+## est-ce que je peux utiliser les profils BRouter dans la version WEB ou dans Osmand ?
+- oui
+
+## est-ce que je peux utiliser les cartes vectorielles dans GARMIN Basecamp ou mon GPS ?
+- oui mais vous n'aurez pas de routage
+
 
 
 
