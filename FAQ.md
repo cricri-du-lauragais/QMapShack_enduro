@@ -24,6 +24,8 @@
 ## est-ce que je peux utiliser les cartes vectorielles dans GARMIN Basecamp ou mon GPS ?
 - oui mais vous n'aurez pas de routage
 
+## est-ce que je peux indiquer des interdictions que je connais ?
+- oui **BRouter** gère les interdictions personnelles lors du calcul d'itinéraire, que ce soit des points avec distance réglable, des traces gpx de n'importe quelle longueur ou des surfaces
 
 
 
