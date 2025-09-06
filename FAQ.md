@@ -11,8 +11,8 @@
 - ces chemins ne possèdent aucune précision quand à leur nature dans **OpenStreetMap**, il faut les ajouter en devenant un contributeur
 
 ### *est-ce que je suis obligé de télécharger et utiliser la carte vectorielle ?*
-- non **QMapShack** fonctionne aussi bien sans cette carte, elle est utile pour la représentation dédiée à la moto tout terrain visuellement (pour choisir quel chemin prendre ou vérifier ce que le routage utilise ou vérifier un GPX de source inconnue)
-- vous obtenez le même guidage quelque soit les cartes affichées, vous pouvez parfaitement travailler avec uniquement le SCAN 25 de l'IGN ou la heatmap STRAVA
+- non **QMapShack** fonctionne aussi bien sans cette carte, elle est utile pour la représentation dédiée à la moto tout terrain visuellement (pour choisir quel chemin prendre ou vérifier ce que le routage utilise ou vérifier un **GPX** de source inconnue)
+- vous obtenez le même guidage quelque soit les cartes affichées, vous pouvez parfaitement travailler avec uniquement le **SCAN 25** de l'**IGN** ou la heatmap **STRAVA**
 
 ### *le traçage d'itinéraire ne passe pas par le chemin que je connais ?*
 - si c'est en choisissant le routage "**moto lourde**" c'est probablement qu'il est dessiné en vert ou pire en vert pointillé, il faut utiliser un autre routage plus permissif comme "**moto légère**"
@@ -26,6 +26,7 @@
 
 ### *est-ce que je peux indiquer des interdictions que je connais ?*
 - oui **BRouter** gère les interdictions personnelles lors du calcul d'itinéraire, que ce soit des points avec distance réglable, des traces gpx de n'importe quelle longueur ou des surfaces
+
 
 
 
