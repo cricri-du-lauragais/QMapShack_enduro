@@ -1,0 +1,9 @@
+<TMS>
+<Layer idx="0">
+<Title>IGN LIDAR</Title>
+<MinZoomLevel>3</MinZoomLevel>
+<MaxZoomLevel>20</MaxZoomLevel>
+<ServerUrl>https://data.geopf.fr/tms/1.0.0/IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW/%1/%2/%3.png</ServerUrl>
+</Layer>
+<Copyright>Map data: Ortho Images, licence ouverte Etalab v2.0</Copyright>
+</TMS>
