@@ -57,16 +57,16 @@ highway=track & (smoothness=impassable|mtb:scale=3 | mtb:scale=4 | mtb:scale=5| 
 } [0x12d1e resolution 24]
 
 ## goudronné
-highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x11f09 resolution 20-20 continue]
-highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x11f02 resolution 21-21 continue]
+highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x11f09 resolution 20-21 continue]
+#highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x11f02 resolution 21-21 continue]
 	highway=track & surface=asphalt [0x06 resolution 22-23 continue]
 	highway=track & surface=asphalt {name '${name} goudronné'|'goudronné'} [0x10c06 resolution 22-23 continue]
 		highway=track & surface=asphalt {name '${name} goudronné'|'goudronné: ${note}'}[0x11f06 default_name="goudronné" resolution 24 continue] 
 		highway=track & surface=asphalt [0x12d19 resolution 24] 
 
 ## piste
-highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x11f09 resolution 20-20 continue]
-highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x11f02 resolution 21-21 continue]
+highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x11f09 resolution 20-21 continue]
+#☺highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x11f02 resolution 21-21 continue]
 	highway=track & piste=yes [0x06 resolution 22-23 continue]
 	highway=track & piste=yes {name '${name}, ${chemin}'|'${chemin}'} [0x10c06 resolution 22-23 continue]
 		highway=track & piste=yes {name '${name}, ${chemin} / ${note}'|'${name}, ${chemin}'|'${chemin} / ${note}'|'${chemin}'} [0x11f06 resolution 24 continue]

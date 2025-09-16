@@ -116,11 +116,11 @@ highway=* & interdit=yes {name
 }
 
 #sentier interdit hors parc et ville
-(highway=path|highway=footway) & interdit=yes & is_in(leisure,park,all_in_or_on)=false & mkgmap:residential!=* & bridge!=* [0x12d02 resolution 23]
+(highway=path|highway=footway) & (interdit=yes & is_in(leisure,park,all_in_or_on)=false & mkgmap:residential!=* & bridge!=*) [0x12d02 resolution 23 continue]
 
 #chemin interdit
-(highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) [0x11 resolution 22-22 continue]
-(highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) & bridge!=* [0x12d05 resolution 23]
+(highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) [0x11 resolution 21-21 continue]
+(highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) & bridge!=* [0x12d05 resolution 22]
 
 #piste interdite
 (highway=track & interdit=yes) & chemin=piste [0x11 resolution 21-21 continue]
@@ -128,17 +128,17 @@ highway=* & interdit=yes {name
 (highway=track & interdit=yes) & chemin=piste & bridge!=* [0x12d06 resolution 23]
 
 #carrossable interdite
-(highway=track & interdit=yes) & chemin=carrossable [0x11 resolution 21-22 continue]
-(highway=track & interdit=yes) & chemin=carrossable & bridge!=* [0x12d05 resolution 23]
+(highway=track & interdit=yes) & chemin=carrossable [0x11 resolution 21-21 continue]
+(highway=track & interdit=yes) & chemin=carrossable & bridge!=* [0x12d05 resolution 22]
 
 #route interdite
-(highway=unclassified|highway=residential|highway=living_street) & interdit=yes [0x11 resolution 21-22 continue]
-(highway=unclassified|highway=residential|highway=living_street) & interdit=yes & bridge!=* [0x12d05 resolution 23-23 continue]
+(highway=unclassified|highway=residential|highway=living_street) & interdit=yes [0x11 resolution 21-21 continue]
+(highway=unclassified|highway=residential|highway=living_street) & interdit=yes & bridge!=* [0x12d05 resolution 22-23 continue]
 (highway=unclassified|highway=residential|highway=living_street) & interdit=yes & bridge!=* [0x12d06 resolution 24]
 
 #voie service interdite
-(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* [0x11 resolution 21-22 continue]
-(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* & bridge!=* [0x12d05 resolution 23-23 continue]
+(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* [0x11 resolution 21-21 continue]
+(highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* & bridge!=* [0x12d05 resolution 22-23 continue]
 (highway=service & service!=driveway) & interdit=yes & tunnel!=yes & mkgmap:residential!=* & bridge!=* [0x12d06 resolution 24]
 
 ##piste cyclable

@@ -24,8 +24,8 @@ highway=residential [0x07 default_name="residentielle" resolution 21-22 continue
 highway=residential & bridge!=* [0x12d1f default_name="residentielle" resolution 23-23 continue]
 highway=residential & bridge!=* [0x11f06 default_name="residentielle" resolution 24 ]
 
-highway=service & mkgmap:residential!=* [0x11f09 default_name="voie acces" resolution 20-20 continue]
-highway=service & mkgmap:residential!=* [0x11f02 default_name="voie acces" resolution 21-21 continue]
+highway=service & mkgmap:residential!=* [0x11f09 default_name="voie acces" resolution 20-21 continue]
+#highway=service & mkgmap:residential!=* [0x11f02 default_name="voie acces" resolution 21-21 continue]
 highway=service [0x06 default_name="voie acces" road_class=0 road_speed=0 resolution 22 continue]
 highway=service & bridge!=* [0x10c06 default_name="voie acces" resolution 22 continue]
 highway=service & bridge!=* & (surface=paved|surface=asphalt|tracktype=grade1) {name '${name} "goudronné"'}[0x11f06 default_name="goudronné" resolution 24]
