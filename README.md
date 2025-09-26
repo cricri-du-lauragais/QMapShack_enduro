@@ -1,5 +1,5 @@
 # QMapShack_enduro
-utiliser **QMapShack** pour préparer des itinéraires en moto tout terrain
+utiliser **QMapShack** et **BRouter** pour préparer des itinéraires en moto tout terrain
 ![](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/screenshots/legende/logo.png)
 - documentation de **QMapShack** [ici](https://github.com/Maproom/qmapshack/wiki/DocQuickStartFrench)
 
