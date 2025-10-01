@@ -27,7 +27,7 @@ tracktype=grade2 |
 smoothness=excellent | 
 smoothness=goods | 
 smoothness=intermediate | 
-surface=asphalt |
+#surface=asphalt |
 surface=shipseal |
 surface=paved | 
 surface=concrete | 
@@ -85,12 +85,12 @@ highway=track & smoothness=impassable {set highway=path}
 
 #voie interdite
 highway=* & (
-access=agricultural|access=forestry|access=no|access=private|access=destination|access=customers|
-vehicle=agricultural|vehicle=forestry|vehicle=no|vehicle=private|vehicle=destination|vehicle=customers|
-motor_vehicle=forestry|motor_vehicle=agricultural|motor_vehicle=no|motor_vehicle=private|motor_vehicle=destination|motor_vehicle=customers|
-motorcar=agricultural|motorcar=forestry|motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|
-motorcycle=agricultural|motorcycle=forestry|motorcycle=no|motorcycle=private|motorcycle=destination|motorcycle=customers
-) {set interdit=yes}
+access=no|access=private|access=destination|access=customers|access=agricultural|access=forestry|
+vehicle=no|vehicle=private|vehicle=destination|vehicle=customers|vehicle=agricultural|vehicle=forestry|
+motor_vehicle=no|motor_vehicle=private|motor_vehicle=destination|motor_vehicle=customers|motor_vehicle=forestry|motor_vehicle=agricultural|
+motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|motorcar=agricultural|motorcar=forestry|
+motorcycle=no|motorcycle=private|motorcycle=destination|motorcycle=customers|motorcycle=agricultural|motorcycle=forestry
+) {add interdit=yes;set interdit=yes}
 
 highway=* & interdit=yes {name 
 '${name}, ${chemin} / moto:${motorcycle} / ${note}'|
@@ -116,7 +116,8 @@ highway=* & interdit=yes {name
 }
 
 #sentier interdit hors parc et ville
-(highway=path|highway=footway) & (interdit=yes & is_in(leisure,park,all_in_or_on)=false & mkgmap:residential!=* & bridge!=*) [0x12d02 resolution 23 continue]
+(highway=path|highway=footway) & (interdit=yes & is_in(leisure,park,all_in_or_on)=false & mkgmap:residential!=* & bridge!=*) [0x16 resolution 22-22 continue]
+(highway=path|highway=footway) & (interdit=yes & is_in(leisure,park,all_in_or_on)=false & mkgmap:residential!=* & bridge!=*) [0x12d02 resolution 23]
 
 #chemin interdit
 (highway=track & interdit=yes) & (chemin=chemin_exploitation|chemin=chemin_terre|chemin=chemin_inconnu) [0x11 resolution 21-21 continue]
@@ -124,8 +125,8 @@ highway=* & interdit=yes {name
 
 #piste interdite
 (highway=track & interdit=yes) & chemin=piste [0x11 resolution 21-21 continue]
-(highway=track & interdit=yes) & chemin=piste & bridge!=* [0x10901 resolution 22-22 continue]
-(highway=track & interdit=yes) & chemin=piste & bridge!=* [0x12d06 resolution 23]
+(highway=track & interdit=yes) & chemin=piste & bridge!=* [0x10901 resolution 22-23 continue]
+(highway=track & interdit=yes) & chemin=piste & bridge!=* [0x12d06 resolution 24]
 
 #carrossable interdite
 (highway=track & interdit=yes) & chemin=carrossable [0x11 resolution 21-21 continue]

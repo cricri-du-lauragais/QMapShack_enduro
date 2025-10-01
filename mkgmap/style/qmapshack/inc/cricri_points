@@ -112,7 +112,13 @@ mkgmap:line2poi=true & ((highway=path | highway=footway | highway=track ) & (dif
 mkgmap:area2poi=true & (historic=ruins|ruins=yes|ruin=yes|building=ruins|building=collapsed) & mkgmap:residential!=* {name '${name}'} [0x6415 default_name="ruine" resolution 23] #0x2c02 pas vu sous mapsource
 
 ## point interdit sur voies interdites
-mkgmap:line2poitype=mid & (highway=* & (access=no|access=private|access=destination|access=customers|access=agricultural|access=forestry|vehicle=no|vehicle=private|vehicle=destination|vehicle=customers|vehicle=agricultural|vehicle=forestry|motor_vehicle=no|motor_vehicle=private|motor_vehicle=destination|motor_vehicle=customers|motor_vehicle=forestry|motor_vehicle=agricultural|motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|motorcar=agricultural|motorcar=forestry)) & mkgmap:way-length>500 [0x01c00 default_name="interdit" resolution 23]
+mkgmap:line2poitype=mid & (highway=* & (
+access=no|access=private|access=destination|access=customers|access=agricultural|access=forestry|
+vehicle=no|vehicle=private|vehicle=destination|vehicle=customers|vehicle=agricultural|vehicle=forestry|
+motor_vehicle=no|motor_vehicle=private|motor_vehicle=destination|motor_vehicle=customers|motor_vehicle=forestry|motor_vehicle=agricultural|
+motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|motorcar=agricultural|motorcar=forestry|
+motorcycle=no|motorcycle=private|motorcycle=destination|motorcycle=customers|motorcycle=agricultural|motorcycle=forestry
+)) & mkgmap:way-length>500 [0x01c00 default_name="interdit" resolution 23]
 
 ## affiche une icone sur le polygon pour visibilite zoom eloigne sur GPS
 mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) & mkgmap:residential!=* { name '${name}' } [0x6301 default_name="eglise" resolution 23]

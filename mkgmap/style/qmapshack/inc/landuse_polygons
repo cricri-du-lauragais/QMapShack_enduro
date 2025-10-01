@@ -36,3 +36,5 @@ man_made=wastewater_plant [0x10f01 default_name="station épuration" resolution 
 landuse=landfill [0x10f09 default_name="décharge" resolution 23]
 
 waterway=dam [0x10f0c default_name="barrage" resolution 23]
+
+aeroway=runway [0x10f08 default_name="piste" resolution 22]

@@ -20,7 +20,17 @@ boundary=administrative & admin_level=4 {name '${name}'} [0x12d01 resolution 23 
 power=line|power=minor_line [0x29 default_name="ligne electrique" resolution 23]
 
 ## recupere le nom de la relation balisage sur les petites routes de campagne
-highway=unclassified | highway=tertiary  {name '${ref} ${name} ${GR} ${VTT} ${PR}'}
+highway=unclassified | highway=tertiary  {name 
+'${ref} ${name} ${GR} '|
+'${ref} ${name} ${VTT}'|
+'${ref} ${name} ${PR}'|
+'${ref} ${GR}'|
+'${ref} ${VTT}'|
+'${ref} ${PR}'|
+'${name} ${GR}'|
+'${name} ${VTT}'|
+'${name} ${PR}'
+}
 
 (highway=* & proposed=yes) {set name='${highway}'} #voir fichier relations_cricri
 
@@ -29,7 +39,7 @@ barrier=hedge [0x12d09 default_name="haie" resolution 24 ]
 barrier=* [0x12d07 default_name="barriere" resolution 24 ]
 natural=cliff [0x10902 default_name="falaise" resolution 23 ]
 
-aeroway=runway [0x11f13 default_name="piste" resolution 22]
+aeroway=runway [0x11f19 default_name="piste" resolution 22]
 
 man_made=pipeline & (location=underground|location=underwater) {deletealltags}
 man_made=pipeline & (layer=-1|layer=-2) {deletealltags}

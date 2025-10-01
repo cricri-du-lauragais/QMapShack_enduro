@@ -10,52 +10,50 @@ highway=raceway {name 'circuit ${sport}'} [0x12d05 default_name="circuit" resolu
 highway=construction {name '${name} ${ref} en construction'|'${name} en construction' |'${ref} en construction'} [0x11f13 default_name="en construction" resolution 23]
 
 highway=bridleway {name 'cavalier-${name}' } [0x16 default_name="cavalier" road_class=0 road_speed=0 resolution 23]
-highway=byway [0x16 road_class=0 road_speed=0 resolution 23]
 abandoned:highway=* [0x10906 default_name="ancienne route" resolution 23]
 highway=disused [0x10906 default_name="ancienne route" resolution 23]
 
-(highway=tertiary|highway=unclassified|highway=residential|highway=living_street|highway=service) & oneway=yes & tunnel!=yes & length ()>75 {name "sens unique" } [0x10904 resolution 24 continue]
+(highway=primary|highway=secondary|highway=tertiary|highway=unclassified|highway=residential|highway=living_street|highway=service) & oneway=yes & tunnel!=yes & length ()>75 {name "sens unique" } [0x10904 resolution 24 continue]
 
-highway=living_street [0x07 default_name="residentielle" resolution 22-22 continue]
-highway=living_street [0x12d1f default_name="residentielle" resolution 23-23 continue]
-highway=living_street [0x11f06 default_name="residentielle" resolution 24 ]
+highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x07 road_class=0 road_speed=1 resolution 22 continue]
+highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x12d1f resolution 23-23 continue]
+highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x11f06 resolution 24 ]
 
-highway=residential [0x07 default_name="residentielle" resolution 21-22 continue]
-highway=residential & bridge!=* [0x12d1f default_name="residentielle" resolution 23-23 continue]
-highway=residential & bridge!=* [0x11f06 default_name="residentielle" resolution 24 ]
+highway=residential {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x07 road_class=0 road_speed=2 resolution 21 continue]
+highway=residential & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x12d1f resolution 23-23 continue]
+highway=residential & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f06 resolution 24 ]
 
 highway=service & mkgmap:residential!=* [0x11f09 default_name="voie acces" resolution 20-21 continue]
-#highway=service & mkgmap:residential!=* [0x11f02 default_name="voie acces" resolution 21-21 continue]
-highway=service [0x06 default_name="voie acces" road_class=0 road_speed=0 resolution 22 continue]
+highway=service [0x06 default_name="voie acces" road_class=0 road_speed=4 resolution 22 continue] #routage
 highway=service & bridge!=* [0x10c06 default_name="voie acces" resolution 22 continue]
-highway=service & bridge!=* & (surface=paved|surface=asphalt|tracktype=grade1) {name '${name} "goudronné"'}[0x11f06 default_name="goudronné" resolution 24]
-highway=service & bridge!=* {name '${name} "voie acces"'} [0x11f06 default_name="voie acces" resolution 24 continue] 
+highway=service & bridge!=* & (surface=paved|surface=asphalt|tracktype=grade1) {name '${name} "goudronné"'}[0x11f06 resolution 24]
+highway=service & bridge!=* {name '${name} "voie acces"'} [0x11f06 resolution 24 continue] 
 highway=service & bridge!=* [0x12d19 resolution 24]
 
-highway=minor {name 'route; ${name}'|'route'} [0x06 road_class=0 road_speed=0 resolution 20 continue ]
+highway=minor {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x06 road_class=1 road_speed=4 resolution 20 continue ]
 highway=minor & bridge!=* [0x12d1f resolution 23-23 continue ]
 highway=minor & bridge!=* [0x11f06 resolution 24 ]
 
-highway=unclassified {name 'route; ${name}'|'route'} [0x06 road_class=0 road_speed=0 resolution 20 continue ]
+highway=unclassified {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x06 road_class=1 road_speed=4 resolution 20 continue ]
 highway=unclassified [0x12d1f resolution 23-23 continue ]
 highway=unclassified & bridge!=* [0x11f06 resolution 24 ]
 
-(highway=tertiary|highway=tertiary_link) {name '${ref}'|'route'} [0x05 resolution 19-23 continue ]
+(highway=tertiary|highway=tertiary_link) {name '${ref}'|'${old_ref}'|'route'} [0x05 road_class=1 road_speed=4 resolution 19 continue ]
 (highway=tertiary|highway=tertiary_link) [0x11f04 resolution 20-23 continue ]
-(highway=tertiary|highway=tertiary_link) & bridge!=* {name '${ref} ${name}'|'${ref}'|'route'} [0x11f07 resolution 24 ]
+(highway=tertiary|highway=tertiary_link) & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f07 resolution 24 ]
 
-(highway=secondary|highway=secondary_link) {name '${ref}'} [0x04 resolution 18-23 continue]
+(highway=secondary|highway=secondary_link) {name '${ref}'|'${old_ref}'|'route'} [0x04 road_class=2 road_speed=4 resolution 18 continue]
 (highway=secondary|highway=secondary_link) & bridge!=* [0x11f05 resolution 20-23 continue]
-(highway=secondary|highway=secondary_link) & bridge!=* {name '${ref} ${name}'|'${ref}'} [0x11f08 resolution 24]
+(highway=secondary|highway=secondary_link) & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f08 resolution 24]
 
-(highway=primary|highway=primary_link) {name '${ref}'} [0x03 resolution 17-23 continue]
+(highway=primary|highway=primary_link) {name '${ref}'|'${old_ref}'|'route'} [0x03 road_class=3 road_speed=5 resolution 17 continue]
 (highway=primary|highway=primary_link) & bridge!=* [0x11f01 resolution 18-23 continue]
-(highway=primary|highway=primary_link) & bridge!=* {name '${ref} ${name}'|'${ref}'} [0x11f10 resolution 24]
+(highway=primary|highway=primary_link) & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f10 resolution 24]
 
-(highway=trunk|highway=trunk_link) {name '${ref} ${name}'|'${ref}'} [0x02 resolution 15 continue]
+(highway=trunk|highway=trunk_link) {name '${ref} ${name}'|'${ref}'} [0x02 road_class=4 road_speed=6 resolution 15 continue]
 (highway=trunk|highway=trunk_link) & bridge!=* {name '${ref} ${name}'|'${ref}'} [0x11d01 resolution 18]
 
-(highway=motorway|highway=motorway_link) {name '${ref} ${name}'|'${ref}'} [0x01 resolution 13 continue] # 0x01
+(highway=motorway|highway=motorway_link) {name '${ref} ${name}'|'${ref}'} [0x01 road_class=4 road_speed=7 resolution 13 continue] # 0x01
 (highway=motorway|highway=motorway_link) & bridge!=* {name '${ref} ${name}'|'${ref}'} [0x11d00 resolution 18]
 
 ## pont
