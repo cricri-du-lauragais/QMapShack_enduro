@@ -121,8 +121,8 @@ motorcycle=no|motorcycle=private|motorcycle=destination|motorcycle=customers|mot
 )) & mkgmap:way-length>500 [0x01c00 default_name="interdit" resolution 23]
 
 ## affiche une icone sur le polygon pour visibilite zoom eloigne sur GPS
-mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) & mkgmap:residential!=* { name '${name}' } [0x6301 default_name="eglise" resolution 23]
-mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) [0x1341c resolution 23]
+mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) & mkgmap:residential!=* { name '${name}' } [0x6301 default_name="eglise" resolution 24]
+mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) [0x1341c resolution 24]
 mkgmap:area2poi=true & (landuse=cemetery|amenity=grave_yard) & mkgmap:residential!=* [0x6302 default_name="cimetiere" resolution 23]
 mkgmap:area2poi=true & (landuse=cemetery|amenity=grave_yard) [0x1341d resolution 23]
 mkgmap:area2poi=true & (healthcare=hospital | amenity=hospital) [0x3002 default_name="hopital" resolution 23]
@@ -137,6 +137,7 @@ mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & inte
 mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (hiking=test|hiking=yes|route=hiking) & network!=*) & mkgmap:way-length>150 {name 'PR: ${PR}'} [0x640c resolution 23]
 
 mkgmap:area2poi=true & (amenity=parking & (access=private|access=customers|fee=yes)) [0x6300 resolution 24]
+mkgmap:area2poi=true & ((amenity=parking) & mkgmap:residential!=*) [0x1341b resolution 24]
 mkgmap:area2poi=true & (amenity=parking ) [0x1341b resolution 23]
 mkgmap:area2poi=true & ((amenity=fuel) & mkgmap:residential!=*) { name '${opening_hours}'} [0x6400 resolution 21]
 mkgmap:area2poi=true & (amenity=fuel) { name '${opening_hours}'} [0x6400 resolution 22] # en ville
@@ -247,22 +248,22 @@ traffic_sign=FR:B7b | traffic_sign=FR:B0 [0x01d00 default_name "panneau interdic
 ## divers commerces, services interessants
 shop=motorcycle {  name '${name} ${brand} ${opening_hours}' | '${name} ${brand}' | '${name}' } [0x640e resolution 23]
 amenity=fuel & mkgmap:residential!=* { name '${opening_hours}'} [0x6400 resolution 21]
-amenity=fuel { name '${opening_hours}'} [0x6400 resolution 22] # en ville
+amenity=fuel { name '${opening_hours}'} [0x6400 resolution 24] # en ville
 amenity=bank { name '${name} (${operator})' | '${name}' | '${operator}' } [0x2f06 resolution 24]
-amenity=drinking_water & mkgmap:residential!=* [0x2a13 default_name "eau potable" resolution 23 ]
+#amenity=drinking_water & mkgmap:residential!=* [0x2a13 default_name "eau potable" resolution 23 ]
 amenity=drinking_water [0x1341f resolution 24 ] # ok moins important que les autres :)
 amenity=emergency_phone [0x2f12 resolution 24 default_name 'Emergency Phone']
 amenity=parking & (access=private|access=customers|fee=yes) [0x6300 resolution 24]
 amenity=parking [0x1341b resolution 23]
 
 #amenity=fast_food & (name~ 'burger.*' |name~ 'Burger.*' | name~ '.*burger.*' |name~ '.*Burger.*' | name~ 'Mc.*' | name~ 'mc.*' | name~ 'KFC.*') { name '${name}' } [0x6402 resolution 23]
-(amenity=restaurant & name=*) & mkgmap:residential!=* { name '${name}' } [0x6402 resolution 23]
+#(amenity=restaurant & name=*) & mkgmap:residential!=* { name '${name}' } [0x6402 resolution 23]
 amenity=restaurant & name=* { name '${name}' } [0x6402 resolution 24]
 (amenity=fast_food & name=*) & mkgmap:residential!=* { name '${name}' } [0x6402 resolution 23]
 amenity=fast_food & name=* { name '${name}' } [0x6402 resolution 24]
 
 #(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) & mkgmap:residential=yes  { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 23]
-(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) & mkgmap:residential!=*  { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 22]
+#(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) & mkgmap:residential!=*  { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 22]
 (amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 24]
 
 craft=* [0x6300 resolution 24]
@@ -387,8 +388,9 @@ place=town & population!=* { name '${name}' } [0x0200 resolution 17]
 place=village & population!=* { name '${name}' } [0x0800 resolution 21-21 continue] 
 place=village & population!=* { name '${name}' } [0x0200 resolution 22] 
 
-place=hamlet { name '${name}' } [0x0d00 resolution 22-23 continue]
-place=hamlet { name '${name}' } [0x0900 resolution 24 ]
+place=hamlet { name '${name}' } [0x0d00 resolution 22-22 continue]
+place=hamlet { name '${name}' } [0x0900 resolution 23-23 continue ]
+place=hamlet { name '${name}' } [0x0200 resolution 24 ]
 
 place=isolated_dwelling & name!=* {add name=maison}
 place=isolated_dwelling | place=farm [0x11403 resolution 22-22 continue]

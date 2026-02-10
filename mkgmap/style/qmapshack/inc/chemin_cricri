@@ -1,10 +1,10 @@
-highway=* & area=yes {delete highway}
+## highway=* & area=yes {delete highway}
 
 ## pont
-(highway=path|highway=footway) & bridge=yes [0x10903 default_name="pont" resolution 24 continue]
-highway=track & (chemin=chemin_terre|chemin=chemin_exploitation|chemin=chemin_inconnu) & bridge=yes [0x10903 default_name="pont" resolution 23 continue]
-highway=track & (chemin=carrossable|chemin=piste) & bridge=yes [0x11f15 default_name="pont" resolution 23 continue]
-highway=track & (chemin=carrossable|chemin=piste) & bridge=yes [0x11f1c default_name="pont" resolution 23 continue]
+(highway=path|highway=footway) & (bridge=yes|bridge=viaduct) {name 'pont'} [0x10903 resolution 24 continue]
+highway=track & (chemin=chemin_terre|chemin=chemin_exploitation|chemin=chemin_inconnu) & (bridge=yes|bridge=viaduct) {name 'pont'} [0x10903 resolution 24 continue]
+highway=track & (chemin=carrossable|chemin=piste) & (bridge=yes|bridge=viaduct) {name 'pont'} [0x11f15 resolution 23 continue]
+highway=track & (chemin=carrossable|chemin=piste) & (bridge=yes|bridge=viaduct) {name 'pont'} [0x11f1c resolution 23 continue]
 
 ## escalier routable pour piéton
 highway=steps [0x13 default_name="escalier" road_class=0 road_speed=0 resolution 24]

@@ -128,9 +128,9 @@ assign mtb_sac_penalty
 if highway=path then
   (
     if mtb:scale=0|0+                           then 0
-    else if mtb:scale=1|1+|1-                   then 10
-    else if mtb:scale=2|2+|2-                   then 20
-    else if mtb:scale=3                         then 50
+    else if mtb:scale=1|1+|1-                   then 50
+    else if mtb:scale=2|2+|2-                   then 200
+    else if mtb:scale=3                         then 500
     else if mtb:scale=4                         then 1000
     else if mtb:scale=5                         then 1000
     else if mtb:scale=6                         then 1000

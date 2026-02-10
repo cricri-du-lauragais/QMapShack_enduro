@@ -41,6 +41,8 @@ natural=cliff [0x10902 default_name="falaise" resolution 23 ]
 
 aeroway=runway [0x11f19 default_name="piste" resolution 22]
 
+man_made=* & (proposed=yes) {deletealltags}
+
 man_made=pipeline & (location=underground|location=underwater) {deletealltags}
 man_made=pipeline & (layer=-1|layer=-2) {deletealltags}
 man_made=pipeline [0x28 default_name="pipeline" resolution 23]

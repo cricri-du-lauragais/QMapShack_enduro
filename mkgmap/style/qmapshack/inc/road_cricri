@@ -19,7 +19,8 @@ highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x07 roa
 highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x12d1f resolution 23-23 continue]
 highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x11f06 resolution 24 ]
 
-highway=residential {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x07 road_class=0 road_speed=2 resolution 21 continue]
+highway=residential {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x07 road_class=0 road_speed=2 resolution 20-20 continue]
+highway=residential {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x06 road_class=0 road_speed=2 resolution 21 continue]
 highway=residential & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x12d1f resolution 23-23 continue]
 highway=residential & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f06 resolution 24 ]
 
