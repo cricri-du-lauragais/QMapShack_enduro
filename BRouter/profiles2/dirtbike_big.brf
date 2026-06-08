@@ -101,7 +101,6 @@ assign onewaypenalty
               0.0
 
 assign excludepenalty
-    switch and railway=razed highway=   100
     switch not railway= and highway=    20000 # Really. Don't use railways.
     switch highway=                     10
                                         0
