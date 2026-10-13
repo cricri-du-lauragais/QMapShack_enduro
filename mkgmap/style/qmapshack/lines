@@ -8,6 +8,22 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
+## waterway
+waterway=* & tunnel=yes { deletealltags }
+waterway=* & (level=-1|level=-2|level=-3) { deletealltags }
+waterway=* & (location=underground|location=underwater) {deletealltags}
+waterway=* & (layer=-1|layer=-2) {deletealltags}
+man_made=pipeline & (location=underground|location=underwater) {deletealltags}
+man_made=pipeline & (layer=-1|layer=-2) {deletealltags}
+
+man_made=pipeline [0x28 default_name="pipeline" resolution 23]
+
+waterway=stream & intermittent=yes { name '${name}' } [0x10e05 resolution 23]
+waterway=ditch|waterway=drain { name '${name}' } [0x10e05 resolution 23]
+waterway=stream { name '${name}' } [0x18 resolution 22]
+waterway=canal { name '${name}' } [0x1f resolution 21]
+waterway=river { name '${name}' } [0x1f resolution 19]
+
 ## voie ferree abandonnee
 railway=disused & !(tunnel=yes) [0x11f14 default_name="rail abandonné" resolution 22 continue]
 railway=abandoned & !(tunnel=yes) [0x11f12 default_name="ancienne voie ferrée" resolution 22 continue]

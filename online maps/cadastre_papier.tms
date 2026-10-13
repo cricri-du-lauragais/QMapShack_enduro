@@ -1,9 +1,9 @@
 <TMS>
 <Layer idx="0">
-<Title>IGN ORTHO</Title>
+<Title>cadastre_papier</Title>
 <MinZoomLevel>3</MinZoomLevel>
 <MaxZoomLevel>20</MaxZoomLevel>
-<ServerUrl>https://data.geopf.fr/tms/1.0.0/ORTHOIMAGERY.ORTHOPHOTOS.ORTHO-EXPRESS.2024/%1/%2/%3.jpeg</ServerUrl>
+<ServerUrl>https://wms.openstreetmap.fr/tms/1.0.0/bdparcellaire_histo/%1/%2/%3.png</ServerUrl>
 </Layer>
 <Copyright>Map data: Ortho Images, licence ouverte Etalab v2.0</Copyright>
 </TMS>

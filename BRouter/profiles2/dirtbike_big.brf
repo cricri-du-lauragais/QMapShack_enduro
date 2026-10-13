@@ -172,19 +172,19 @@ assign costfactor
   min 9999
   add max onewaypenalty accesspenalty
   switch    trail_visibility=no                         200
-  switch or highway=motorway highway=motorway_link      12
-  switch or highway=trunk highway=trunk_link            11
-  switch or highway=primary highway=primary_link        10.0
-  switch or highway=secondary highway=secondary_link    8.5
-  switch or highway=tertiary highway=tertiary_link      7.0
+  switch or highway=motorway highway=motorway_link      10
+  switch or highway=trunk highway=trunk_link            9
+  switch or highway=primary highway=primary_link        6.0
+  switch or highway=secondary highway=secondary_link    6
+  switch or highway=tertiary highway=tertiary_link      6
   switch    highway=unclassified                        6.0
   switch    highway=pedestrian                          200
   switch    route=ferry                                 20
   switch    highway=bridleway                           20
   switch    highway=cycleway                            200
-  switch    highway=living_street                       6.0
-  switch    highway=residential                         5.0
-  switch    highway=service                             2.0
+  switch    highway=living_street                       8.0
+  switch    highway=residential                         7.0
+  switch    highway=service                             5.0
   switch    highway=abandoned                           20.0
   switch    highway=track                               0.5   # ne pas mettre 0 !
   switch    highway=path                                200

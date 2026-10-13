@@ -1,5 +1,57 @@
 #boundary=administrative & admin_level=8 {name '${name}'} [0x0200 resolution 22 ]
 
+#fond
+	aeroway=airport {name '${name}'} [0x07 default_name="aeroport" resolution 20]
+	aeroway=aerodrome {name '${name}'} [0x07 default_name="aerodrome" resolution 21]
+	aeroway=runway [0x0e default_name="piste" resolution 22]
+	(aeroway=taxiway | aeroway=taxilane) [0x0e default_name="taxiway" resolution 24]
+	aeroway=heliport {name '${name}'} [0x07 default_name="heliport" resolution 22]
+	aeroway=helipad [0x0e default_name="piste" resolution 23]
+
+	#boundary
+	boundary=forest {name '${name}'} [0x11009 default_name="Forêt Domaniale" resolution 21 continue]
+	boundary=* {name '${name}'}
+
+	leisure=nature_reserve {name '${name}'} [0x15 resolution 18]
+
+	(boundary=protected_area | boundary=national_park) & (protect_class=1|protect_class=1a|protect_class=1b|protect_class=2|protect_class=3|protect_class=4|protect_class=7|protect_class=97) {name '${name}'} [0x12 resolution 22]
+
+	#PNR
+	boundary=protected_area & protect_class=5 {name '${name}'} [0x18 resolution 18-22]
+
+	building=* [0x09 default_name="construction" resolution 23]
+	#amenity=townhall [0x09 default_name="mairie" resolution 22]
+	#amenity=place_of_worship [0x09 default_name="eglise" resolution 22]
+	landuse=quarry [0x21 default_name="carrière" resolution 22]
+	landuse=cemetery | amenity=grave_yard [0x1a default_name="cimetière" resolution 22]
+
+	landuse=military {name '${name}'} [0x04 default_name="terrain militaire" resolution 21]
+	leisure=park { name '${name}' } [0x19 default_name="parc" resolution 22]
+	leisure=golf_course { name '${name}' } [0x19 default_name="golf" resolution 22]
+	leisure=track & sport=motocross [0x19 default_name="moto cross" resolution 23]
+	leisure=sports_centre [0x19 default_name="sport" resolution 23]
+	leisure=pitch [0x19 default_name="stade" resolution 23]
+	landuse=landfill [0x10f13 default_name="décharge" resolution 22]
+	landuse=commercial {name '${name}'} [0x08 default_name="centre commercial" resolution 22]
+	landuse=industrial {name '${name}'} [0x0c default_name="zone industrielle"resolution 22]
+	landuse=residential {name '${name}'} [0x10102 default_name="residentiel" resolution 22]
+
+	#couverture
+	landuse=forest | natural=wood [0x50 default_name="forêt" resolution 18]
+	landuse=farm |landuse=farmland [0x10f01 default_name="agricole" resolution 18]
+	natural=heath |natural=scrub [0x4f default_name="lande" resolution 18]
+	landuse=vineyard [0x10f00 default_name="vigne" resolution 18]
+	landuse=grass|leisure=garden |natural=grassland |landuse=meadow|natural=meadow [0x4d default_name="prairie" resolution 19]
+	landuse=orchard [0x4e default_name="verger" resolution 18]
+	natural=wetland | waterway=riverbank [0x4c default_name="zone humide" resolution 20]
+	natural=beach {name '${name}'} [0x10f18 default_name="plage" resolution 20]
+
+
+	natural=sea [0x32 resolution 12]
+	landuse=reservoir|landuse=basin {name '${name}'} [0x40 default_name="lac" resolution 18]
+	natural=water {name '${name}'} [0x40 default_name="lac" resolution 17]
+#fond
+
 craft=* { name '${name}'| '${craft}' } [0x10f05 resolution 23]
 tourism=attraction { name '${name}' } [0x10f0b default_name="attraction" resolution 22]
 tourism=zoo { name '${name}' } [0x10f0b default_name="attraction" resolution 22]
@@ -28,13 +80,13 @@ amenity=parking { name '${name} : parking' } [0x10f03 default_name="parking" res
 amenity=motorcycle_parking { name '${name} : parking' } [0x10f03 default_name="parking moto" resolution 24]
 #leisure=park { name '${name}' } [0x10f02 default_name="parc" resolution 22]
 amenity=* { name '${name}'|'${amenity}' } [0x10f05 resolution 24]
-(natural=water & water=river) [0x10f01 default_name="riviere" resolution 21]
-(natural=water & water=reservoir) [0x10f01 default_name="reservoir" resolution 22]
-man_made=wastewater_plant [0x10f01 default_name="station épuration" resolution 24]
+(natural=water & water=river) [0x40 default_name="riviere" resolution 21]
+(natural=water & water=reservoir) [0x40 default_name="reservoir" resolution 22]
+man_made=wastewater_plant [0x40 default_name="station épuration" resolution 24]
 
 (leisure=sports_centre|leisure=pitch) { name '${name}: ${sport}'|'${sport}'|'${name}'} [0x10f08 resolution 23]
-landuse=landfill [0x10f09 default_name="décharge" resolution 23]
+#landuse=landfill [0x10f09 default_name="décharge" resolution 23]
 
 waterway=dam [0x10f0c default_name="barrage" resolution 23]
 
-aeroway=runway [0x10f08 default_name="piste" resolution 22]
+#aeroway=runway [0x10f08 default_name="piste" resolution 22]

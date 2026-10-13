@@ -15,21 +15,25 @@ highway=disused [0x10906 default_name="ancienne route" resolution 23]
 
 (highway=primary|highway=secondary|highway=tertiary|highway=unclassified|highway=residential|highway=living_street|highway=service) & oneway=yes & tunnel!=yes & length ()>75 {name "sens unique" } [0x10904 resolution 24 continue]
 
-highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x07 road_class=0 road_speed=1 resolution 22 continue]
-highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x12d1f resolution 23-23 continue]
-highway=living_street {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x11f06 resolution 24 ]
+(highway=living_street|area:highway=living_street) {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x07 road_class=0 road_speed=1 resolution 22 continue]
+(highway=living_street|area:highway=living_street) {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x12d1f resolution 23-23 continue]
+(highway=living_street|area:highway=living_street) {name '${name} ${ref}'|'${name}'|'${ref}'|'rue'} [0x11f06 resolution 24 ]
 
-highway=residential {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x07 road_class=0 road_speed=2 resolution 20-20 continue]
-highway=residential {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x06 road_class=0 road_speed=2 resolution 21 continue]
+(highway=residential|area:highway=residential) {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x07 road_class=0 road_speed=2 resolution 20-20 continue]
+(highway=residential|area:highway=residential) {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x06 road_class=0 road_speed=2 resolution 21 continue]
 highway=residential & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x12d1f resolution 23-23 continue]
 highway=residential & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f06 resolution 24 ]
 
 highway=service & mkgmap:residential!=* [0x11f09 default_name="voie acces" resolution 20-21 continue]
-highway=service [0x06 default_name="voie acces" road_class=0 road_speed=4 resolution 22 continue] #routage
-highway=service & bridge!=* [0x10c06 default_name="voie acces" resolution 22 continue]
-highway=service & bridge!=* & (surface=paved|surface=asphalt|tracktype=grade1) {name '${name} "goudronné"'}[0x11f06 resolution 24]
-highway=service & bridge!=* {name '${name} "voie acces"'} [0x11f06 resolution 24 continue] 
-highway=service & bridge!=* [0x12d19 resolution 24]
+
+highway=service & bridge!=* & (surface=paved|surface=asphalt|tracktype=grade1) {name '${name} "goudronné"'|'"goudronné"'}[0x06 resolution 22-23 continue]
+highway=service & bridge!=* & (surface=paved|surface=asphalt|tracktype=grade1) {name '${name} "goudronné"'|'"goudronné"'}[0x11f06 resolution 24] #trait continu dessus
+
+(highway=service|area:highway=service) [0x06 default_name="voie acces" road_class=0 road_speed=4 resolution 22 continue] #trait continu dessous
+highway=service & bridge!=* [0x10c06 default_name="voie acces" resolution 22 continue] #pointillés au dessus sauf !=
+
+highway=service & bridge!=* {name '${name} "voie acces"'} [0x11f06 resolution 24 continue] #trait continu dessous
+highway=service & bridge!=* [0x12d19 resolution 24] # pointillés au dessus
 
 highway=minor {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x06 road_class=1 road_speed=4 resolution 20 continue ]
 highway=minor & bridge!=* [0x12d1f resolution 23-23 continue ]
@@ -44,7 +48,7 @@ highway=unclassified & bridge!=* [0x11f06 resolution 24 ]
 (highway=tertiary|highway=tertiary_link) & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f07 resolution 24 ]
 
 (highway=secondary|highway=secondary_link) {name '${ref}'|'${old_ref}'|'route'} [0x04 road_class=2 road_speed=4 resolution 18 continue]
-(highway=secondary|highway=secondary_link) & bridge!=* [0x11f05 resolution 20-23 continue]
+(highway=secondary|highway=secondary_link) & bridge!=* [0x11f05 resolution 19-23 continue]
 (highway=secondary|highway=secondary_link) & bridge!=* {name '${name} ${ref}'|'${name}'|'${ref}'|'route'} [0x11f08 resolution 24]
 
 (highway=primary|highway=primary_link) {name '${ref}'|'${old_ref}'|'route'} [0x03 road_class=3 road_speed=5 resolution 17 continue]

@@ -1,4 +1,7 @@
 # # don't render not relevant mkgmap:line2poi tags (début fichier points)
+natural=* & mkgmap:line2poi=true & mkgmap:line2poitype=start {delete natural}
+natural=* & mkgmap:line2poi=true & mkgmap:line2poitype=end {delete natural}
+natural=* & mkgmap:line2poi=true & mkgmap:line2poitype=inner {delete natural}
 barrier=* & mkgmap:line2poi=true {delete barrier}
 barrier=* & mkgmap:area2poi=true {delete barrier}
 historic=* & mkgmap:line2poi=true {delete historic}
@@ -12,6 +15,7 @@ shop=* & mkgmap:line2poi=true {delete shop}
 tourism=* & mkgmap:line2poi=true {delete tourism}
 ruins=* & mkgmap:line2poi=true {delete ruins}
 #(amenity=parking & mkgmap:area2poi=true) & (access=customers|access=private|fee!=no) {delete amenity} ##delete tout !
+#landuse=* & mkgmap:area2poi=true {delete place}
 
 highway=* & (mtb:scale="0-" | mtb:scale="0+" | mtb:scale:imba=0) {set mtb:scale=0;delete mtb:scale:imba}
 highway=* & (mtb:scale="1-" | mtb:scale="1+" | mtb:scale:imba=1) {set mtb:scale=1;delete mtb:scale:imba}
@@ -139,8 +143,8 @@ mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (hik
 mkgmap:area2poi=true & (amenity=parking & (access=private|access=customers|fee=yes)) [0x6300 resolution 24]
 mkgmap:area2poi=true & ((amenity=parking) & mkgmap:residential!=*) [0x1341b resolution 24]
 mkgmap:area2poi=true & (amenity=parking ) [0x1341b resolution 23]
-mkgmap:area2poi=true & ((amenity=fuel) & mkgmap:residential!=*) { name '${opening_hours}'} [0x6400 resolution 21]
-mkgmap:area2poi=true & (amenity=fuel) { name '${opening_hours}'} [0x6400 resolution 22] # en ville
+# mkgmap:area2poi=true & ((amenity=fuel) & mkgmap:residential!=*) { name '${opening_hours}'} [0x6400 resolution 21]
+mkgmap:area2poi=true & (amenity=fuel) { name '${opening_hours}'} [0x6400 resolution 21] # en ville
 mkgmap:area2poi=true & (shop=supermarket|amenity=supermarket) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x640d resolution 23]
 mkgmap:area2poi=true & ((power=transformer ) & mkgmap:residential!=*) [0x2b04 resolution 23]
 mkgmap:area2poi=true & (power=substation & (substation!=minor_distribution) & mkgmap:residential!=*) [0x2b04 default_name="transformateur" resolution 23]
@@ -241,14 +245,14 @@ barrier=* {name
 'barrière'
 } [0x1c00 resolution 23]
 
-##panneau interdit motorisés
+## panneau interdit motorisés
 mkgmap:line2poi=true & traffic_sign=* {delete traffic_sign}
 traffic_sign=FR:B7b | traffic_sign=FR:B0 [0x01d00 default_name "panneau interdiction" resolution 23]
 
 ## divers commerces, services interessants
 shop=motorcycle {  name '${name} ${brand} ${opening_hours}' | '${name} ${brand}' | '${name}' } [0x640e resolution 23]
-amenity=fuel & mkgmap:residential!=* { name '${opening_hours}'} [0x6400 resolution 21]
-amenity=fuel { name '${opening_hours}'} [0x6400 resolution 24] # en ville
+#amenity=fuel & mkgmap:residential!=* { name '${opening_hours}'} [0x6400 resolution 21]
+amenity=fuel { name '${opening_hours}'} [0x6400 resolution 21] # en ville
 amenity=bank { name '${name} (${operator})' | '${name}' | '${operator}' } [0x2f06 resolution 24]
 #amenity=drinking_water & mkgmap:residential!=* [0x2a13 default_name "eau potable" resolution 23 ]
 amenity=drinking_water [0x1341f resolution 24 ] # ok moins important que les autres :)
@@ -288,16 +292,16 @@ leisure=track { name '${name} (${sport})' | '${name}' | 'circuit' } [0x2c08 reso
 leisure=lake_bath|leisure=river_bath|leisure=water_park [0x5400 default_name "baignade" resolution 23]
 
 ## cols 
-highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x0600 resolution 20-23 continue] #cols routiers
-highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x2c09 resolution 24] #cols routiers
-highway=secondary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x0600 resolution 20-23 continue] #cols routiers
-highway=secondary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x2c09 resolution 24] #cols routiers
-highway=tertiary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x0600 resolution 21-23 continue] #cols routiers
-highway=tertiary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x2c09 resolution 24] #cols routiers
-highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x0600 resolution 22-23 continue] #cols routiers
-highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x2c09 resolution 24] #cols routiers
-natural=saddle | mountain_pass=yes {name '${name}'} [0x0500 resolution 23-23 continue]
-natural=saddle | mountain_pass=yes {name '${name}'} [0x2c09 resolution 24]
+highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-23 continue] #cols routiers
+highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
+highway=secondary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-23 continue] #cols routiers
+highway=secondary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
+highway=tertiary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 21-23 continue] #cols routiers
+highway=tertiary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
+highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 22-23 continue] #cols routiers
+highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
+natural=saddle | mountain_pass=yes {name '${name}'} [0x6609 resolution 23-23 continue]
+natural=saddle | mountain_pass=yes {name '${name}'} [0x6608 resolution 24]
 
 (natural=peak|natural=hill) & name=* {name '${name} '} [0x6617 resolution 21-22 continue]
 (natural=peak|natural=hill) & name=* {name '${name} '} [0x6616 resolution 23]
@@ -305,48 +309,48 @@ natural=volcano {name '${name}' } [0x6401 resolution 21]
 natural=rock|natural=ridge {name '${name}' } [0x6614 resolution 23]
 
 (natural=*|place=*) & name ~ '.*[Cc]irque.*' {name '${name}'} [0x02b06 resolution 20-22 continue]
-(natural=*|place=*) & name ~ '.*[Cc]irque.*' {name '${name}'} [0x11404 resolution 23]
+(natural=*|place=*) & name ~ '.*[Cc]irque.*' {name '${name}'} [0x6611 resolution 23]
 
 (natural=*|place=*|tourism=*) & name ~ '.*[Cc]anyon.*' {name '${name}'} [0x02c05 resolution 20-22 continue]
-(natural=*|place=*|tourism=*) & name ~ '.*[Cc]anyon.*' {name '${name}'} [0x11404 resolution 23]
+(natural=*|place=*|tourism=*) & name ~ '.*[Cc]anyon.*' {name '${name}'} [0x6611 resolution 23]
 
 (natural=*|place=*) & name ~ '.*[Gg]orge.*' {name '${name}'} [0x02b06 resolution 19-22 continue]
-(natural=*|place=*) & name ~ '.*[Gg]orge.*' {name '${name}'} [0x11404 resolution 23]
+(natural=*|place=*) & name ~ '.*[Gg]orge.*' {name '${name}'} [0x6611 resolution 23]
 
 (natural=gorge | natural=gorges) & name=* {name '${name}'} [0x02b06 resolution 19-22 continue]
-(natural=gorge | natural=gorges) & name=* {name '${name}'} [0x11404 resolution 23]
+(natural=gorge | natural=gorges) & name=* {name '${name}'} [0x6611 resolution 23]
 
 natural=plateau & name=* {name '${name}'} [0x02b07 resolution 20-22 continue]
-natural=plateau & name=* {name '${name}'} [0x11404 resolution 23]
+natural=plateau & name=* {name '${name}'} [0x6611 resolution 23]
 
 (natural=sinkhole | natural=sink_hole ) & name=* {name '${name}'} [0x02c05 resolution 22]
 
 natural=canyon & name=* {name '${name}'} [0x02c05 resolution 20-22 continue]
-natural=canyon & name=* {name '${name}'} [0x11404 resolution 23]
+natural=canyon & name=* {name '${name}'} [0x6611 resolution 23]
 
 natural=mountain_range & name=* {name '${name}'} [0x02b07 resolution 18-22 continue]
-natural=mountain_range & name=* {name '${name}'} [0x11404 resolution 23]
+natural=mountain_range & name=* {name '${name}'} [0x6611 resolution 23]
 
 "region:type"="mountain_area" & name=* {name '${name}'} [0x02b07 resolution 19-22 continue]
-"region:type"="mountain_area" & name=* {name '${name}'} [0x11404 resolution 23]
+"region:type"="mountain_area" & name=* {name '${name}'} [0x6611 resolution 23]
 
 (natural=valley|natural=ridge|natural=cliff) & name=* {name '${name}'} [0x02c07 resolution 21-22 continue]
-(natural=valley|natural=ridge|natural=cliff) & name=* {name '${name}'} [0x11404 resolution 23]
+(natural=valley|natural=ridge|natural=cliff) & name=* {name '${name}'} [0x6611 resolution 23]
 
 natural=cave_entrance {name '${name}'} [0x02f03 resolution 23]
 
 mkgmap:line2poitype=mid & ((natural=*|waterway=*) & name ~ '.*[Gg]orge.*') {name '${name}'} [0x02b06 resolution 19-22 continue] 
-mkgmap:line2poitype=mid & ((natural=*|waterway=*) & name ~ '.*[Gg]orge.*') {name '${name}'} [0x11404 resolution 23] 
+mkgmap:line2poitype=mid & ((natural=*|waterway=*) & name ~ '.*[Gg]orge.*') {name '${name}'} [0x6611 resolution 23] 
 
 mkgmap:line2poitype=mid & ((natural=*|waterway=*) & name ~ '.*[Cc]anyon.*') {name '${name}'} [0x02c05 resolution 20]
 
 mkgmap:line2poitype=mid & (natural=valley & name=*) {name '${name}'} [0x02c07 resolution 21-22 continue]
-mkgmap:line2poitype=mid & (natural=valley & name=*) {name '${name}'} [0x11404 resolution 23]
+mkgmap:line2poitype=mid & (natural=valley & name=*) {name '${name}'} [0x6611 resolution 23]
 
 mkgmap:line2poitype=mid & ((natural=ridge|natural=cliff) & name=*) {name '${name}'} [0x6614 resolution 21]
 
 mkgmap:line2poitype=mid & (natural=mountain_range & name=*) {name '${name}'} [0x02b07 resolution 18-22 continue]
-mkgmap:line2poitype=mid & (natural=mountain_range & name=*) {name '${name}'} [0x11404 resolution 23]
+mkgmap:line2poitype=mid & (natural=mountain_range & name=*) {name '${name}'} [0x6611 resolution 23]
 
 ## gué
 highway=unclassified & (mkgmap:from-node:ford=yes & intermittent!=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6513 default_name "gué" resolution 23] #gué
@@ -393,12 +397,14 @@ place=hamlet { name '${name}' } [0x0900 resolution 23-23 continue ]
 place=hamlet { name '${name}' } [0x0200 resolution 24 ]
 
 place=isolated_dwelling & name!=* {add name=maison}
-place=isolated_dwelling | place=farm [0x11403 resolution 22-22 continue]
-place=isolated_dwelling | place=farm {name '${name}'} [0x11402 resolution 23-23 continue]
-place=isolated_dwelling | place=farm {name '${name}'} [0x11401 resolution 24]
+place=isolated_dwelling | place=farm [0x6603 resolution 22-22 continue]
+place=isolated_dwelling | place=farm {name '${name}'} [0x6602 resolution 23-23 continue]
+place=isolated_dwelling | place=farm {name '${name}'} [0x6601 resolution 24]
 
-(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) {name '${name}'} [0x11400 resolution 22-22 continue]
-(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) {name '${name}'} [0x11409 resolution 23]
+(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Ll]otissement.*') [0x6300 resolution 22 continue]
+(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Rr]ésidence.*') [0x6300 resolution 22 continue]
+(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) {name '${name}'} [0x6605 resolution 22-22 continue]
+(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) {name '${name}'} [0x6604 resolution 23]
 
 ## nom de ville depuis relation pour nouvelles communes FR
 #mkgmap:area2poi=true & (boundary=administrative & admin_level=8) {name '${name}'} [0x11409 resolution 23]
@@ -426,7 +432,7 @@ highway=speed_camera [0x6406 default_name "radar" resolution 21]
 historic=* { name '${ref} ${name}' | '${ref}' | '${name}' }
 (historic=archaeological_site | historic=milestone | geological=palaeontological_site) & mkgmap:residential!=* { name '${ref} ${name}' | '${ref}' | '${name}' } [0x4e00 default_name="site archeologique" resolution 23]
 (ruins=yes | historic=ruins) & mkgmap:residential!=* [0x6415 default_name="ruine" resolution 23]
-(historic=memorial | historic=monument) & mkgmap:residential!=* { name '${memorial:description}'|'${name}' } [0x6514 default_name="monument" resolution 23]
+(historic=memorial | historic=monument) & mkgmap:residential!=* { name '${memorial:description}'|'${name}' } [0x6514 default_name="monument" resolution 24]
 historic=castle & mkgmap:residential!=* {name '${name}'} [0x6511 default_name="chateau" resolution 23]
 historic=castle {name '${name}'} [0x6511 default_name="chateau" resolution 24]
 (historic=wayside_cross | building=chapel | man_made=cross |amenity=grave_yard) & mkgmap:residential!=* { name '${ref} ${name}' | '${ref}' | '${name}' } [0x6303 default_name="croix" resolution 23]

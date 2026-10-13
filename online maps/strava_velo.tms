@@ -2,8 +2,8 @@
 <Layer idx="0">
 <Title>strava vélo</Title>
 <MinZoomLevel>6</MinZoomLevel>
-<MaxZoomLevel>12</MaxZoomLevel>
-<ServerUrl>https://strava-heatmap.tiles.freemap.sk/ride/hot/%1/%2/%3.png</ServerUrl>
+<MaxZoomLevel>6</MaxZoomLevel>
+<ServerUrl>http://89.168.43.214:9192/identified/globalheat/ride/hot/%1/%2/%3.png</ServerUrl>
 </Layer>
 <Copyright> cricri</Copyright>
 </TMS>

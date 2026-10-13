@@ -35,7 +35,7 @@ assign bikerPower = 40000    # %bikerPower% | Average power (in W) provided by t
 assign consider_elevation false # %considerElevation% | Activate to apply a penalty for uphills | boolean
 assign is_wet false # %is_wet% | Activate less dirt track | boolean
 assign prefer_forests true # %prefer_forests% | Enable to prefer forest areas | boolean
-assign avoid_towns true # %avoid_towns% | Enable to avoid urban areas | boolean
+assign avoid_towns false # %avoid_towns% | Enable to avoid urban areas | boolean
 
 # Turn cost definition
 assign turncostBase = 0 # %turncostBase% | Cost of turning. The larger the cost, the straighter the route, at the cost of other parameters like surface or traffic.
@@ -142,7 +142,7 @@ assign noforestpenalty
         switch estimated_forest_class=6  0      #98%
         1 1
 
-assign townpenalty  #ne marche pas bien
+assign townpenalty  # ne marche pas bien, prend les sens unique !!!
     switch avoid_towns 
         switch estimated_town_class=   0 #
         switch estimated_town_class=1  30 #80k
@@ -156,7 +156,7 @@ assign townpenalty  #ne marche pas bien
 
 assign sum_highwaypenalty
   add noforestpenalty
-  add townpenalty
+#  add townpenalty
   add turncost
   add smoothnesspenalty
   add surfacepenalty
@@ -259,7 +259,7 @@ assign motorcycleaccess
               or motorcycle=yes or motorcycle=designated motorcycle=destination
 
 assign initialcost
-        switch    highway=speed_camera                             1000000
+        switch    highway=speed_camera                             10000
         switch or caraccess motorcycleaccess
               0
               1000000

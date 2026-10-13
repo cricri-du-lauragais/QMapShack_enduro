@@ -1,3 +1,4 @@
+
 #regroupe mtb:scale
 highway=* & (mtb:scale="0-" | mtb:scale="0+" | mtb:scale:imba=0) {set mtb:scale=0;delete mtb:scale:imba}
 highway=* & (mtb:scale="1-" | mtb:scale="1+" | mtb:scale:imba=1) {set mtb:scale=1;delete mtb:scale:imba}
@@ -88,7 +89,7 @@ highway=track & smoothness=impassable {set highway=path}
 
 #voie interdite
 highway=* & (
-access=no|access=private|access=destination|access=customers|access=agricultural|access=forestry|
+access=permit|access=no|access=private|access=destination|access=customers|access=agricultural|access=forestry|
 vehicle=no|vehicle=private|vehicle=destination|vehicle=customers|vehicle=agricultural|vehicle=forestry|
 motor_vehicle=no|motor_vehicle=private|motor_vehicle=destination|motor_vehicle=customers|motor_vehicle=forestry|motor_vehicle=agricultural|
 motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|motorcar=agricultural|motorcar=forestry|
