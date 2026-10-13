@@ -7,7 +7,7 @@ utiliser **QMapShack** et **BRouter** pour préparer des itinéraires en moto to
 
 cette carte vectorielle est au format **GARMIN** et est compilée par l'utilitaire **mkgmap** qui permet via un style de formater les informations de façon pertinente (comme afficher des symboles rouge pour une difficulté par exemple)
 - le style **mkgmap** pour faire n'importe quelle région du monde est [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/mkgmap/style/qmapshack)
-- mes cartes vectorielles (France / Espagne / Portugal) sont [ici](https://drive.google.com/drive/folders/1u9BwlJgjlj6ju5V3EXWNfKZ7py4GAkeK?usp=sharing) (décomposée en fond/rivière/courbe/le reste)
+- mes cartes vectorielles (France / Espagne / Portugal) sont [ici](https://drive.google.com/drive/folders/1u9BwlJgjlj6ju5V3EXWNfKZ7py4GAkeK?usp=drive_link)
 - les **TYP** qui vont avec les cartes vectorielles [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/tree/main/vector_maps/TYP)
 - légende de la carte [ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/Legend.md)
 - les tags utilisés pour trier les chemins[ ici](https://github.com/cricri-du-lauragais/QMapShack_enduro/blob/main/choix_chemins.md)
