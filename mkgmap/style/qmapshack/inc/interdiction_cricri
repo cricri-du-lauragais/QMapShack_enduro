@@ -1,3 +1,6 @@
+##voies BUS
+highway=service & psv=yes & access=no {name 'voie de bus'} [0x11002 resolution 24]
+highway=busway {name 'voie de bus'} [0x11002 resolution 24]
 
 #regroupe mtb:scale
 highway=* & (mtb:scale="0-" | mtb:scale="0+" | mtb:scale:imba=0) {set mtb:scale=0;delete mtb:scale:imba}
@@ -148,7 +151,4 @@ highway=* & interdit=yes {name
 
 ##piste cyclable
 highway=cycleway {name 'piste cyclable'; setaccess 'no'; set mkgmap:foot=yes ; set mkgmap:bicycle=yes} [0x0c road_class=0 road_speed=0 resolution 23 ]
-
-##voies BUS
-highway=service & psv=yes & access=no {name 'voie de bus'} [0x11002 resolution 24]
 

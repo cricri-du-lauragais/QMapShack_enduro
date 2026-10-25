@@ -11,12 +11,14 @@ man_made=* & mkgmap:line2poi=true {delete man_made}
 rcn_ref=* & mkgmap:line2poi=true {delete rcn_ref}
 place=* & mkgmap:line2poi=true {delete place}
 shop=* & mkgmap:line2poi=true {delete shop}
-## sport=* & mkgmap:line2poi=true {delete sport}
 tourism=* & mkgmap:line2poi=true {delete tourism}
 ruins=* & mkgmap:line2poi=true {delete ruins}
-#(amenity=parking & mkgmap:area2poi=true) & (access=customers|access=private|fee!=no) {delete amenity} ##delete tout !
-#landuse=* & mkgmap:area2poi=true {delete place}
 
+### difficulte
+## affiche un point grimpette si conditions réunies
+mkgmap:line2poitype=mid & (highway=path | highway=track) & (mtb:scale:uphill=5) {name 'grimpette'}	[0x5e00 resolution 23 continue]
+
+## simplification mtb:scale
 highway=* & (mtb:scale="0-" | mtb:scale="0+" | mtb:scale:imba=0) {set mtb:scale=0;delete mtb:scale:imba}
 highway=* & (mtb:scale="1-" | mtb:scale="1+" | mtb:scale:imba=1) {set mtb:scale=1;delete mtb:scale:imba}
 highway=* & (mtb:scale="2-" | mtb:scale="2+" | mtb:scale:imba=2) {set mtb:scale=2;delete mtb:scale:imba}
@@ -24,11 +26,6 @@ highway=* & (mtb:scale="3-" | mtb:scale="3+" | mtb:scale:imba=3) {set mtb:scale=
 highway=* & (mtb:scale="4-" | mtb:scale="4+" | mtb:scale:imba=4) {set mtb:scale=4;delete mtb:scale:imba}
 highway=* & (mtb:scale="5-" | mtb:scale="5+") {set mtb:scale=5}
 highway=* & (mtb:scale="6-" | mtb:scale="6+") {set mtb:scale=6}
-
-##difficulte
-
-## affiche un point grimpette si conditions réunies
-mkgmap:line2poitype=mid & (highway=path | highway=track) & (mtb:scale:uphill=5) {name 'grimpette'}	[0x5e00 resolution 23 continue]
 
 (highway=path | highway=footway | highway=track) & mtb:scale=* {delete sac_scale; delete smoothness}
 (highway=path | highway=footway | highway=track) & sac_scale=* {delete smoothness}
@@ -112,9 +109,6 @@ mkgmap:line2poi=true & ((highway=path | highway=footway | highway=track ) & (dif
 } [0x02a04 resolution 24] #impassable
 
 
-## affiche un point ruine (voir fichier TYP) si polygon taggé ruins
-mkgmap:area2poi=true & (historic=ruins|ruins=yes|ruin=yes|building=ruins|building=collapsed) & mkgmap:residential!=* {name '${name}'} [0x6415 default_name="ruine" resolution 23] #0x2c02 pas vu sous mapsource
-
 ## point interdit sur voies interdites
 mkgmap:line2poitype=mid & (highway=* & (
 access=no|access=private|access=destination|access=customers|access=agricultural|access=forestry|
@@ -124,13 +118,21 @@ motorcar=no|motorcar=private|motorcar=destination|motorcar=customers|motorcar=ag
 motorcycle=no|motorcycle=private|motorcycle=destination|motorcycle=customers|motorcycle=agricultural|motorcycle=forestry
 )) & mkgmap:way-length>500 [0x01c00 default_name="interdit" resolution 23]
 
-## affiche une icone sur le polygon pour visibilite zoom eloigne sur GPS
-mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) & mkgmap:residential!=* { name '${name}' } [0x6301 default_name="eglise" resolution 24]
-mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) [0x1341c resolution 24]
-mkgmap:area2poi=true & (landuse=cemetery|amenity=grave_yard) & mkgmap:residential!=* [0x6302 default_name="cimetiere" resolution 23]
-mkgmap:area2poi=true & (landuse=cemetery|amenity=grave_yard) [0x1341d resolution 23]
-mkgmap:area2poi=true & (healthcare=hospital | amenity=hospital) [0x3002 default_name="hopital" resolution 23]
+## panneau interdit motorisés
+mkgmap:line2poi=true & traffic_sign=* {delete traffic_sign}
+traffic_sign=FR:B7b | traffic_sign=FR:B0 [0x01d00 default_name "panneau interdiction" resolution 23]
 
+## affiche une icone sur le polygon pour visibilite zoom eloigne sur GPS
+mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) [0x6612 default_name="eglise" resolution 24]
+mkgmap:area2poi=true & (landuse=cemetery|amenity=grave_yard) [0x6613 default_name="cimetiere" resolution 24]
+mkgmap:area2poi=true & (shop=supermarket|amenity=supermarket) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x640d resolution 23]
+mkgmap:area2poi=true & ((power=transformer ) & mkgmap:residential!=*) [0x2b04 resolution 23]
+mkgmap:area2poi=true & (power=substation & (substation!=minor_distribution) & mkgmap:residential!=*) [0x2b04 default_name="transformateur" resolution 23]
+
+## affiche un point ruine (voir fichier TYP) si polygon taggé ruins
+mkgmap:area2poi=true & (historic=ruins|ruins=yes|ruin=yes|building=ruins|building=collapsed) & mkgmap:residential!=* {name '${name}'} [0x6415 default_name="ruine" resolution 23] #0x2c02 pas vu sous mapsource
+
+# icone sur les balisages
 mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=nwn|network=iwn)) & mkgmap:way-length>600 {name 'GR: ${GR}'} [0x6501 resolution 21-21 continue]
 mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=nwn|network=iwn)) & mkgmap:way-length>300 {name 'GR: ${GR}'} [0x6501 resolution 22-22 continue]
 mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=nwn|network=iwn)) & mkgmap:way-length>150 {name 'GR: ${GR}'} [0x6408 resolution 23]
@@ -140,37 +142,9 @@ mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & rout
 mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & intermittent=lvp) & mkgmap:way-length>150 {name 'PR: ${lvp}'} [0x640c resolution 23]
 mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (hiking=test|hiking=yes|route=hiking) & network!=*) & mkgmap:way-length>150 {name 'PR: ${PR}'} [0x640c resolution 23]
 
-mkgmap:area2poi=true & (amenity=parking & (access=private|access=customers|fee=yes)) [0x6300 resolution 24]
-mkgmap:area2poi=true & ((amenity=parking) & mkgmap:residential!=*) [0x1341b resolution 24]
-mkgmap:area2poi=true & (amenity=parking ) [0x1341b resolution 23]
-# mkgmap:area2poi=true & ((amenity=fuel) & mkgmap:residential!=*) { name '${opening_hours}'} [0x6400 resolution 21]
-mkgmap:area2poi=true & (amenity=fuel) { name '${opening_hours}'} [0x6400 resolution 21] # en ville
-mkgmap:area2poi=true & (shop=supermarket|amenity=supermarket) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x640d resolution 23]
-mkgmap:area2poi=true & ((power=transformer ) & mkgmap:residential!=*) [0x2b04 resolution 23]
-mkgmap:area2poi=true & (power=substation & (substation!=minor_distribution) & mkgmap:residential!=*) [0x2b04 default_name="transformateur" resolution 23]
-mkgmap:area2poi=true & (amenity=shelter & (shelter_type!=public_transport | amenity=hunting_stand | tourism=wilderness_hut) & mkgmap:residential!=*) [0x6417 default_name="abri" resolution 23]
-mkgmap:area2poi=true & (leisure=track & sport=motocross) [0x2f02 default_name="moto cross" resolution 23]
-mkgmap:area2poi=true & (leisure=sports_centre & sport=motor) [0x2f02 default_name="circuit" resolution 23]
-
-## eolienne, pylones divers
-power=generator & generator:source=wind & mkgmap:residential!=* [0x6600 default_name="eolienne" resolution 22]
-power=tower & mkgmap:residential!=* [0x6413 default_name="pylone" resolution 24 ]
-power=transformer & mkgmap:residential!=* [0x5700 default_name="transformateur" resolution 24]
-power=substation & substation!=minor_distribution & mkgmap:residential!=* [0x2b04 default_name="transformateur" resolution 23]
-(power=generator & location!=roof) [0x2b04 default_name="centrale electrique" resolution 23]
-man_made=water_tower & mkgmap:residential!=* [0x6412 default_name="chateau d'eau" resolution 23 ]
-man_made=antenna & mkgmap:residential!=* [0x6509 default_name="antenne" resolution 23 ]
-man_made=communications_tower & mkgmap:residential!=* [0x6509 default_name="antenne" resolution 23 ]
-man_made=mast & mkgmap:residential!=* [0x6413 default_name="mat" resolution 23 ]
-(man_made=tower & building=castle) & mkgmap:residential!=* [0x6511 default_name="tour" resolution 23]
-man_made=tower & mkgmap:residential!=* [0x6512 default_name="tour" resolution 23 ]
-man_made=mineshaft | man_made=adit | historic=mine [0x6304 default_name="mine" resolution 23]
-man_made=water_works [0x5600 default_name="usine eau" resolution 23]
-man_made=wastewater_plant [0x5600 default_name="station épuration" resolution 23]
-
 ## barrieres
 railway=level_crossing [0x1341a resolution 24]
-#mkgmap:line2poi!=true #uniquement les ways taggées barrier !!!
+# mkgmap:line2poi!=true #uniquement les ways taggées barrier !!!
 (barrier=cattle_grid | barrier=bump_gate | barrier=entrance | barrier=height_restrictor | barrier=kerb) {delete barrier}
 barrier=* & is_in(amenity,college,in_or_on)=true {delete barrier}
 barrier=* & is_in(amenity,university,in_or_on)=true {delete barrier}
@@ -245,51 +219,21 @@ barrier=* {name
 'barrière'
 } [0x1c00 resolution 23]
 
-## panneau interdit motorisés
-mkgmap:line2poi=true & traffic_sign=* {delete traffic_sign}
-traffic_sign=FR:B7b | traffic_sign=FR:B0 [0x01d00 default_name "panneau interdiction" resolution 23]
-
-## divers commerces, services interessants
-shop=motorcycle {  name '${name} ${brand} ${opening_hours}' | '${name} ${brand}' | '${name}' } [0x640e resolution 23]
-#amenity=fuel & mkgmap:residential!=* { name '${opening_hours}'} [0x6400 resolution 21]
-amenity=fuel { name '${opening_hours}'} [0x6400 resolution 21] # en ville
-amenity=bank { name '${name} (${operator})' | '${name}' | '${operator}' } [0x2f06 resolution 24]
-#amenity=drinking_water & mkgmap:residential!=* [0x2a13 default_name "eau potable" resolution 23 ]
-amenity=drinking_water [0x1341f resolution 24 ] # ok moins important que les autres :)
-amenity=emergency_phone [0x2f12 resolution 24 default_name 'Emergency Phone']
-amenity=parking & (access=private|access=customers|fee=yes) [0x6300 resolution 24]
-amenity=parking [0x1341b resolution 23]
-
-#amenity=fast_food & (name~ 'burger.*' |name~ 'Burger.*' | name~ '.*burger.*' |name~ '.*Burger.*' | name~ 'Mc.*' | name~ 'mc.*' | name~ 'KFC.*') { name '${name}' } [0x6402 resolution 23]
-#(amenity=restaurant & name=*) & mkgmap:residential!=* { name '${name}' } [0x6402 resolution 23]
-amenity=restaurant & name=* { name '${name}' } [0x6402 resolution 24]
-(amenity=fast_food & name=*) & mkgmap:residential!=* { name '${name}' } [0x6402 resolution 23]
-amenity=fast_food & name=* { name '${name}' } [0x6402 resolution 24]
-
-#(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) & mkgmap:residential=yes  { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 23]
-#(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) & mkgmap:residential!=*  { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 22]
-(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 24]
-
-craft=* [0x6300 resolution 24]
-
-amenity=fire_station [0x3008 default_name "pompier" resolution 24]
-amenity=police [0x5100 default_name "police" resolution 24]
-amenity=shelter & (shelter_type!=public_transport | amenity=hunting_stand | tourism=wilderness_hut) & mkgmap:residential!=* [0x6417 default_name "abri" resolution 23 ]
-#amenity=telephone [0x2f12 resolution 24 default_name "Telephone"]
-amenity=toilets & (access=private|access=customers|fee=yes) [0x6300 resolution 24 ]
-amenity=toilets [0x1341e resolution 24 ]
-amenity=ranger_station [0x5100 default_name "garde forestier" resolution 23]
-amenity=pharmacy [0x2e05 default_name "pharmacie" resolution 24]
-
-landuse=military { name '${name}' } [0x640b default_name="terrain militaire" resolution 23]
-
-healthcare=hospital | amenity=hospital { name '${name}' } [0x3002 resolution 23]
-
-(leisure=horse_riding | (sport=equestrian & shop!=*) ) [0x5d00 default_name "centre equestre" resolution 23]
-leisure=sports_center | leisure=sports_centre & mkgmap:residential!=* { name '${name} (${sport})' | '${name}' } [0x2d0a resolution 23]
-(leisure=sports_center | leisure=sports_centre) & sport=motor { name '${name} (${sport})' | '${name}' | 'circuit' } [0x2f02 resolution 23]
-leisure=track { name '${name} (${sport})' | '${name}' | 'circuit' } [0x2c08 resolution 24]
-leisure=lake_bath|leisure=river_bath|leisure=water_park [0x5400 default_name "baignade" resolution 23]
+## eolienne, pylones divers
+power=generator & generator:source=wind & mkgmap:residential!=* [0x6600 default_name="eolienne" resolution 23]
+power=tower & mkgmap:residential!=* [0x6413 default_name="pylone" resolution 24 ]
+power=transformer & mkgmap:residential!=* [0x5700 default_name="transformateur" resolution 24]
+power=substation & substation!=minor_distribution & mkgmap:residential!=* [0x2b04 default_name="transformateur" resolution 23]
+(power=generator & location!=roof) [0x2b04 default_name="centrale electrique" resolution 23]
+man_made=water_tower & mkgmap:residential!=* [0x6412 default_name="chateau d'eau" resolution 23 ]
+man_made=antenna & mkgmap:residential!=* [0x6509 default_name="antenne" resolution 23 ]
+man_made=communications_tower & mkgmap:residential!=* [0x6509 default_name="antenne" resolution 23 ]
+man_made=mast & mkgmap:residential!=* [0x6413 default_name="mat" resolution 23 ]
+(man_made=tower & building=castle) & mkgmap:residential!=* [0x6511 default_name="tour" resolution 23]
+man_made=tower & mkgmap:residential!=* [0x6512 default_name="tour" resolution 23 ]
+man_made=mineshaft | man_made=adit | historic=mine [0x6304 default_name="mine" resolution 23]
+man_made=water_works [0x5600 default_name="usine eau" resolution 23]
+man_made=wastewater_plant [0x5600 default_name="station épuration" resolution 23]
 
 ## cols 
 highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-23 continue] #cols routiers
@@ -303,6 +247,7 @@ highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natu
 natural=saddle | mountain_pass=yes {name '${name}'} [0x6609 resolution 23-23 continue]
 natural=saddle | mountain_pass=yes {name '${name}'} [0x6608 resolution 24]
 
+## geographie 
 (natural=peak|natural=hill) & name=* {name '${name} '} [0x6617 resolution 21-22 continue]
 (natural=peak|natural=hill) & name=* {name '${name} '} [0x6616 resolution 23]
 natural=volcano {name '${name}' } [0x6401 resolution 21]
@@ -358,69 +303,123 @@ highway=secondary & (mkgmap:from-node:ford=yes & intermittent!=yes) {set mkgmap:
 highway=track & (mkgmap:from-node:ford=yes & intermittent!=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6513 default_name "gué" resolution 24] #gué
 mkgmap:line2poitype=mid & (highway!=path & ford=yes) [0x6513 default_name "gué" resolution 24]
 
-## city level 15 mini
-#place=hamlet & mkgmap:residential=* { set place=suburb }
-(place=city|place=town|place=village) & (capital=6|capital=7) { name '${name}' } [0x0300 resolution 15] 
+## city conversion par population
 
-#(place=city|place=town) & population > 10000 { name '${name}' } [0x0700 resolution 15-15 continue] 
-(place=city|place=town) & population > 100000 { name '${name}' } [0x0400 resolution 15]
+place=* & (capital=yes|capital=1)  { name '${name}' } [0x11502 resolution 12] # grand
+place=* & (capital=2|capital=3)  { name '${name}' } [0x11502 resolution 14] # grand
+(place=city |place=* & admin_level<4)  { name '${name}' } [0x11502 resolution 15] # grand
 
-(place=city|place=town) & population > 10000 { name '${name|subst:"Saint-=>St "|part:"-:1"}' } [0x10d0b resolution 18-18 continue] 
-(place=city|place=town) & population > 10000 { name '${name}' } [0x11501 resolution 19-19 continue ]
-(place=city|place=town) & population > 10000 { name '${name}' } [0x0700 resolution 20 ]
+place=* & (capital=4|capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 16] # grand
 
-(place=city|place=town|place=village) & population > 5000 { name '${name|subst:"Saint-=>St "|part:"-:1"}' } [0x10d0b resolution 18-18 continue] 
-(place=city|place=town|place=village) & population > 5000 { name '${name}' } [0x11501 resolution 19-19 continue ]
-(place=city|place=town|place=village) & population > 5000 { name '${name}' } [0x0a00 resolution 20 ]
+# place=* & population > 99999 { name '${name|subst:"Saint-=>St "|part:"-:1"} ${population}'} [0x0200 resolution 17-20 continue] # normal/rouge
+place=* & population > 99999 { name '${name}' } [0x11502 resolution 17] # grand
 
-(place=city|place=town|place=village) & population > 2000 { name '${name|subst:"Saint-=>St "|part:"-:1"}' } [0x10d0b resolution 18-18 continue] 
-(place=city|place=town|place=village) & population > 2000 { name '${name}' } [0x11501 resolution 19-19 continue ] 
-(place=city|place=town|place=village) & population > 2000 { name '${name}' } [0x0c00 resolution 20 ] 
+(place=town|place=village) & population > 3999 { name '${name}' } [0x11503 resolution 18-19 continue ] # normal
+(place=town|place=village) & population > 3999 { name '${name}' } [0x11502 resolution 20 ] # grand
 
-(place=city|place=town|place=village) & population > 500 { name '${name|subst:"Saint-=>St "|part:"-:1"}' } [0x11500 resolution 19-19 continue] 
-(place=city|place=town|place=village) & population > 500 { name '${name}' } [0x0c00 resolution 20] 
+(place=town|place=village) & population > 1999 { name '${name}' } [0x11504 resolution 18-18 continue] # petit
+(place=town|place=village) & population > 1999 { name '${name}' } [0x11503 resolution 19-20 continue] # normal
+(place=town|place=village) & population > 1999 { name '${name}' } [0x11502 resolution 21 ] # grand
+place=town { name '${name}' } [0x11503 resolution 19 ] # grand
 
-(place=city|place=town|place=village) & population > 50 { name '${name|subst:"Saint-=>St "}' } [0x11500 resolution 20-20 continue] 
-(place=city|place=town|place=village) & population > 50 { name '${name}' } [0x0b00 resolution 21] 
+place=village & population > 499 { name '${name}' } [0x11504 resolution 19-19 continue ] # petit
+place=village & population > 499 { name '${name}' } [0x11503 resolution 20-21 continue ] # normal
+place=village & population > 499 { name '${name}' } [0x11502 resolution 22 ] # grand
 
-(place=city|place=town|place=village) & population > 1 { name '${name|subst:"Saint-=>St "}' } [0x11500 resolution 21-21 continue] 
-(place=city|place=town|place=village) & population > 1 { name '${name}' } [0x0b00 resolution 22 ] 
+place=village & population > 200 { name '${name}' } [0x11504 resolution 19-19 continue ] # petit
+place=village & population > 200 { name '${name}' } [0x11503 resolution 20-22 continue ] # normal
+place=village & population > 200 { name '${name}' } [0x11502 resolution 23 ] # grand
 
-place=city & population!=* { name '${name}' } [0x0200 resolution 15]
-place=town & population!=* { name '${name}' } [0x0200 resolution 17]
+place=village & population > 0 { name '${name}' } [0x11504 resolution 20-20 continue ] # petit
+place=village & population > 0 { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
+place=village & population > 0 { name '${name}' } [0x11502 resolution 23 ] # grand
 
-place=village & population!=* { name '${name}' } [0x0800 resolution 21-21 continue] 
-place=village & population!=* { name '${name}' } [0x0200 resolution 22] 
+place=village & !(population) { name '${name}' } [0x11504 resolution 20-20 continue ] # petit
+place=village & !(population) { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
+place=village & !(population) { name '${name}' } [0x11502 resolution 23 ] # grand
+place=village { name '${name}'} [0x11504 resolution 20-20 continue ] # petit
+place=village { name '${name}'} [0x11503 resolution 21-22 continue ] # normal
+place=village { name '${name}'} [0x11502 resolution 23] # grand
 
-place=hamlet { name '${name}' } [0x0d00 resolution 22-22 continue]
-place=hamlet { name '${name}' } [0x0900 resolution 23-23 continue ]
-place=hamlet { name '${name}' } [0x0200 resolution 24 ]
+place=hamlet { name '${name}' } [0x11504 resolution 22-22 continue ] # petit
+place=hamlet { name '${name}' } [0x11503 resolution 23] # normal
 
 place=isolated_dwelling & name!=* {add name=maison}
-place=isolated_dwelling | place=farm [0x6603 resolution 22-22 continue]
+place=isolated_dwelling | place=farm [0x6603 resolution 23-23 continue]
 place=isolated_dwelling | place=farm {name '${name}'} [0x6602 resolution 23-23 continue]
 place=isolated_dwelling | place=farm {name '${name}'} [0x6601 resolution 24]
 
-(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Ll]otissement.*') [0x6300 resolution 22 continue]
-(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Rr]ésidence.*') [0x6300 resolution 22 continue]
-(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) {name '${name}'} [0x6605 resolution 22-22 continue]
-(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) {name '${name}'} [0x6604 resolution 23]
+(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Ll]otissement.*') [0x11506 resolution 23 continue] # OK TXT petit
+(place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Rr]ésidence.*') [0x11506 resolution 23 continue] # OK TXT petit
+(place=quarter | place=suburb | place=borough) {name '${name}'} [0x11506 resolution 23-23 continue] # OK TXT petit
+(place=quarter | place=suburb | place=borough) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen
+
+(place=neighbourhood | place=allotments | place=city_block) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen
 
 ## nom de ville depuis relation pour nouvelles communes FR
-#mkgmap:area2poi=true & (boundary=administrative & admin_level=8) {name '${name}'} [0x11409 resolution 23]
-mkgmap:area2poi=true & (boundary=administrative & admin_level=9) {name '${name}'} [0x0100 resolution 23]
+mkgmap:area2poi=true & (boundary=administrative & admin_level=9) {name '${name}'} [0x11502 resolution 23] # grand
+
+## divers commerces, services interessants
+shop=motorcycle {  name '${name} ${brand} ${opening_hours}' | '${name} ${brand}' | '${name}' } [0x640e resolution 23]
+
+mkgmap:area2poi=true & (amenity=fuel ) [0x1341c resolution 21-22 continue] # OK 0x1341c sous les villes mais txt toujours affiché
+amenity=fuel [0x1341c resolution 21-22 continue]
+
+mkgmap:area2poi=true & (amenity=fuel ) { name '${opening_hours}'} [0x6400 resolution 23] # OK 0x6400 au dessus des villes mais txt invisible
+amenity=fuel { name '${opening_hours}'} [0x6400 resolution 23]
+
+amenity=bank { name '${name} (${operator})' | '${name}' | '${operator}' } [0x2f06 resolution 24]
+amenity=drinking_water [0x1341f resolution 24 ] # ok moins important que les autres :)
+amenity=emergency_phone [0x2f12 resolution 24 default_name 'Emergency Phone']
+
+mkgmap:area2poi=true & (amenity=parking & (access!=private|access!=customers|fee!=yes)) [0x1341b resolution 24]
+amenity=parking & (access!=private|access!=customers|fee!=yes) [0x1341b resolution 24]
+
+amenity=restaurant & is_in(landuse,residential,in_or_on)=true { deletealltags }
+amenity=restaurant & name=* { name '${name}' } [0x6402 resolution 24]
+amenity=fast_food & is_in(landuse,residential,in_or_on)=true { deletealltags }
+amenity=fast_food & name=* { name '${name}' } [0x6402 resolution 24]
+
+mkgmap:area2poi=true & (amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 24]
+(amenity=bar|amenity=biergarten|amenity=cafe|amenity=pub) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6403 resolution 24]
+
+craft=* [0x6300 resolution 24]
+
+amenity=fire_station [0x3008 default_name "pompier" resolution 24]
+amenity=police [0x5100 default_name "police" resolution 24]
+
+mkgmap:area2poi=true & (amenity=shelter & (shelter_type!=public_transport | amenity=hunting_stand | tourism=wilderness_hut) & mkgmap:residential!=*) [0x6417 default_name="abri" resolution 23]
+amenity=shelter & (shelter_type!=public_transport | amenity=hunting_stand | tourism=wilderness_hut) & mkgmap:residential!=* [0x6417 default_name "abri" resolution 23 ]
+
+amenity=toilets & (access!=private|access!=customers|fee!=yes) [0x6300 resolution 24 ]
+amenity=ranger_station [0x5100 default_name "garde forestier" resolution 23]
+amenity=pharmacy [0x2e05 default_name "pharmacie" resolution 24]
+
+mkgmap:area2poi=true & (landuse=military) { name '${name}' } [0x640b default_name="terrain militaire" resolution 23]
+landuse=military { name '${name}' } [0x640b default_name="terrain militaire" resolution 23]
+
+mkgmap:area2poi=true & (healthcare=hospital | amenity=hospital) [0x3002 default_name="hopital" resolution 23]
+(healthcare=hospital | amenity=hospital) { name '${name}' } [0x3002 resolution 23]
+
+leisure=lake_bath|leisure=river_bath|leisure=water_park [0x5400 default_name "baignade" resolution 23]
+(leisure=horse_riding | (sport=equestrian & shop!=*) ) [0x5d00 default_name "centre equestre" resolution 23]
+
+mkgmap:area2poi=true & (leisure=track & sport=motocross) [0x2f02 default_name="moto cross" resolution 23]
+mkgmap:area2poi=true & (leisure=sports_centre & sport=motor) [0x2f02 default_name="circuit" resolution 23]
+(leisure=track & sport=motocross) [0x2f02 default_name="moto cross" resolution 23]
+(leisure=sports_centre & sport=motor) [0x2f02 default_name="circuit" resolution 23]# sport=motocross [0x2f02 default_name "moto cross" resolution 24]
 
 # shop=* { name '${operator}: ${name}' | '${name}' | '${operator}' }
+mkgmap:area2poi=true & (shop=car_repair) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6405 resolution 24]
 shop=car_repair { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x6405 resolution 24]
+mkgmap:area2poi=true & (shop=supermarket|amenity=supermarket) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x640d resolution 24]
 shop=supermarket|amenity=supermarket { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x640d resolution 24]
-
- sport=motocross [0x2f02 default_name "moto cross" resolution 24]
 
 tourism=alpine_hut {name '${name} - ${description}' | '${name}'}[0x6417 resolution 24]
 tourism=guest_house & mkgmap:residential!=* {name '${name}'} [0x6404 resolution 23]
+mkgmap:area2poi=true & (tourism=camp_site) {name '${name} - ${description}' | '${name}'} [0x6409 default_name "camping" resolution 23]
 tourism=camp_site {name '${name} - ${description}' | '${name}'} [0x6409 default_name "camping" resolution 23]
 tourism=lean_to & mkgmap:residential!=* [0x2b05 resolution 24 ]
-tourism=wilderness_hut [0x6417 default_name "cabane" resolution 24 ]
 tourism=picnic_site | leisure=picnic_table [0x4a00 default_name "picnic" resolution 24]
 (tourism=viewpoint & mkgmap:residential!=*) & name=* {name '${name} - ${description}' | '${name}'} [0x5200 resolution 22] #0x2c04 pas vu sous mapsource
 (tourism=viewpoint & mkgmap:residential!=*) & name!=* [0x5200 default_name "vue" resolution 23]
@@ -435,7 +434,7 @@ historic=* { name '${ref} ${name}' | '${ref}' | '${name}' }
 (historic=memorial | historic=monument) & mkgmap:residential!=* { name '${memorial:description}'|'${name}' } [0x6514 default_name="monument" resolution 24]
 historic=castle & mkgmap:residential!=* {name '${name}'} [0x6511 default_name="chateau" resolution 23]
 historic=castle {name '${name}'} [0x6511 default_name="chateau" resolution 24]
-(historic=wayside_cross | building=chapel | man_made=cross |amenity=grave_yard) & mkgmap:residential!=* { name '${ref} ${name}' | '${ref}' | '${name}' } [0x6303 default_name="croix" resolution 23]
+(historic=wayside_cross | building=chapel | man_made=cross ) & mkgmap:residential!=* { name '${ref} ${name}' | '${ref}' | '${name}' } [0x6303 default_name="croix" resolution 23]
 
 (emergency=water_tank | man_made=storage_tank ) & mkgmap:residential!=* [0x6411 default_name="citerne" resolution 23 ]
 man_made=reservoir_covered & mkgmap:residential!=* [0x6411 default_name="reservoir" resolution 23 ]

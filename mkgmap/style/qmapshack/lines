@@ -12,7 +12,6 @@
 waterway=* & tunnel=yes { deletealltags }
 waterway=* & (level=-1|level=-2|level=-3) { deletealltags }
 waterway=* & (location=underground|location=underwater) {deletealltags}
-waterway=* & (layer=-1|layer=-2) {deletealltags}
 man_made=pipeline & (location=underground|location=underwater) {deletealltags}
 man_made=pipeline & (layer=-1|layer=-2) {deletealltags}
 
@@ -29,21 +28,22 @@ railway=disused & !(tunnel=yes) [0x11f14 default_name="rail abandonné" resoluti
 railway=abandoned & !(tunnel=yes) [0x11f12 default_name="ancienne voie ferrée" resolution 22 continue]
 
 ## voie ferree
+construction=* & (level=-1|level=-2|level=-3) {deletealltags}
+railway=subway & tunnel=yes  {deletealltags}
+railway=construction & tunnel=yes  {deletealltags}
 railway=* & bridge=* {name 'pont: ${bridge:name}'|'pont: ${name}'} [0x12002 default_name="pont" resolution 23 continue]
 railway=* & bridge=* {name 'pont: ${bridge:name}'|'pont: ${name}'} [0x12003 default_name="pont" resolution 23 continue]
 (railway=tram | railway=subway | railway=narrow_gauge | railway=light_rail | railway=preserved) & !(tunnel=yes) {name '${name}'} [0x14 default_name="voie ferrée" resolution 22]
 railway=rail & !(tunnel=yes) {name '${name}'} [0x15 default_name="voie ferrée" resolution 20-20 continue]
 railway=rail & !(tunnel=yes) {name '${name}'} [0x14 default_name="voie ferrée" resolution 21 ]
 
-
 ## tunnel
+railway!=subway & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
 highway=* & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
-railway=* & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
 
 ## tranchée
 highway=* & cutting=yes [0x10905 default_name="tranchée" resolution 23 continue]
 highway=* & embankment=yes [0x10905 default_name="talus" resolution 23 continue]
-
 
 ######cricri
 include 'inc/roundabout_cricri';
@@ -72,5 +72,3 @@ include 'inc/road_cricri';
 ########cricri
 include 'inc/ligne_fin_cricri';
 ########cricri
-
-

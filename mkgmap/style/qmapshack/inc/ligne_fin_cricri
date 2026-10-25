@@ -1,19 +1,14 @@
-##forets ONF si taggees boundary
-boundary=forest & cdom_frt=OUI [0x10c05 resolution 20 continue]
-#leisure=nature_reserve [0x10f07 resolution 21 continue]
-
-##contour de la foret sur les inner des multipolygons "forest" => voir fichier "relations"
-role_forest=inner [0x10f07 resolution 21 continue]
+## contour stade
+leisure=sports_centre | leisure=pitch [0x10c05 resolution 23 continue]
 
 ## PNR
 boundary=protected_area & protect_class=5 {name '${name}'} [0x19 resolution 18 continue]
 
 ## delimitation region
 boundary=administrative {name '${mkgmap:boundary_name}'}
-boundary=administrative & admin_level<3 {name '${name}'} [0x11f13 resolution 14 ]
-boundary=administrative & admin_level=4 {name '${name}'} [0x12d00 resolution 18-22 continue]
-boundary=administrative & admin_level=4 {name '${name}'} [0x12d01 resolution 23 ]
-#boundary=administrative & admin_level<5 [0x19 resolution 19]
+# boundary=administrative & admin_level<3 {name '${name}'} [0x11f13 resolution 14 ]
+boundary=administrative & admin_level=6 {name '${name}'} [0x12d00 resolution 18-22 continue] # 4=region, 6=departement
+boundary=administrative & admin_level=6 {name '${name}'} [0x12d01 resolution 23 ]
 #boundary=* {delete boundary}
 
 ## divers reperes visuels
@@ -34,15 +29,15 @@ highway=unclassified | highway=tertiary  {name
 
 (highway=* & proposed=yes) {set name='${highway}'} #voir fichier relations_cricri
 
-barrier=city_wall|barrier=retaining_wall|barrier=wall [0x12d08 default_name="mur" resolution 24 ]
+(barrier=city_wall|barrier=retaining_wall|barrier=wall ) & leisure!=* [0x12d08 default_name="mur" resolution 24 ]
 barrier=hedge [0x12d09 default_name="haie" resolution 24 ]
-barrier=* [0x12d07 default_name="barriere" resolution 24 ]
+(barrier=* & leisure!=*) [0x12d07 default_name="barriere" resolution 24 continue]
+
 natural=cliff [0x10902 default_name="falaise" resolution 23 ]
 
-aeroway=runway [0x11f19 default_name="piste" resolution 22]
+aeroway=runway [0x11f17 default_name="piste" resolution 22]
 
 man_made=* & (proposed=yes) {deletealltags}
-
 man_made=pipeline & (location=underground|location=underwater) {deletealltags}
 man_made=pipeline & (layer=-1|layer=-2) {deletealltags}
 man_made=pipeline [0x28 default_name="pipeline" resolution 23]

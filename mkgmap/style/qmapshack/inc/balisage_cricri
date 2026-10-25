@@ -1,9 +1,3 @@
-## pont
-footway=sidewalk {delete bridge}
-#(highway=cycleway|railway=tram) {delete bridge}
-(highway=path|highway=footway) & surface=asphalt {delete bridge}
-highway=footway & bicycle=designated {delete bridge}
-(highway=*|railway=*) & bridge=* [0x10e04 resolution 23 continue]
 
 ##BALISAGES
 #itineraire VTT {name 'VTT: ${VTT}'}
