@@ -17,9 +17,9 @@ man_made=pipeline & (layer=-1|layer=-2) {deletealltags}
 
 man_made=pipeline [0x28 default_name="pipeline" resolution 23]
 
-waterway=stream & intermittent=yes { name '${name}' } [0x10e05 resolution 23]
-waterway=ditch|waterway=drain { name '${name}' } [0x10e05 resolution 23]
-waterway=stream { name '${name}' } [0x18 resolution 22]
+waterway=stream & intermittent=yes { name '${name}'|'ruisseau' } [0x10e05 resolution 23]
+waterway=ditch|waterway=drain { name '${name}'|'fossé' } [0x10e05 resolution 23]
+waterway=stream { name '${name}'|'ruisseau' } [0x18 resolution 22]
 waterway=canal { name '${name}' } [0x1f resolution 21]
 waterway=river { name '${name}' } [0x1f resolution 19]
 
