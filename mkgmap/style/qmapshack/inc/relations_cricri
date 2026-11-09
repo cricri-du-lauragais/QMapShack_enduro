@@ -44,64 +44,83 @@ type=route & route=bicycle & name ~ '.*[Vv]oie [Vv]erte.*'
 }
 
 ###############ordre_exec_relation_sans_importance_pour_balisages
-
-type=route & route=mtb # VTT
+#superroute NOK pas reconnu par mkgmap!
+type=superroute & (route=hiking & network=*)
 { apply
 	{
-		set route=mtb;
-		add VTT='${name}';
-	}
-}
-#PR
-type=route & (route=hiking & network!=*) 
-{ apply
-	{
-		set hiking=test;
-		add PR='${name}';
+		add ss=ss;
+		add ref='${ref}';
+		set name='${name}';
 	}
 }
 
-type=route & (route=hiking & network=lwn) # PR
+# VTT
+type=route & route=mtb 
 { apply
 	{
-		set hiking=test;
-		add PR='${name}';
+		set colour='${colour}';
+		add mtb=mtb;
+		add mtbname='${name}';
 	}
 }
 
-type=route & name ~ '.*[Ll]es [Vv]illages [Pp]erchés.*'
+# GR
+type=route & (route=hiking & network=iwn)
 { apply
 	{
-		set intermittent=lvp;
-		add lvp='${name}';
+		add gr=gr;
+		add from='${from}';
+		add to='${to}';
+		add ref='${ref}';
+		add grname='${name}';
 	}
 }
+
+type=route & (route=hiking & network=nwn )
+{ apply
+	{
+		add gr=gr;
+		add from='${from}';
+		add to='${to}';
+		add ref='${ref}';
+		add grname='${name}';
+	}
+}
+
 # GRP
 type=route & (route=hiking & network=rwn)
 { apply
 	{
-		set network=rwn;
-		add GR='${name}';
-	}
-}
-# GR
-type=route & (route=hiking & network=nwn )
-{ apply
-	{
-		set network=nwn;
-		add GR='${name}';
+		add grp=grp;
+		add from='${from}';
+		add to='${to}';
+		add grpname='${name}';
 	}
 }
 
-type=route & (route=hiking & network=iwn)
+# PR
+# type=route & name ~ '.*[Ll]es [Vv]illages [Pp]erchés.*' { apply {set intermittent=lvp;set route=pr;add lvp='${name}';}}
+
+type=route & (route=hiking & network=lwn) 
 { apply
 	{
-		set network=iwn;
-		set GR='${name}';
+		add pr=pr;
+		add from='${from}';
+		add to='${to}';
+		add prname='${name}';
 	}
 }
 
-################################
+type=route & (route=hiking & network!=*) 
+{ apply
+	{
+		add pr=pr;
+		add prname='${name}';
+	}
+}
+
+
+###############################
 
 (type=multipolygon | type=boundary) & boundary=protected_area
 { apply

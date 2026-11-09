@@ -39,7 +39,7 @@ railway=rail & !(tunnel=yes) {name '${name}'} [0x14 default_name="voie ferrée" 
 
 ## tunnel
 railway!=subway & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
-highway=* & tunnel=yes [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
+highway=* & (tunnel=yes|tunnel=cave) [0x12 road_class=0 road_speed=1 default_name="tunnel" resolution 22 ]
 
 ## tranchée
 highway=* & cutting=yes [0x10905 default_name="tranchée" resolution 23 continue]

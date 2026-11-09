@@ -23,9 +23,8 @@ landuse=cemetery | amenity=grave_yard [0x1a default_name="cimetière" resolution
 landuse=military {name '${name}'} [0x04 default_name="terrain militaire" resolution 21]
 leisure=park { name '${name}' } [0x19 default_name="parc" resolution 22]
 leisure=golf_course { name '${name}' } [0x19 default_name="golf" resolution 22]
-leisure=track | (leisure=pitch & (sport=motocross|sport=motor)) {name '${name}, ${sport}'|'${sport}'} [0x19 resolution 23]
-leisure=sports_centre {name '${name}, ${sport}'|'${sport}'} [0x19 resolution 23]
-leisure=pitch [0x19 default_name="stade" resolution 23]
+#leisure=track | (leisure=pitch & (sport=motocross|sport=motor)) {name '${name}, ${sport}'|'${sport}'} [0x19 resolution 23]
+(leisure=track|leisure=sports_centre|leisure=pitch) { name '${name}: ${sport}'|'${sport}'|'${name}'} [0x19 resolution 23]
 leisure=swimming_pool & access!=private {name '${name}'|'piscine'} [0x40 resolution 23]
 landuse=landfill [0x10f13 default_name="décharge" resolution 22]
 landuse=commercial {name '${name}'|'centre commercial'} [0x08 resolution 22]
@@ -78,5 +77,3 @@ amenity=motorcycle_parking { name '${name} : parking' } [0x10f03 default_name="p
 amenity=* { name '${name}'|'${amenity}' } [0x10f05 resolution 24]
 building=* [0x09 default_name="construction" resolution 23]
 tourism=attraction { name '${name}' } [0x10f0b default_name="attraction" resolution 22]
-
-(leisure=sports_centre|leisure=pitch) { name '${name}: ${sport}'|'${sport}'|'${name}'} [0x10f08 resolution 23]

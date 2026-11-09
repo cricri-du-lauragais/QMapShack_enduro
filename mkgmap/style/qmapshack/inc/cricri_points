@@ -31,8 +31,8 @@ highway=* & (mtb:scale="6-" | mtb:scale="6+") {set mtb:scale=6}
 (highway=path | highway=footway | highway=track) & sac_scale=* {delete smoothness}
 
 (highway=path | highway=footway ) & mtb:scale=0 {add difficult=facile}
-(highway=path | highway=footway | highway=track) & (mtb:scale=1|smoothness=horrible  ) {add difficult=technique}
-(highway=path | highway=footway | highway=track) & (mtb:scale=2 | mtb:scale=3 | sac_scale=mountain_hiking | smoothness=very_horrible ) {add difficult=difficile}
+(highway=path | highway=footway | highway=track) & (mtb:scale=1|smoothness=horrible | smoothness=very_horrible  ) {add difficult=technique}
+(highway=path | highway=footway | highway=track) & (mtb:scale=2 | mtb:scale=3 | sac_scale=mountain_hiking ) {add difficult=difficile}
 (highway=path | highway=footway | highway=track ) & (smoothness=impassable| mtb:scale=4 | mtb:scale=5 | mtb:scale=6 | sac_scale=difficult_alpine_hiking | sac_scale=alpine_hiking|sac_scale=demanding_alpine_hiking | sac_scale=demanding_mountain_hiking) {add difficult=impassable}
 
 mkgmap:line2poitype=mid & ((highway=path | highway=footway ) & (difficult=facile)) {name 'sentier facile'} [0x01d01 resolution 22-23 continue] #facile
@@ -126,49 +126,53 @@ traffic_sign=FR:B7b | traffic_sign=FR:B0 [0x01d00 default_name "panneau interdic
 mkgmap:area2poi=true & (amenity=place_of_worship|building=church|building=chapel) [0x6612 default_name="eglise" resolution 24]
 mkgmap:area2poi=true & (landuse=cemetery|amenity=grave_yard) [0x6613 default_name="cimetiere" resolution 24]
 mkgmap:area2poi=true & (shop=supermarket|amenity=supermarket) { name '${operator}: ${name}' | '${name}' | '${operator}' } [0x640d resolution 23]
-mkgmap:area2poi=true & ((power=transformer ) & mkgmap:residential!=*) [0x2b04 resolution 23]
-mkgmap:area2poi=true & (power=substation & (substation!=minor_distribution) & mkgmap:residential!=*) [0x2b04 default_name="transformateur" resolution 23]
+mkgmap:area2poi=true & power=* & is_in(landuse,industrial,in_or_on)=true {delete power}
+mkgmap:area2poi=true & power=* & is_in(landuse,residential,in_or_on)=true {delete power}
+mkgmap:area2poi=true & power=* & is_in(landuse,retail,in_or_on)=true {delete power}
+mkgmap:area2poi=true & (power=transformer )[0x2b04 resolution 23]
+mkgmap:area2poi=true & (power=substation & substation!=minor_distribution) [0x2b04 default_name="transformateur" resolution 23]
 
 ## affiche un point ruine (voir fichier TYP) si polygon taggé ruins
 mkgmap:area2poi=true & (historic=ruins|ruins=yes|ruin=yes|building=ruins|building=collapsed) & mkgmap:residential!=* {name '${name}'} [0x6415 default_name="ruine" resolution 23] #0x2c02 pas vu sous mapsource
 
 # icone sur les balisages
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=nwn|network=iwn)) & mkgmap:way-length>600 {name 'GR: ${GR}'} [0x6501 resolution 21-21 continue]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=nwn|network=iwn)) & mkgmap:way-length>300 {name 'GR: ${GR}'} [0x6501 resolution 22-22 continue]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=nwn|network=iwn)) & mkgmap:way-length>150 {name 'GR: ${GR}'} [0x6408 resolution 23]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=rwn)) & mkgmap:way-length>300 {name 'GRP: ${GR}'} [0x6502 resolution 22-22 continue]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (network=rwn)) & mkgmap:way-length>150 {name 'GRP: ${GR}'} [0x640a resolution 23]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & route=mtb) & mkgmap:way-length>150 {name 'VTT: ${VTT}'} [0x6407 resolution 23]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & intermittent=lvp) & mkgmap:way-length>150 {name 'PR: ${lvp}'} [0x640c resolution 23]
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service) & (hiking=test|hiking=yes|route=hiking) & network!=*) & mkgmap:way-length>150 {name 'PR: ${PR}'} [0x640c resolution 23]
+mkgmap:line2poitype=mid & ((highway=path|highway=track|highway=service) & mtb=mtb) & mkgmap:way-length>250 {name 'VTT ${colour}: ${mtbname}'|'VTT: ${mtbname}'} [0x6407 resolution 23 ]
 
-## barrieres
+mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service|highway=unclassified) & pr=pr) & mkgmap:way-length>400 {name 'PR: ${prname}'|'PR: ${from}-${to}'} [0x640c resolution 23 ]
+
+mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service|highway=unclassified) & grp=grp) & mkgmap:way-length>500 {name 'GRP: ${grpname}'|'GRP: ${from}-${to}'} [0x6502 resolution 22 ]
+
+mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service|highway=unclassified) & gr=gr) & mkgmap:way-length>500 {name 'GR: ${ref} ${grname}'|'GR: ${grname}'|'GR: ${from}-${to}'} [0x6501 resolution 22 ]
+
+## barrieres 0x660f derrière villes OK
 railway=level_crossing [0x1341a resolution 24]
 # mkgmap:line2poi!=true #uniquement les ways taggées barrier !!!
 (barrier=cattle_grid | barrier=bump_gate | barrier=entrance | barrier=height_restrictor | barrier=kerb) {delete barrier}
-barrier=* & is_in(amenity,college,in_or_on)=true {delete barrier}
-barrier=* & is_in(amenity,university,in_or_on)=true {delete barrier}
-barrier=* & is_in(amenity,research_institute,in_or_on)=true {delete barrier}
-barrier=* & is_in(landuse,residential,in_or_on)=true {delete barrier}
-barrier=* & is_in(landuse,industrial,in_or_on)=true {delete barrier}
-barrier=* & is_in(landuse,retail,in_or_on)=true {delete barrier}
-barrier=bollard {name 'poteau'} [0x660f resolution 24 ]
+(barrier=*|power=*) & is_in(amenity,college,in_or_on)=true {delete barrier}
+(barrier=*|power=*) & is_in(amenity,university,in_or_on)=true {delete barrier}
+(barrier=*|power=*) & is_in(amenity,research_institute,in_or_on)=true {delete barrier}
+(barrier=*|power=*) & is_in(landuse,residential,in_or_on)=true {delete barrier}
+(barrier=*|power=*) & is_in(landuse,industrial,in_or_on)=true {delete barrier}
+(barrier=*|power=*) & is_in(landuse,retail,in_or_on)=true {delete barrier}
+barrier=bollard {name 
+'poteau'
+} [0x660f resolution 24 ]
 barrier=debris {name 
 'debris, ${note}'|
 'debris'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=block | barrier=jersey_barrier {name 
 'blocs, ${note}'|
 'blocs'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=ditch {name 
 'fossé, ${note}'|
 'fossé'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=log {name 
 'arbre couché, ${note}'|
 'arbre couché'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=cable_barrier | barrier=chain | barrier=rope {name 
 'chaine, motorcycle:${motorcycle}'|
 'chaine, motorcar:${motorcar}'|
@@ -176,7 +180,7 @@ barrier=cable_barrier | barrier=chain | barrier=rope {name
 'chaine, ${note}'|
 'chaine, accès ${access}'|
 'chaine'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=gate {name 
 'porte, motorcycle:${motorcycle}'|
 'porte, motorcar:${motorcar}'|
@@ -192,7 +196,7 @@ barrier=hampshire_gate | barrier=fence {name
 'cloture, ${note}'|
 'cloture, accès ${access}'|
 'cloture'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=swing_gate | barrier=lift_gate {name 
 'barrière levante, motorcycle:${motorcycle}'|
 'barrière levante, motorcar:${motorcar}'|
@@ -200,7 +204,7 @@ barrier=swing_gate | barrier=lift_gate {name
 'barrière levante, ${note}'|
 'barrière levante, accès ${access}'|
 'barrière levante'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 barrier=yes {name 
 'barrière, motorcycle:${motorcycle}'|
 'barrière, motorcar:${motorcar}'|
@@ -208,8 +212,10 @@ barrier=yes {name
 'barrière, ${note}'|
 'barrière, accès ${access}'|
 'barrière'
-} [0x1c00 resolution 23]
-barrier=cycle_barrier {name '${barrier}'} [0x1c00 resolution 23]
+} [0x660f resolution 23]
+barrier=cycle_barrier {name 
+'${barrier}'
+} [0x660f resolution 23]
 barrier=* {name 
 'barrière, motorcycle:${motorcycle}'|
 'barrière, motorcar:${motorcar}'|
@@ -217,13 +223,13 @@ barrier=* {name
 'barrière, ${note}'|
 'barrière, accès ${access}'|
 'barrière'
-} [0x1c00 resolution 23]
+} [0x660f resolution 23]
 
 ## eolienne, pylones divers
-power=generator & generator:source=wind & mkgmap:residential!=* [0x6600 default_name="eolienne" resolution 23]
-power=tower & mkgmap:residential!=* [0x6413 default_name="pylone" resolution 24 ]
-power=transformer & mkgmap:residential!=* [0x5700 default_name="transformateur" resolution 24]
-power=substation & substation!=minor_distribution & mkgmap:residential!=* [0x2b04 default_name="transformateur" resolution 23]
+power=generator & generator:source=wind [0x6600 default_name="eolienne" resolution 22]
+power=tower [0x6413 default_name="pylone" resolution 24 ]
+power=transformer [0x5700 default_name="transformateur" resolution 24]
+power=substation & substation!=minor_distribution [0x2b04 default_name="transformateur" resolution 23]
 (power=generator & location!=roof) [0x2b04 default_name="centrale electrique" resolution 23]
 man_made=water_tower & mkgmap:residential!=* [0x6412 default_name="chateau d'eau" resolution 23 ]
 man_made=antenna & mkgmap:residential!=* [0x6509 default_name="antenne" resolution 23 ]
@@ -236,16 +242,19 @@ man_made=water_works [0x5600 default_name="usine eau" resolution 23]
 man_made=wastewater_plant [0x5600 default_name="station épuration" resolution 23]
 
 ## cols 
-highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-23 continue] #cols routiers
-highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
-highway=secondary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-23 continue] #cols routiers
-highway=secondary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
-highway=tertiary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 21-23 continue] #cols routiers
-highway=tertiary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
-highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 22-23 continue] #cols routiers
-highway=unclassified & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
-natural=saddle | mountain_pass=yes {name '${name}'} [0x6609 resolution 23-23 continue]
-natural=saddle | mountain_pass=yes {name '${name}'} [0x6608 resolution 24]
+# highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-21 continue] #cols routiers
+highway=primary & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-21 continue] #cols routiers
+highway=primary & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 22] #cols routiers
+highway=secondary & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-21 continue] #cols routiers
+highway=secondary & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 22] #cols routiers
+highway=tertiary & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 21-22 continue] #cols routiers
+highway=tertiary & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 23] #cols routiers
+highway=unclassified & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 22-23 continue] #cols routiers
+highway=unclassified & (mkgmap:from-node:mountain_pass=yes) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6607 resolution 24] #cols routiers
+mountain_pass=yes {name '${name}'} [0x6606 resolution 23-23 continue]
+mountain_pass=yes {name '${name}'} [0x6607 resolution 24]
+(natural=saddle & mountain_pass!=*)  {name '${name}'} [0x6609 resolution 22-23 continue]
+(natural=saddle & mountain_pass!=*) {name '${name}'} [0x6608 resolution 24]
 
 ## geographie 
 (natural=peak|natural=hill) & name=* {name '${name} '} [0x6617 resolution 21-22 continue]
@@ -304,55 +313,67 @@ highway=track & (mkgmap:from-node:ford=yes & intermittent!=yes) {set mkgmap:labe
 mkgmap:line2poitype=mid & (highway!=path & ford=yes) [0x6513 default_name "gué" resolution 24]
 
 ## city conversion par population
+## level 17 = zoom 30 km dernier level pris en compte depuis fichier options (8 levels max possible)
+## hamlet dans reseidential
+place=hamlet & is_in(landuse,residential,in_or_on)=true {set place=suburb}
 
-place=* & (capital=yes|capital=1)  { name '${name}' } [0x11502 resolution 12] # grand
-place=* & (capital=2|capital=3)  { name '${name}' } [0x11502 resolution 14] # grand
-(place=city |place=* & admin_level<4)  { name '${name}' } [0x11502 resolution 15] # grand
+place=city & (capital=yes|capital=1)  { name '${name}' } [0x11502 resolution 14] # grand
+(place=city |place=town) & (capital=2|capital=3) { name '${name}' } [0x11502 resolution 15] # grand
+(place=city |place=town) & admin_level<4  { name '${name}' } [0x11502 resolution 16] # OK grand
 
-place=* & (capital=4|capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 16] # grand
+(place=city|place=town) & (capital=4|capital=5|capital=6|capital=7) { name '${name}' } [0x11503 resolution 17-17 continue] # OK normal
+(place=city|place=town) & (capital=4|capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 18] # OK grand
 
-# place=* & population > 99999 { name '${name|subst:"Saint-=>St "|part:"-:1"} ${population}'} [0x0200 resolution 17-20 continue] # normal/rouge
-place=* & population > 99999 { name '${name}' } [0x11502 resolution 17] # grand
+# ${name|part:"-<-2"} ... enlève les 2 dernier bouts du nom
+place=town & population > 10000 { name '${name}${name}' } [0x11504 resolution 18-18 continue] # petit
+place=town & population > 10000 { name '${name}' } [0x11503 resolution 19-19 continue] # normal
+place=town & population > 10000 { name '${name}' } [0x11502 resolution 20] # grand
 
-(place=town|place=village) & population > 3999 { name '${name}' } [0x11503 resolution 18-19 continue ] # normal
-(place=town|place=village) & population > 3999 { name '${name}' } [0x11502 resolution 20 ] # grand
+place=town & population > 4999 { name '${name}' } [0x11504 resolution 18-18 continue ] # petit
+place=town & population > 4999 { name '${name}' } [0x11503 resolution 19-20 continue ] # normal
+place=town & population > 4999 { name '${name}' } [0x11502 resolution 21 ] # grand
 
-(place=town|place=village) & population > 1999 { name '${name}' } [0x11504 resolution 18-18 continue] # petit
-(place=town|place=village) & population > 1999 { name '${name}' } [0x11503 resolution 19-20 continue] # normal
-(place=town|place=village) & population > 1999 { name '${name}' } [0x11502 resolution 21 ] # grand
-place=town { name '${name}' } [0x11503 resolution 19 ] # grand
+place=village & population > 1500 { name '${name}' } [0x11504 resolution 18-19 continue] # petit
+place=village & population > 1500 { name '${name}' } [0x11503 resolution 20-20 continue] # normal
+place=village & population > 1500 { name '${name}' } [0x11502 resolution 21 ] # grand
 
-place=village & population > 499 { name '${name}' } [0x11504 resolution 19-19 continue ] # petit
-place=village & population > 499 { name '${name}' } [0x11503 resolution 20-21 continue ] # normal
-place=village & population > 499 { name '${name}' } [0x11502 resolution 22 ] # grand
+place=town { name '${name}' } [0x11504 resolution 18-19 continue] # petit
+place=town { name '${name}' } [0x11503 resolution 20-20 continue] # normal
+place=town { name '${name}' } [0x11502 resolution 21 ] # grand
+# place=town { name '${name}' } [0x11502 resolution 21 ] # grand
 
-place=village & population > 200 { name '${name}' } [0x11504 resolution 19-19 continue ] # petit
-place=village & population > 200 { name '${name}' } [0x11503 resolution 20-22 continue ] # normal
-place=village & population > 200 { name '${name}' } [0x11502 resolution 23 ] # grand
+place=village & population > 299 { name '${name}' } [0x11504 resolution 19-20 continue ] # petit
+place=village & population > 299 { name '${name}' } [0x11503 resolution 21-21 continue ] # normal
+place=village & population > 299 { name '${name}' } [0x11502 resolution 22 ] # grand
 
-place=village & population > 0 { name '${name}' } [0x11504 resolution 20-20 continue ] # petit
-place=village & population > 0 { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
+place=village & population > 100 { name '${name}' } [0x11506 resolution 19-20 continue ] # petit gris
+place=village & population > 100 { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
+place=village & population > 100 { name '${name}' } [0x11502 resolution 23 ] # grand
+
+place=village & population > 0 { name '${name}' } [0x11504 resolution 20-21 continue ] # petit
+place=village & population > 0 { name '${name}' } [0x11503 resolution 22-22 continue ] # normal
 place=village & population > 0 { name '${name}' } [0x11502 resolution 23 ] # grand
 
-place=village & !(population) { name '${name}' } [0x11504 resolution 20-20 continue ] # petit
-place=village & !(population) { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
-place=village & !(population) { name '${name}' } [0x11502 resolution 23 ] # grand
-place=village { name '${name}'} [0x11504 resolution 20-20 continue ] # petit
-place=village { name '${name}'} [0x11503 resolution 21-22 continue ] # normal
+# place=village & !(population) { name '${name}' } [0x11504 resolution 20-20 continue ] # petit
+# place=village & !(population) { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
+# place=village & !(population) { name '${name}' } [0x11502 resolution 23 ] # grand
+place=village { name '${name}'} [0x11504 resolution 20-21 continue ] # petit
+place=village { name '${name}'} [0x11503 resolution 22-22 continue ] # normal
 place=village { name '${name}'} [0x11502 resolution 23] # grand
 
+place=hamlet { name '${name}' } [0x11506 resolution 21-21 continue ] # petit gris
 place=hamlet { name '${name}' } [0x11504 resolution 22-22 continue ] # petit
 place=hamlet { name '${name}' } [0x11503 resolution 23] # normal
 
 place=isolated_dwelling & name!=* {add name=maison}
-place=isolated_dwelling | place=farm [0x6603 resolution 23-23 continue]
+place=isolated_dwelling | place=farm {name '${name}'} [0x6603 resolution 22-22 continue]
 place=isolated_dwelling | place=farm {name '${name}'} [0x6602 resolution 23-23 continue]
 place=isolated_dwelling | place=farm {name '${name}'} [0x6601 resolution 24]
 
 (place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Ll]otissement.*') [0x11506 resolution 23 continue] # OK TXT petit
 (place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Rr]ésidence.*') [0x11506 resolution 23 continue] # OK TXT petit
-(place=quarter | place=suburb | place=borough) {name '${name}'} [0x11506 resolution 23-23 continue] # OK TXT petit
-(place=quarter | place=suburb | place=borough) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen
+(place=quarter | place=suburb | place=borough | place=island) {name '${name}'} [0x11506 resolution 23-23 continue] # OK TXT petit
+(place=quarter | place=suburb | place=borough | place=island) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen
 
 (place=neighbourhood | place=allotments | place=city_block) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen
 
