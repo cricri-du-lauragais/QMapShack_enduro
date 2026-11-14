@@ -35,7 +35,7 @@ highway=* & (mtb:scale="6-" | mtb:scale="6+") {set mtb:scale=6}
 (highway=path | highway=footway | highway=track) & (mtb:scale=2 | mtb:scale=3 | sac_scale=mountain_hiking ) {add difficult=difficile}
 (highway=path | highway=footway | highway=track ) & (smoothness=impassable| mtb:scale=4 | mtb:scale=5 | mtb:scale=6 | sac_scale=difficult_alpine_hiking | sac_scale=alpine_hiking|sac_scale=demanding_alpine_hiking | sac_scale=demanding_mountain_hiking) {add difficult=impassable}
 
-mkgmap:line2poitype=mid & ((highway=path | highway=footway ) & (difficult=facile)) {name 'sentier facile'} [0x01d01 resolution 22-23 continue] #facile
+mkgmap:line2poitype=mid & ((highway=path | highway=footway ) & (difficult=facile)) {name 'sentier facile'} [0x01d01 resolution 22-22 continue] #facile
 mkgmap:line2poi=true & ((highway=path | highway=footway ) & (difficult=facile)) {name 'sentier facile'} [0x01d05 resolution 23-23 continue] #facile
 mkgmap:line2poi=true & ((highway=path | highway=footway ) & (difficult=facile)) {name 'sentier facile'} [0x02a01 resolution 24] #facile
 
@@ -44,7 +44,7 @@ mkgmap:line2poitype=mid & ((highway=path | highway=footway | highway=track) & (d
 'technique, smoothness:${smoothness}'|
 'technique, mtb:${mtb:scale}, ${note}'|
 'technique, mtb:${mtb:scale}'
-} [0x01d02 resolution 22-23 continue] #technique
+} [0x01d02 resolution 22-22 continue] #technique
 mkgmap:line2poi=true & ((highway=path | highway=footway | highway=track) & (difficult=technique )) {name 
 'technique, smoothness:${smoothness}, ${note}'|
 'technique, smoothness:${smoothness}'|
@@ -65,7 +65,7 @@ mkgmap:line2poitype=mid & ((highway=path | highway=footway | highway=track) & (d
 'difficile, smoothness:${smoothness}'|
 'difficile, sac_scale:${sac_scale}, ${note}'|
 'difficile, sac_scale:${sac_scale}'
- } [0x01d03 resolution 22-23 continue] #hard
+ } [0x01d03 resolution 22-22 continue] #hard
 mkgmap:line2poi=true & ((highway=path | highway=footway | highway=track) & (difficult=difficile )) {name
 'difficile, mtb:${mtb:scale}, ${note}'|
 'difficile, mtb:${mtb:scale}'|
@@ -90,7 +90,7 @@ mkgmap:line2poitype=mid & ((highway=path | highway=footway | highway=track ) & (
 'impassable, smoothness:${smoothness}'|
 'impassable, sac_scale:${sac_scale}, ${note}'|
 'impassable, sac_scale:${sac_scale}'
-} [0x01d04 resolution 22-23 continue] #impassable
+} [0x01d04 resolution 22-22 continue] #impassable
 mkgmap:line2poi=true & ((highway=path | highway=footway | highway=track ) & (difficult=impassable)) {name 
 'impassable, mtb:${mtb:scale}, ${note}'|
 'impassable, mtb:${mtb:scale}'|
@@ -132,17 +132,17 @@ mkgmap:area2poi=true & power=* & is_in(landuse,retail,in_or_on)=true {delete pow
 mkgmap:area2poi=true & (power=transformer )[0x2b04 resolution 23]
 mkgmap:area2poi=true & (power=substation & substation!=minor_distribution) [0x2b04 default_name="transformateur" resolution 23]
 
-## affiche un point ruine (voir fichier TYP) si polygon taggé ruins
+## affiche un point ruine (voir fichier TYP) si polygon taggé ruins # 
 mkgmap:area2poi=true & (historic=ruins|ruins=yes|ruin=yes|building=ruins|building=collapsed) & mkgmap:residential!=* {name '${name}'} [0x6415 default_name="ruine" resolution 23] #0x2c02 pas vu sous mapsource
 
 # icone sur les balisages
-mkgmap:line2poitype=mid & ((highway=path|highway=track|highway=service) & mtb=mtb) & mkgmap:way-length>250 {name 'VTT ${colour}: ${mtbname}'|'VTT: ${mtbname}'} [0x6407 resolution 23 ]
+mkgmap:line2poitype=mid & ((highway=path|highway=track|highway=service) & mtb=mtb) [0x6407 resolution 23 ]
 
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service|highway=unclassified) & pr=pr) & mkgmap:way-length>400 {name 'PR: ${prname}'|'PR: ${from}-${to}'} [0x640c resolution 23 ]
+mkgmap:line2poi=true & ((highway=path|highway=track|highway=service|highway=unclassified) & gr=gr) & mkgmap:way-length>300 [0x6501 resolution 22 ]
 
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service|highway=unclassified) & grp=grp) & mkgmap:way-length>500 {name 'GRP: ${grpname}'|'GRP: ${from}-${to}'} [0x6502 resolution 22 ]
+mkgmap:line2poi=true & ((highway=path|highway=track|highway=service|highway=unclassified) & grp=grp) & mkgmap:way-length>300 [0x6502 resolution 22 ]
 
-mkgmap:line2poitype=inner & ((highway=path|highway=track|highway=service|highway=unclassified) & gr=gr) & mkgmap:way-length>500 {name 'GR: ${ref} ${grname}'|'GR: ${grname}'|'GR: ${from}-${to}'} [0x6501 resolution 22 ]
+mkgmap:line2poi=true & ((highway=path|highway=track|highway=service|highway=unclassified) & pr=pr) & mkgmap:way-length>300 [0x640c resolution 23 ]
 
 ## barrieres 0x660f derrière villes OK
 railway=level_crossing [0x1341a resolution 24]
@@ -240,6 +240,7 @@ man_made=tower & mkgmap:residential!=* [0x6512 default_name="tour" resolution 23
 man_made=mineshaft | man_made=adit | historic=mine [0x6304 default_name="mine" resolution 23]
 man_made=water_works [0x5600 default_name="usine eau" resolution 23]
 man_made=wastewater_plant [0x5600 default_name="station épuration" resolution 23]
+mkgmap:area2poi=true & (man_made=wastewater_plant) [0x5600 default_name="station épuration" resolution 23]
 
 ## cols 
 # highway=primary & (mkgmap:from-node:mountain_pass=yes|mkgmap:from-node:natural=saddle) {set mkgmap:label:1='${mkgmap:from-node:name}'} [0x6606 resolution 20-21 continue] #cols routiers
@@ -314,56 +315,86 @@ mkgmap:line2poitype=mid & (highway!=path & ford=yes) [0x6513 default_name "gué"
 
 ## city conversion par population
 ## level 17 = zoom 30 km dernier level pris en compte depuis fichier options (8 levels max possible)
-## hamlet dans reseidential
-place=hamlet & is_in(landuse,residential,in_or_on)=true {set place=suburb}
 
-place=city & (capital=yes|capital=1)  { name '${name}' } [0x11502 resolution 14] # grand
-(place=city |place=town) & (capital=2|capital=3) { name '${name}' } [0x11502 resolution 15] # grand
-(place=city |place=town) & admin_level<4  { name '${name}' } [0x11502 resolution 16] # OK grand
+# ajoute variable nameok aux villes avec bons critères pour exclusion modifs étape suivante
+(place=town|place=village|place=hamlet) & name ~ '^(?:[Ll]e|[Ll]es) \p{L}+$' { add nameok=yes } # 2 mots commançant par sans tiret
+(place=town|place=village|place=hamlet) & name ~ "[']" { add nameok=yes } # avec '
+(place=town|place=village|place=hamlet) & name ~ '^[^-]*$' { add nameok=yes } # tous les mots sans tiret
+(place=town|place=village|place=hamlet) & name ~ '^(?:[Ss]aint.).\p{L}+$' { add nameok=yes } # 2 mot commançant par avec ou sans tiret
+(place=town|place=village|place=hamlet) & name ~ '^\w+$' { add nameok=yes } # un seul mot
 
-(place=city|place=town) & (capital=4|capital=5|capital=6|capital=7) { name '${name}' } [0x11503 resolution 17-17 continue] # OK normal
-(place=city|place=town) & (capital=4|capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 18] # OK grand
+# prend le dernier mot et ne conserve que la première lettre et à partie de la 6 eme
+(place=town|place=village|place=hamlet) & nameok!=yes { add finname='${name|part:"-:-1"}' } # dernier mot
+(place=town|place=village|place=hamlet) & nameok!=yes { add debutfin='${finname|substring:"0:1"}'} # OK premiere lettre
+# (place=town|place=village|place=hamlet) & nameok!=yes { add finfin='${finname|substring:"6"}'} # OK ... lettres au delà de 6 (pas génial selon la longueur)
+(place=town|place=village|place=hamlet) & nameok!=yes { add fin='${debutfin}.'} # OK créé le dernier bout
+(place=town|place=village|place=hamlet) & nameok!=yes { add debut='${name|subst:"Saint=>St"|part:"-<-1"}'} # OK récupère le nom moins dernier bout
 
-# ${name|part:"-<-2"} ... enlève les 2 dernier bouts du nom
-place=town & population > 10000 { name '${name}${name}' } [0x11504 resolution 18-18 continue] # petit
-place=town & population > 10000 { name '${name}' } [0x11503 resolution 19-19 continue] # normal
-place=town & population > 10000 { name '${name}' } [0x11502 resolution 20] # grand
+(place=town|place=village|place=hamlet) & nameok!=yes & mkgmap:label:2!=* {set mkgmap:label:2='${name}'} # OK copie le nom dans le 2 eme champs visible dans Qmapshack
 
-place=town & population > 4999 { name '${name}' } [0x11504 resolution 18-18 continue ] # petit
-place=town & population > 4999 { name '${name}' } [0x11503 resolution 19-20 continue ] # normal
+place=city & (capital=yes|capital=1)  { name '${name}' } [0x11502 resolution 16] # grand
+
+## prefecture code XX000 === 0{3}$
+## sous pref XXX00=== 0{2}$
+## série des 0x01a00 txt repousse les autres texte comme 0x115xx
+place=city { name '${name}' } [0x01a00 resolution 16]
+(place=city|place=town|place=villag) & postal_code ~ '^\d*.*000.*' {add pref=yes}
+(place=city|place=town|place=villag) & postal_code ~ '^\d*00$' {add souspref=yes}
+(place=town|place=villag) & pref=yes { name '${name}' } [0x01a00 resolution 17] # repousse les + petites villes
+place=town & souspref=yes { name '${name}' } [0x01b00 resolution 17-17 continue] # repousse les + petites villes
+place=town & souspref=yes { name '${name}' } [0x01a00 resolution 18] # repousse les + petites villes
+
+(place=city|place=town) & (capital=5|capital=6|capital=7) { name '${name}' } [0x11503 resolution 17-17 continue] # OK normal
+(place=city|place=town) & (capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 18-18 continue] # OK grand
+(place=city|place=town) & (capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 19-19 continue] # OK grand
+(place=city|place=town) & (capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 20-20 continue] # OK grand
+(place=city|place=town) & (capital=5|capital=6|capital=7) { name '${name}' } [0x11502 resolution 21] # OK grand
+
+place=town & population > 10000 & nameok!=yes { name '${debut}${fin}'} [0x11503 resolution 18-18 continue] # normal
+place=town & population > 10000 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 18-18 continue] # normal
+place=town & population > 10000 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 19-20 continue] # normal
+place=town & population > 10000 { name '${name}' } [0x11502 resolution 21] # grand
+
+place=town & population > 4999 & nameok!=yes { name '${debut}${fin}'} [0x11503 resolution 18-18 continue ] # normal
+place=town & population > 4999 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 18-18 continue ] # normal
+place=town & population > 4999 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 19-20 continue ] # normal
 place=town & population > 4999 { name '${name}' } [0x11502 resolution 21 ] # grand
 
-place=village & population > 1500 { name '${name}' } [0x11504 resolution 18-19 continue] # petit
-place=village & population > 1500 { name '${name}' } [0x11503 resolution 20-20 continue] # normal
+place=village & population > 1500 & nameok!=yes { name '${debut}${fin}'} [0x11504 resolution 18-18 continue] # petit
+place=village & population > 1500 { name '${name|subst:"Saint=>St"}'} [0x11504 resolution 18-18 continue] # petit
+place=village & population > 1500 & nameok!=yes { name '${debut}${fin}'} [0x11503 resolution 19-19 continue] # normal
+place=village & population > 1500 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 19-20 continue] # normal
 place=village & population > 1500 { name '${name}' } [0x11502 resolution 21 ] # grand
 
-place=town { name '${name}' } [0x11504 resolution 18-19 continue] # petit
-place=town { name '${name}' } [0x11503 resolution 20-20 continue] # normal
+place=town & nameok!=yes { name '${debut}${fin}'} [0x11504 resolution 18-18 continue] # petit
+place=town { name '${name|subst:"Saint=>St"}'} [0x11504 resolution 18-18 continue] # petit
+place=town & nameok!=yes { name '${debut}${fin}'} [0x11503 resolution 19-20 continue] # normal
+place=town { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 19-20 continue] # normal
 place=town { name '${name}' } [0x11502 resolution 21 ] # grand
-# place=town { name '${name}' } [0x11502 resolution 21 ] # grand
 
-place=village & population > 299 { name '${name}' } [0x11504 resolution 19-20 continue ] # petit
-place=village & population > 299 { name '${name}' } [0x11503 resolution 21-21 continue ] # normal
-place=village & population > 299 { name '${name}' } [0x11502 resolution 22 ] # grand
+place=village & population > 499 & nameok!=yes { name '${debut}${fin}'} [0x11504 resolution 19-19 continue ] # petit
+place=village & population > 499 { name '${name|subst:"Saint=>St"}'} [0x11504 resolution 19-19 continue ] # petit
+place=village & population > 499 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 20-20 continue ] # normal
+place=village & population > 499 { name '${name}' } [0x11502 resolution 21 ] # grand
 
-place=village & population > 100 { name '${name}' } [0x11506 resolution 19-20 continue ] # petit gris
-place=village & population > 100 { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
-place=village & population > 100 { name '${name}' } [0x11502 resolution 23 ] # grand
+place=village & population > 200 & nameok!=yes { name '${debut}${fin}'} [0x13408 resolution 19-19 continue ] # petit gris
+place=village & population > 200 { name '${name|subst:"Saint=>St"}'} [0x13408 resolution 19-19 continue ] # petit gris
+place=village & population > 200 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 20-21 continue ] # normal
+place=village & population > 200 { name '${name}' } [0x11502 resolution 22 ] # grand
 
-place=village & population > 0 { name '${name}' } [0x11504 resolution 20-21 continue ] # petit
-place=village & population > 0 { name '${name}' } [0x11503 resolution 22-22 continue ] # normal
+place=village & population > 0 & nameok!=yes { name '${debut}${fin}'} [0x11504 resolution 20-20 continue ] # petit
+place=village & population > 0 { name '${name|subst:"Saint=>St"}'} [0x11504 resolution 20-20 continue ] # petit
+place=village & population > 0 { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 21-22 continue ] # normal
 place=village & population > 0 { name '${name}' } [0x11502 resolution 23 ] # grand
 
-# place=village & !(population) { name '${name}' } [0x11504 resolution 20-20 continue ] # petit
-# place=village & !(population) { name '${name}' } [0x11503 resolution 21-22 continue ] # normal
-# place=village & !(population) { name '${name}' } [0x11502 resolution 23 ] # grand
-place=village { name '${name}'} [0x11504 resolution 20-21 continue ] # petit
-place=village { name '${name}'} [0x11503 resolution 22-22 continue ] # normal
+place=village & nameok!=yes { name '${debut}${fin}'} [0x13408 resolution 20-20 continue ] # gris
+place=village { name '${name|subst:"Saint=>St"}'} [0x11504 resolution 21-21 continue ] # petit
+place=village { name '${name|subst:"Saint=>St"}'} [0x11503 resolution 22-22 continue ] # normal
 place=village { name '${name}'} [0x11502 resolution 23] # grand
 
-place=hamlet { name '${name}' } [0x11506 resolution 21-21 continue ] # petit gris
-place=hamlet { name '${name}' } [0x11504 resolution 22-22 continue ] # petit
-place=hamlet { name '${name}' } [0x11503 resolution 23] # normal
+place=hamlet { name '${name}'} [0x1341d resolution 21-21 continue ] # petit
+place=hamlet { name '${name}'} [0x1341d resolution 22-23 continue ] # petit
+place=hamlet { name '${name}'} [0x13409 resolution 24] # moyen
 
 place=isolated_dwelling & name!=* {add name=maison}
 place=isolated_dwelling | place=farm {name '${name}'} [0x6603 resolution 22-22 continue]
@@ -372,7 +403,7 @@ place=isolated_dwelling | place=farm {name '${name}'} [0x6601 resolution 24]
 
 (place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Ll]otissement.*') [0x11506 resolution 23 continue] # OK TXT petit
 (place=neighbourhood | place=allotments | place=city_block | place=quarter | place=suburb | place=borough) & (name ~ '[Rr]ésidence.*') [0x11506 resolution 23 continue] # OK TXT petit
-(place=quarter | place=suburb | place=borough | place=island) {name '${name}'} [0x11506 resolution 23-23 continue] # OK TXT petit
+(place=quarter | place=suburb | place=borough | place=island) {name '${name}'} [0x11506 resolution 22-23 continue] # OK TXT petit
 (place=quarter | place=suburb | place=borough | place=island) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen
 
 (place=neighbourhood | place=allotments | place=city_block) {name '${name}'} [0x11507 resolution 24] # OK TXT moyen

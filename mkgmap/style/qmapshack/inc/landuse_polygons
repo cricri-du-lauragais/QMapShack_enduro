@@ -47,7 +47,7 @@ landuse=reservoir|landuse=basin {name '${name}'|'lac'} [0x40 resolution 18]
 natural=water {name '${name}'|'lac'} [0x40 resolution 17]
 (natural=water & water=river) [0x40 default_name="riviere" resolution 21]
 (natural=water & water=reservoir) [0x40 default_name="reservoir" resolution 22]
-man_made=wastewater_plant [0x40 default_name="station épuration" resolution 24]
+#man_made=wastewater_plant [0x40 default_name="station épuration" resolution 24]
 waterway=dam [0x10f0c default_name="barrage" resolution 23]
 
 craft=* { name '${name}'| '${craft}' } [0x10f05 resolution 23]

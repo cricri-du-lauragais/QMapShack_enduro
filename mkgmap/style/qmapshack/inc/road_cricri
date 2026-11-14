@@ -1,6 +1,7 @@
 
 ## declassement route etroite
-(highway=tertiary | highway=secondary) & width<5 {name '${name} ${ref} "route étroite !"'|'${ref} "route étroite !"'}
+highway=tertiary & width<5 {name '${name} ${ref} "route étroite !"'|'${ref} "route étroite !"';set highway=unclassified}
+highway=secondary & width<5 {name '${name} ${ref} "route étroite !"'|'${ref} "route étroite !"';set highway=tertiary}
 (highway=tertiary | highway=secondary | highway=primary) & (smoothness=intermediate|smoothness=bad) {name '${name} ${ref} "route pourrie !"'|'${ref} "route pourrie !"'}
 (highway=tertiary | highway=secondary | highway=primary) & (smoothness=excellent|smoothness=good) {name '${name} ${ref} "billard :)"'|'${ref} "billard :)"'}
 

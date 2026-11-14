@@ -18,6 +18,8 @@ type = boundary & boundary = administrative & admin_level=8 & population = *
   {
             set population = '${population}';
             add population = '${population}';
+            set postal_code = '${postal_code}';
+            add postal_code = '${postal_code}';
   }
 }
 
@@ -45,12 +47,14 @@ type=route & route=bicycle & name ~ '.*[Vv]oie [Vv]erte.*'
 
 ###############ordre_exec_relation_sans_importance_pour_balisages
 #superroute NOK pas reconnu par mkgmap!
-type=superroute & (route=hiking & network=*)
+type=superroute & route=hiking
 { apply
 	{
 		add ss=ss;
+		add from='${from}';
+		add to='${to}';
 		add ref='${ref}';
-		set name='${name}';
+		add ssname='${name}';
 	}
 }
 
