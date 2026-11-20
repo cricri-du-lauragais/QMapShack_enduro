@@ -1,9 +1,8 @@
 <TMS>
 <Layer idx="0">
 <Title>strava pieton</Title>
-<MinZoomLevel>6</MinZoomLevel>
-<MaxZoomLevel>6</MaxZoomLevel>
+<MinZoomLevel>7</MinZoomLevel>
 <ServerUrl>http://89.168.43.214:9192/identified/globalheat/run/blue/%1/%2/%3.png</ServerUrl>
 </Layer>
-<Copyright> cricri</Copyright>
+<Copyright>cricri</Copyright>
 </TMS>

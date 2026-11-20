@@ -1,8 +1,7 @@
 <TMS>
 <Layer idx="0">
-<Title>strava vélo</Title>
-<MinZoomLevel>6</MinZoomLevel>
-<MaxZoomLevel>6</MaxZoomLevel>
+<Title>strava velo</Title>
+<MinZoomLevel>7</MinZoomLevel>
 <ServerUrl>http://89.168.43.214:9192/identified/globalheat/ride/hot/%1/%2/%3.png</ServerUrl>
 </Layer>
 <Copyright> cricri</Copyright>

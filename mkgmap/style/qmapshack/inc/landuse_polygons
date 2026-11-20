@@ -8,7 +8,7 @@ aeroway=heliport {name '${name}'} [0x07 default_name="heliport" resolution 22]
 aeroway=helipad [0x0e default_name="piste" resolution 23]
 
 #boundary
-boundary=forest & cdom_frt=OUI {name '${name}'} [0x11009 default_name="Forêt Domaniale" resolution 21 continue]
+# boundary=forest & cdom_frt=OUI {name '${name}'} [0x11009 default_name="Forêt Domaniale" resolution 21 continue]
 boundary=* {name '${name}'}
 
 leisure=nature_reserve {name '${name}'} [0x15 resolution 18]
